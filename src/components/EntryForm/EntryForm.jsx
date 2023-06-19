@@ -16,8 +16,8 @@ const EntryForm = () => {
         </li>
       </ul>
       <div className={classes.btnContainer}>
-      <EntryBtn value="Войти" colored={true} />
-      <EntryBtn value="Зарегистрироваться" colored={false} />
+        <EntryBtn value="Войти" colored={true} />
+        <EntryBtn value="Зарегистрироваться" colored={false} />
       </div>
     </form>
   );
