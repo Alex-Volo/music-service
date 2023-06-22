@@ -1,5 +1,5 @@
 import classes from './Search.module.css';
-import sprite from '../../img/icon/sprite.svg';
+import sprite from 'img/icon/sprite.svg';
 const Search = () => {
   return (
     <div className="search">

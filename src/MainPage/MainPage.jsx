@@ -1,9 +1,8 @@
 import classes from './MainPage.module.css';
-import logo from '../img/logo.png';
-import sprite from '../img/icon/sprite.svg';
+import logo from 'img/logo.png';
+
 import Search from './Search/Search';
 import SidebarPersonal from './SidebarPersonal/SidebarPersonal';
-export { sprite };
 
 const MainPage = () => {
   return (
