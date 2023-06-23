@@ -5,3 +5,8 @@
   align-items: center;
   gap: 10px;
 }
+
+.logout {
+  width: 43px;
+  height: 43px;
+}
