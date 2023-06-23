@@ -4,9 +4,9 @@ import MainPage from './MainPage/MainPage';
 
 function App() {
   return (
-  // <EntryForm />;
-  <MainPage />
-  )
+    // <EntryForm />;
+    <MainPage />
+  );
 }
 
 export default App;
