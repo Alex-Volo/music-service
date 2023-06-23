@@ -1,5 +1,7 @@
-.searchSvg {
-  width: 17px;
-  height: 18px;
-  color: white;
+.sidebarPersonal__container {
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }

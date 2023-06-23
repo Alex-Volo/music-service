@@ -2,9 +2,9 @@ import classes from './SidebarPersonal.module.css';
 
 const SidebarPersonal = () => {
   return (
-    <div style={{ color: 'white' }} className="sidebar_personal">
+    <div className={classes.sidebarPersonal__container}>
       <p>Name</p>
-      <div>Avatar</div>
+      <div>Logout</div>
     </div>
   );
 };

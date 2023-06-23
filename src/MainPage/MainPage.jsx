@@ -6,11 +6,15 @@ import SidebarPersonal from './SidebarPersonal/SidebarPersonal';
 
 const MainPage = () => {
   return (
-    <header className={classes.header}>
-      <img className={classes.logo} src={logo} />
-      <Search />
-      <SidebarPersonal />
-    </header>
+    <div className={classes.wrapper}>
+      <header className={classes.header}>
+        <div className={classes.logoContainer}>
+          <img className={classes.logo} src={logo} />
+        </div>
+        <Search />
+        <SidebarPersonal />
+      </header>
+    </div>
   );
 };
 
