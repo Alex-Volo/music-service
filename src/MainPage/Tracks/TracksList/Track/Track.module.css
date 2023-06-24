@@ -1,8 +1,9 @@
 .track {
   display: grid;
-  grid-template-columns: 50px 40% 30% 24% 20px 35px;
+  grid-template-columns: 50px calc(40% - 50px) 30% 24% 30px 35px;
   grid-template-rows: 50px;
   align-items: center;
+  margin-top: 12px;
 }
 .trackLogo {
   height: 50px;
@@ -21,4 +22,14 @@
 .trackName {
   box-sizing: border-box;
   padding: 0 15px;
+}
+
+.trackLike {
+  width: 14px;
+  height: 12px;
+  stroke: #696969;
+}
+
+.trackTime {
+  text-align: right;
 }

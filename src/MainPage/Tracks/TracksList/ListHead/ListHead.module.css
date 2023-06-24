@@ -1,6 +1,6 @@
 .listHead {
   display: grid;
-  grid-template-columns: 40% 30% 24% 20px 35px;
+  grid-template-columns: 40% 30% 24% 30px 35px;
   color: #4e4e4e;
   font-size: 14px;
   line-height: 24px;
@@ -10,4 +10,10 @@
 .watchSvg {
   height: 12px;
   width: 12px;
+}
+
+.timeCol {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }

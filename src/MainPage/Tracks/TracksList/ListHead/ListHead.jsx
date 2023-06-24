@@ -7,7 +7,7 @@ const ListHead = ({ heading = 'Треки' }) => {
       <div>Исполнитель</div>
       <div>Альбом</div>
       <div></div>
-      <div>
+      <div className={classes.timeCol}>
         <svg className={classes.watchSvg}>
           <use xlinkHref={`${sprite}#icon-watch`} />
         </svg>
