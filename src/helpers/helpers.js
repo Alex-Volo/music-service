@@ -1,5 +1,5 @@
 export const formatTime = (timeInSeconds) => {
-    const minutes = Math.floor(timeInSeconds / 60);
-    const seconds = timeInSeconds % 60;
-    return `${minutes}:${seconds}`;
-}
+  const minutes = Math.floor(timeInSeconds / 60);
+  const seconds = ('0' + (timeInSeconds % 60)).slice(-2);
+  return `${minutes}:${seconds}`;
+};

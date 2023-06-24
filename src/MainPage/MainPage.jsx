@@ -2,6 +2,7 @@ import classes from './MainPage.module.css';
 import Header from './Header/Header';
 import MainNav from './MainNav/MainNav';
 import Tracks from './Tracks/Tracks';
+import Sidebar from './Sidebar/Sidebar';
 
 const MainPage = () => {
   return (
@@ -9,6 +10,8 @@ const MainPage = () => {
       <Header />
       <MainNav />
       <Tracks />
+      <Sidebar />
+      {/* <MusicPlayer /> */}
     </div>
   );
 };
