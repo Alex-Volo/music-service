@@ -3,6 +3,7 @@ import Header from './Header/Header';
 import MainNav from './MainNav/MainNav';
 import Tracks from './Tracks/Tracks';
 import Sidebar from './Sidebar/Sidebar';
+import MusicPlayer from './MusicPlayer/MusicPlayer';
 
 const MainPage = () => {
   return (
@@ -11,7 +12,7 @@ const MainPage = () => {
       <MainNav />
       <Tracks />
       <Sidebar />
-      {/* <MusicPlayer /> */}
+      <MusicPlayer />
     </div>
   );
 };
