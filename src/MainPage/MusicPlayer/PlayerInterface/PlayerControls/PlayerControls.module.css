@@ -1,5 +1,6 @@
 .playerControls {
   display: flex;
+  align-items: center;
   gap: 33px;
 }
 
