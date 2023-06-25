@@ -3,4 +3,9 @@
   height: 50px;
   align-items: center;
   padding: 10px;
+  justify-content: space-between;
+}
+
+.leftBlock {
+  display: flex;
 }
