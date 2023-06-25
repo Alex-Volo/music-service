@@ -1,29 +1,12 @@
 import classes from './PlayerInterface.module.css';
 import PlayerControls from './PlayerControls/PlayerControls';
+import PlayerTrack from './PlayerTrack/PlayerTrack';
 const PlayerInterface = () => {
   return (
     <div className={classes.playerInterface}>
       <PlayerControls />
+      <PlayerTrack />
 
-      <div className="playerTrack">
-        <div className="track-play__contain">
-          <div className="track-play__image">
-            <svg className="track-play__svg" alt="music">
-              <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
-            </svg>
-          </div>
-          <div className="track-play__author">
-            <a className="track-play__author-link" href="http://">
-              Ты та...
-            </a>
-          </div>
-          <div className="track-play__album">
-            <a className="track-play__album-link" href="http://">
-              Баста
-            </a>
-          </div>
-        </div>
-      </div>
 
       <div className="like-dislike">
         <div className="track-play__like _btn-icon">
