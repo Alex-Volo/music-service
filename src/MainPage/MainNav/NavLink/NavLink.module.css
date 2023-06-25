@@ -1,0 +1,14 @@
+.navLink {
+  padding: 5px 0;
+  margin-bottom: 16px;
+  color: #fff;
+}
+
+.navLink a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.navLink a:hover {
+  text-decoration: underline;
+}

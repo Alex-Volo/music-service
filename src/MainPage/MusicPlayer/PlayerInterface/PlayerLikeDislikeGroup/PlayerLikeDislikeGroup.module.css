@@ -1,0 +1,19 @@
+.playerLikeDislikeGroup {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+/* .like {
+} */
+.likeSvg {
+  width: 15px;
+  height: 15px;
+  stroke: #696969;
+}
+/* .dislike {
+} */
+.dislikeSvg {
+  width: 15px;
+  height: 15px;
+  stroke: #696969;
+}

@@ -1,0 +1,12 @@
+.sidebarPersonal__container {
+  color: #fff;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.logout {
+  width: 43px;
+  height: 43px;
+}

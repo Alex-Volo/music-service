@@ -1,0 +1,31 @@
+.btn {
+  display: block;
+  width: 100%;
+  height: 52px;
+  font-family: 'Stratos', sans-serif;
+  border: 1px solid #d0cece;
+  border-radius: 6px;
+  background-color: transparent;
+  font-size: 18px;
+  line-height: 24px;
+}
+
+.btn:hover {
+  background-color: #f4f5f6;
+}
+
+.btn:active {
+  background-color: #d0cece;
+}
+.purple {
+  background-color: #580ea2;
+  color: #fff;
+}
+
+.purple:hover {
+  background-color: #3f007d;
+}
+
+.purple:active {
+  background-color: #271a58;
+}

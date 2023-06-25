@@ -1,0 +1,16 @@
+.header {
+  grid-column: 1 / -1;
+  min-width: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 15% 60% 25%;
+  align-items: center;
+}
+
+.logoContainer {
+  grid-column: 1 / 2;
+}
+.logo {
+  width: 113.33px;
+  height: 17px;
+}
