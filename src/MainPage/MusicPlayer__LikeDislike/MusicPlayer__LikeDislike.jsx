@@ -1,7 +1,7 @@
-import classes from './PlayerLikeDislikeGroup.module.css';
+import classes from './MusicPlayer__LikeDislike.module.css';
 import sprite from 'img/icon/sprite.svg';
 
-const PlayerLikeDislikeGroup = () => {
+const MusicPlayer__LikeDislike = () => {
   return (
     <div className={classes.playerLikeDislikeGroup}>
       <div className={classes.like}>
@@ -18,4 +18,4 @@ const PlayerLikeDislikeGroup = () => {
   );
 };
 
-export default PlayerLikeDislikeGroup;
+export default MusicPlayer__LikeDislike;

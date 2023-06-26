@@ -1,6 +1,6 @@
-import classes from './PlayerControls.module.css';
+import classes from './MusicPlayer__Controls.module.css';
 import sprite from 'img/icon/sprite.svg';
-const PlayerControls = () => {
+const MusicPlayer__Controls = () => {
   return (
     <div className={classes.playerControls}>
       <div className={classes.previos}>
@@ -32,4 +32,4 @@ const PlayerControls = () => {
   );
 };
 
-export default PlayerControls;
+export default MusicPlayer__Controls;

@@ -1,7 +1,7 @@
-import classes from './VolumeBlock.module.css';
+import classes from './MusicPlayer__Volume.module.css';
 import sprite from 'img/icon/sprite.svg';
 
-const VolumeBlock = () => {
+const MusicPlayer__Volume = () => {
   return (
     <div className={classes.volumeBlock}>
       <div className={classes.icon}>
@@ -20,4 +20,4 @@ const VolumeBlock = () => {
   );
 };
 
-export default VolumeBlock;
+export default MusicPlayer__Volume;

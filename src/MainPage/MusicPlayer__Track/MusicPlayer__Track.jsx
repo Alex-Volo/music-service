@@ -1,7 +1,7 @@
-import classes from './PlayerTrack.module.css';
+import classes from './MusicPlayer__Track.module.css';
 import sprite from 'img/icon/sprite.svg';
 
-const PlayerTrack = () => {
+const MusicPlayer__Track = () => {
   return (
     <div className={classes.playerTrack}>
       <div className={classes.trackLogo}>
@@ -25,4 +25,4 @@ const PlayerTrack = () => {
   );
 };
 
-export default PlayerTrack;
+export default MusicPlayer__Track;
