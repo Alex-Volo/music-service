@@ -1,6 +1,6 @@
-import classes from './ListHead.module.css';
+import classes from './Tracks__ListHead.module.css';
 import sprite from 'img/icon/sprite.svg';
-const ListHead = ({ heading = 'Треки' }) => {
+const Tracks__ListHead = ({ heading = 'Треки' }) => {
   return (
     <div className={classes.listHead}>
       <div>Трек</div>
@@ -16,4 +16,4 @@ const ListHead = ({ heading = 'Треки' }) => {
   );
 };
 
-export default ListHead;
+export default Tracks__ListHead;

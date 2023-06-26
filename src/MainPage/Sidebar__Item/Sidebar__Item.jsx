@@ -1,6 +1,6 @@
-import classes from './SidebarItem.module.css';
+import classes from './Sidebar__Item.module.css';
 
-const SidebarItem = ({ img, description }) => {
+const Sidebar__Item = ({ img, description }) => {
   return (
     <div className={classes.sidebar__item}>
       <a className="sidebar__link" href="#">
@@ -10,4 +10,4 @@ const SidebarItem = ({ img, description }) => {
   );
 };
 
-export default SidebarItem;
+export default Sidebar__Item;

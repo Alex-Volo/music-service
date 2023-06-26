@@ -1,8 +1,8 @@
-import classes from './Track.module.css';
+import classes from './Tracks__Track.module.css';
 import sprite from 'img/icon/sprite.svg';
 import { formatTime } from 'helpers/helpers';
 
-const Track = ({ logo, name, author, album, duration }) => {
+const Tracks__Track = ({ logo, name, author, album, duration }) => {
   return (
     <div className={classes.track}>
       <div className={classes.trackLogo}>
@@ -25,4 +25,4 @@ const Track = ({ logo, name, author, album, duration }) => {
   );
 };
 
-export default Track;
+export default Tracks__Track;

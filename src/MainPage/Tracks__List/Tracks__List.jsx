@@ -1,10 +1,10 @@
-import classes from './TracksList.module.css';
-import ListHead from './ListHead/ListHead';
-import Track from './Track/Track';
+import classes from './Tracks__List.module.css';
+import Tracks__ListHead from '../Tracks__ListHead/Tracks__ListHead';
+import Tracks__Track from '../Tracks__Track/Tracks__Track';
 import { fakeState } from 'helpers/fakeState';
-const TracksList = ({ heading = 'Треки' }) => {
+const Tracks__List = ({ heading = 'Треки' }) => {
   const trackElements = fakeState.map((track) => (
-    <Track
+    <Tracks__Track
       key={track.id}
       logo={track.logo}
       name={track.name}
@@ -16,10 +16,10 @@ const TracksList = ({ heading = 'Треки' }) => {
 
   return (
     <div className={classes.trackList}>
-      <ListHead />
+      <Tracks__ListHead />
       {trackElements}
     </div>
   );
 };
 
-export default TracksList;
+export default Tracks__List;
