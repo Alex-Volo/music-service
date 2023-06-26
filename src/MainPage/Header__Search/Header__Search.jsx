@@ -1,6 +1,6 @@
-import classes from './Search.module.css';
+import classes from './Header__Search.module.css';
 import sprite from 'img/icon/sprite.svg';
-const Search = () => {
+const Header__Search = () => {
   return (
     <div className={classes.search}>
       <svg className={classes.searchSvg}>
@@ -16,4 +16,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default Header__Search;

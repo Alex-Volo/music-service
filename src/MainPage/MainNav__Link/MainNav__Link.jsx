@@ -1,6 +1,6 @@
-import classes from './NavLink.module.css';
+import classes from './MainNav__Link.module.css';
 
-const NavLink = ({ linkName }) => {
+const MainNav__Link = ({ linkName }) => {
   return (
     <li className={classes.navLink}>
       <a href="http://" className="menu__link">
@@ -10,4 +10,4 @@ const NavLink = ({ linkName }) => {
   );
 };
 
-export default NavLink;
+export default MainNav__Link;

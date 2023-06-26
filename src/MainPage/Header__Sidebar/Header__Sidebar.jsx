@@ -1,7 +1,7 @@
-import classes from './SidebarPersonal.module.css';
+import classes from './Header__Sidebar.module.css';
 import sprite from 'img/icon/sprite.svg'
 
-const SidebarPersonal = () => {
+const Header__Sidebar = () => {
   return (
     <div className={classes.sidebarPersonal__container}>
       <p>Name</p>
@@ -12,4 +12,4 @@ const SidebarPersonal = () => {
   );
 };
 
-export default SidebarPersonal;
+export default Header__Sidebar;
