@@ -5,4 +5,14 @@
   border: 1px solid #fff;
   border-radius: 60px;
   white-space: nowrap;
+  cursor: pointer;
+}
+.filterBtn:hover {
+  color: #D9B6FF;
+  border-color: #D9B6FF;
+}
+
+.active {
+  color: #AD61FF;
+  border-color: #AD61FF;
 }
