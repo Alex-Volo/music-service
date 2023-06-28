@@ -4,7 +4,7 @@
   margin-top: 10px;
   width: 248px;
   height: 305px;
-  padding: 32px;
+  padding: 20px 32px;
   background-color: #313131;
   overflow: hidden;
   border-radius: 12px;
@@ -18,9 +18,14 @@
   overflow-y: scroll;
   scrollbar-color: white, gray;
 }
+.modalList li {
+  padding: 12px 0;
+}
 .modalList a {
   text-decoration: none;
   color: #fff;
+  font-size: 20px;
+  line-height: 24px;
 }
 
 .modalList a:hover {
