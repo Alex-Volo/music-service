@@ -1,4 +1,5 @@
 .filterBtn {
+  position: relative;
   font-size: 16px;
   line-height: 18px;
   padding: 6px 20px;
@@ -8,11 +9,25 @@
   cursor: pointer;
 }
 .filterBtn:hover {
-  color: #D9B6FF;
-  border-color: #D9B6FF;
+  color: #d9b6ff;
+  border-color: #d9b6ff;
 }
 
 .active {
-  color: #AD61FF;
-  border-color: #AD61FF;
+  color: #ad61ff;
+  border-color: #ad61ff;
+}
+
+.shortcut {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: -10px;
+  top: -10px;
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  background-color: #ad61ff;
+  color: #fff;
 }

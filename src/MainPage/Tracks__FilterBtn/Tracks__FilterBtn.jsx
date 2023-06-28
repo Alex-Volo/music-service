@@ -17,6 +17,7 @@ const Tracks__FilterBtn = ({ id, isActive, title, makeBtnActive }) => {
         className={`${classes.filterBtn} ${isActive && classes.active}`}
       >
         {title}
+        {isActive && <div className={classes.shortcut}>{sortList.length}</div>}
       </div>
       {isActive && <Tracks__FilterModal sortList={sortList} />}
     </div>
