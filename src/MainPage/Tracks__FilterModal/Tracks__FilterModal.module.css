@@ -9,25 +9,36 @@
   overflow: hidden;
   border-radius: 12px;
 }
-.modal {
+.modalList {
   box-sizing: border-box;
   height: 241px;
-
+  list-style: none;
+  margin: 0;
+  padding: 0;
   overflow-y: scroll;
   scrollbar-color: white, gray;
 }
-.modal::-webkit-scrollbar {
+.modalList a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.modalList a:hover {
+  text-decoration: underline;
+  color: #b672ff;
+}
+.modalList::-webkit-scrollbar {
   background-color: #313131;
   width: 4px;
   border-radius: 4px;
 }
 
-.modal::-webkit-scrollbar-thumb {
+.modalList::-webkit-scrollbar-thumb {
   border-radius: 4px;
   background-color: #ffffff;
 }
 
-.modal::-webkit-scrollbar-track {
+.modalList::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
   border-radius: 10px;

@@ -12,7 +12,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 }
+
+/* .trackLogo::before {
+  content: '';
+  position: absolute;
+  z-index: 10;
+  height: inherit;
+  width: 100%;
+  background-color: gray;
+  display: block;
+} */
 .trackLogoSvg {
   height: 20px;
   width: 20px;

@@ -8,8 +8,8 @@ const Tracks__FilterBtn = ({
   title = 'исполнителю',
   makeBtnActive,
 }) => {
-  const getModalData = () => {
-    const getTypeOfData = () => {
+  const getSortList = (title) => {
+    const getTypeOfSort = (title) => {
       switch (title) {
         case 'году выпуска':
           return 'release_date';
@@ -19,16 +19,32 @@ const Tracks__FilterBtn = ({
           return 'author';
       }
     };
-    const data = Array.from(
-      new Set(fakeState.map((track) => track[getTypeOfData()]))
-    ).sort();
-    return data;
+
+    const typeOfSort = getTypeOfSort(title);
+    let sortList = [];
+
+    if (typeOfSort === 'release_date') {
+      sortList = Array.from(
+        new Set(
+          fakeState.map((track) =>
+            track[typeOfSort] ? track[typeOfSort].slice(0, 4) : 'Неизвестно'
+          )
+        )
+      ).sort();
+    } else {
+      sortList = Array.from(
+        new Set(fakeState.map((track) => track[typeOfSort]))
+      ).sort();
+    }
+
+    return sortList;
   };
+
   const handleOnClick = () => {
-    console.log(getModalData());
     isActive ? makeBtnActive(0) : makeBtnActive(id);
   };
 
+  const sortList = getSortList(title);
   return (
     <div>
       <div
@@ -37,7 +53,7 @@ const Tracks__FilterBtn = ({
       >
         {title}
       </div>
-      {isActive && <Tracks__FilterModal />}
+      {isActive && <Tracks__FilterModal sortList={sortList} />}
     </div>
   );
 };
