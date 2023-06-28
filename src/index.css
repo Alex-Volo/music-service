@@ -13,7 +13,6 @@ body {
   min-height: 100vh;
   min-width: 100%;
   max-width: 100%;
-
 }
 
 #root {
@@ -23,4 +22,18 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.loading {
+  position: relative;
+}
+
+.loading::before {
+  content: '';
+  position: absolute;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+  background-color: #313131;
+  display: block;
 }
