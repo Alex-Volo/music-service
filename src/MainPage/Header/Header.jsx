@@ -1,8 +1,8 @@
 import classes from './Header.module.css';
 import logo from 'img/logo.png';
 
-import Search from './Search/Search';
-import SidebarPersonal from './SidebarPersonal/SidebarPersonal';
+import Header__Search from '../Header__Search/Header__Search';
+import Header__Sidebar from '../Header__Sidebar/Header__Sidebar';
 
 const Header = () => {
   return (
@@ -10,8 +10,8 @@ const Header = () => {
       <div className={classes.logoContainer}>
         <img className={classes.logo} src={logo} />
       </div>
-      <Search />
-      <SidebarPersonal />
+      <Header__Search />
+      <Header__Sidebar />
     </header>
   );
 };
