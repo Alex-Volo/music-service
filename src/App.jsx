@@ -1,6 +1,6 @@
 import './App.css';
-import EntryForm from './components/EntryForm/EntryForm';
-import { MainPage } from './MainPage/components/MainPage';
+import EntryForm from 'pages/EntryForm/EntryForm';
+import { MainPage } from 'pages/MainPage/components/MainPage';
 
 function App() {
   return (
