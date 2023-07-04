@@ -1,35 +1,34 @@
-import classes from './MusicPlayer__Controls.module.css';
+import * as S from './styles';
 import sprite from 'assets/img/icon/sprite.svg';
 
 export const MusicPlayer__Controls = () => {
   return (
-    <div className={classes.playerControls}>
-      <div className={classes.previos}>
-        <svg className={classes.previosSvg} alt="prev">
+    <S.PlayerControls>
+      <S.Previos>
+        <S.PreviosSvg alt="prev">
           <use xlinkHref={`${sprite}#icon-prev`}></use>
-        </svg>
-      </div>
-      <div className={classes.play}>
-        <svg className={classes.playSvg} alt="play">
+        </S.PreviosSvg>
+      </S.Previos>
+      <S.Play>
+        <S.PlaySvg alt="play">
           <use xlinkHref={`${sprite}#icon-play`}></use>
-        </svg>
-      </div>
-      <div className={classes.next}>
-        <svg className={classes.nextSvg} alt="next">
+        </S.PlaySvg>
+      </S.Play>
+      <S.Next>
+        <S.NextSvg alt="next">
           <use xlinkHref={`${sprite}#icon-next`}></use>
-        </svg>
-      </div>
-      <div className={classes.repeat}>
-        <svg className={classes.repeatSvg} alt="repeat">
+        </S.NextSvg>
+      </S.Next>
+      <S.Repeat>
+        <S.RepeatSvg alt="repeat">
           <use xlinkHref={`${sprite}#icon-repeat`}></use>
-        </svg>
-      </div>
-      <div className={classes.shuffle}>
-        <svg className={classes.shuffleSvg} alt="shuffle">
+        </S.RepeatSvg>
+      </S.Repeat>
+      <S.Shuffle>
+        <S.ShuffleSvg alt="shuffle">
           <use xlinkHref={`${sprite}#icon-shuffle`}></use>
-        </svg>
-      </div>
-    </div>
+        </S.ShuffleSvg>
+      </S.Shuffle>
+    </S.PlayerControls>
   );
 };
-
