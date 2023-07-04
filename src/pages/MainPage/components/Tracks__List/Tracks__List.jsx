@@ -17,8 +17,7 @@ export const Tracks__List = () => {
       .get('https://painassasin.online/catalog/track/all/')
       .then((response) => setState(response.data));
   };
-  useEffect(() => getTracks(), state);
-
+  useEffect(() => getTracks(), []);
 
   const trackElements = state.map((track) => (
     <Tracks__Track
