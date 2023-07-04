@@ -1,18 +1,12 @@
-import classes from './Header__Search.module.css';
+import * as S from './styles';
 import sprite from 'assets/img/icon/sprite.svg';
 export const Header__Search = () => {
   return (
-    <div className={classes.search}>
-      <svg className={classes.searchSvg}>
+    <S.Search>
+      <S.SearchSvg>
         <use xlinkHref={`${sprite}#icon-search`} />
-      </svg>
-      <input
-        className={classes.search__input}
-        type="search"
-        placeholder="Поиск"
-        name="search"
-      />
-    </div>
+      </S.SearchSvg>
+      <S.SearchInput type="search" placeholder="Поиск" name="search" />
+    </S.Search>
   );
 };
-

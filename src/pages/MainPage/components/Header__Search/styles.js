@@ -1,18 +1,20 @@
-.search {
+import { styled } from 'styled-components';
+
+export const Search = styled.div `
   grid-column: 2 / 3;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #4e4e4e;
-}
+`;
 
-.searchSvg {
+export const SearchSvg = styled.svg `
   width: 17px;
   height: 18px;
   color: white;
   padding: 10px 15px 10px 8px;
-}
+`;
 
-.search__input {
+export const SearchInput = styled.input `
   display: block;
   color: #fff;
   width: 100%;
@@ -22,4 +24,4 @@
   font-size: 16px;
   font-family: StratosSkyeng;
   line-height: 50px;
-}
+`;
