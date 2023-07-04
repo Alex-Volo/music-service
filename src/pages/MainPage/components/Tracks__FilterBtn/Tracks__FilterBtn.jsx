@@ -1,4 +1,4 @@
-import classes from './Tracks__FilterBtn.module.css';
+import * as S from './styles';
 import { Tracks__FilterModal } from '../Tracks__FilterModal/Tracks__FilterModal';
 import { fakeState } from 'helpers/fakeState';
 import { getSortList } from 'helpers/helpers';
@@ -12,13 +12,10 @@ export const Tracks__FilterBtn = ({ id, isActive, title, makeBtnActive }) => {
   const sortList = getSortList(title, fakeState);
   return (
     <div>
-      <div
-        onClick={handleOnClick}
-        className={`${classes.filterBtn} ${isActive && classes.active}`}
-      >
+      <S.FilterBtn onClick={handleOnClick} isActive={isActive}>
         {title}
-        {isActive && <div className={classes.shortcut}>{sortList.length}</div>}
-      </div>
+        {isActive && <S.Shortcut>{sortList.length}</S.Shortcut>}
+      </S.FilterBtn>
       {isActive && <Tracks__FilterModal sortList={sortList} />}
     </div>
   );

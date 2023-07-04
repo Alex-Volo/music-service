@@ -1,4 +1,4 @@
-import classes from './Tracks__FilterModal.module.css';
+import * as S from './styles';
 
 export const Tracks__FilterModal = ({ sortList }) => {
   const sortListElements = sortList.map((e) => (
@@ -7,9 +7,8 @@ export const Tracks__FilterModal = ({ sortList }) => {
     </li>
   ));
   return (
-    <div className={classes.modalWrapper}>
-      <ul className={classes.modalList}> {sortListElements} </ul>
-    </div>
+    <S.ModalWrapper>
+      <S.ModalList> {sortListElements} </S.ModalList>
+    </S.ModalWrapper>
   );
 };
-

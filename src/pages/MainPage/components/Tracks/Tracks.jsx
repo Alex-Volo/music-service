@@ -1,11 +1,11 @@
-import classes from './Tracks.module.css';
+import * as S from './styles';
 import { Tracks__SearchFilter } from '../Tracks__SearchFilter/Tracks__SearchFilter';
 import { Tracks__List } from '../Tracks__List/Tracks__List';
 
 export const Tracks = ({ heading = 'Треки' }) => {
   return (
-    <main className="TracksContainer">
-      <h1 className={classes.heading}>{heading}</h1>
+    <main>
+      <S.Heading>{heading}</S.Heading>
       <Tracks__SearchFilter />
       <Tracks__List />
     </main>

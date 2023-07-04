@@ -1,9 +1,10 @@
-import classes from './Tracks__List.module.css';
+import * as S from './styles';
 import { Tracks__Track } from '../Tracks__Track/Tracks__Track';
 import { Tracks__ListHead } from '../Tracks__ListHead/Tracks__ListHead';
 import { fakeState } from 'helpers/fakeState';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+
 export const Tracks__List = () => {
   // Вешает класс loading на три секунды, а затем убирает его
   const [loadingClass, setLoadingClass] = useState('loading');
@@ -32,9 +33,9 @@ export const Tracks__List = () => {
   ));
 
   return (
-    <div className={classes.trackList}>
+    <S.TracksList>
       <Tracks__ListHead />
       {trackElements}
-    </div>
+    </S.TracksList>
   );
 };

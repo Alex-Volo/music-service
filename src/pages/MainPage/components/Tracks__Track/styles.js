@@ -1,11 +1,13 @@
-.track {
+import { styled } from 'styled-components';
+
+export const Track = styled.div`
   display: grid;
   grid-template-columns: 50px calc(40% - 50px) 30% 24% 2% 4%;
   grid-template-rows: 50px;
   align-items: center;
   margin-top: 12px;
-}
-.trackLogo {
+`;
+export const TrackLogo = styled.div`
   height: 50px;
   width: 50px;
   background-color: #313131;
@@ -13,34 +15,25 @@
   align-items: center;
   justify-content: center;
   position: relative;
-}
+`;
 
-/* .trackLogo::before {
-  content: '';
-  position: absolute;
-  z-index: 10;
-  height: inherit;
-  width: 100%;
-  background-color: gray;
-  display: block;
-} */
-.trackLogoSvg {
+export const TrackLogoSvg = styled.svg`
   height: 20px;
   width: 20px;
   fill: transparent;
   stroke: #696969;
-}
-.trackName {
+`;
+export const TrackName = styled.div`
   box-sizing: border-box;
   margin: 0 15px;
-}
+`;
 
-.trackLike {
+export const TrackLikeSvg = styled.svg`
   width: 14px;
   height: 12px;
   stroke: #696969;
-}
+`;
 
-.trackTime {
+export const TrackTime = styled.div`
   text-align: right;
-}
+`;
