@@ -1,12 +1,12 @@
-import classes from './MainNav__Link.module.css';
+import * as S from './styles';
 
 export const MainNav__Link = ({ linkName }) => {
   return (
-    <li className={classes.navLink}>
+    <S.NavLink>
       <a href="http://" className="menu__link">
         {linkName}
       </a>
-    </li>
+    </S.NavLink>
   );
 };
 

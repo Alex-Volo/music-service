@@ -1,26 +1,26 @@
-import classes from './MusicPlayer__Track.module.css';
+import * as S from './styles';
 import sprite from 'assets/img/icon/sprite.svg';
 
 export const MusicPlayer__Track = () => {
   return (
-    <div className={classes.playerTrack}>
-      <div className={classes.trackLogo}>
-        <svg className={classes.trackLogoSvg}>
+    <S.PlayerTrack>
+      <S.TrackLogo>
+        <S.TrackLogoSvg>
           <use xlinkHref={`${sprite}#icon-note`}></use>
-        </svg>
-      </div>
+        </S.TrackLogoSvg>
+      </S.TrackLogo>
       <div>
-        <p className={classes.text}>
-          <a className="track-play__author-link" href="http://">
+        <S.Text>
+          <a href="http://">
             Ты та...
           </a>
-        </p>
-        <p className={classes.text}>
+        </S.Text>
+        <S.Text>
           <a className="track-play__album-link" href="http://">
             Баста
           </a>
-        </p>
+        </S.Text>
       </div>
-    </div>
+    </S.PlayerTrack>
   );
 };

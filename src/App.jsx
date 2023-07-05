@@ -4,7 +4,7 @@ import { MainPage } from 'pages/MainPage/components/MainPage';
 
 function App() {
   return (
-    // <EntryForm />;
+    // <EntryForm />
     <MainPage />
   );
 }

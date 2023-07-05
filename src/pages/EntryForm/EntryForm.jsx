@@ -1,25 +1,25 @@
-import classes from './EntryForm.module.css';
+import * as S from './styles';
 import logo_black from './logo_black.svg';
 import EntryInput from './EntryInput/EntryInput';
 import EntryBtn from './EntryBtn/EntryBtn';
 
 const EntryForm = () => {
   return (
-    <form className={classes.form}>
-      <img className={classes.logo} src={logo_black} alt="logo" />
-      <ul className={classes.inputsList}>
+    <S.Form>
+      <S.Logo src={logo_black} alt="logo" />
+      <S.InputsList>
         <li>
           <EntryInput placeholder="Логин" />
         </li>
         <li>
           <EntryInput placeholder="Пароль" />
         </li>
-      </ul>
-      <div className={classes.btnContainer}>
+      </S.InputsList>
+      <S.BtnContainer>
         <EntryBtn value="Войти" colored={true} />
         <EntryBtn value="Зарегистрироваться" colored={false} />
-      </div>
-    </form>
+      </S.BtnContainer>
+    </S.Form>
   );
 };
 

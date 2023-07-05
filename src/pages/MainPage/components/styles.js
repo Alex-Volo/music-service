@@ -1,4 +1,6 @@
-.wrapper {
+import { styled } from 'styled-components';
+
+export const wrapper = styled.div`
   box-sizing: border-box;
   min-height: 100vh;
   width: 100%;
@@ -11,4 +13,4 @@
   color: #fff;
   padding-left: 1%;
   padding-right: 1%;
-}
+`;

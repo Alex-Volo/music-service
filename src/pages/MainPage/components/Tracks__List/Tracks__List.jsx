@@ -1,9 +1,10 @@
-import classes from './Tracks__List.module.css';
+import * as S from './styles';
 import { Tracks__Track } from '../Tracks__Track/Tracks__Track';
 import { Tracks__ListHead } from '../Tracks__ListHead/Tracks__ListHead';
 import { fakeState } from 'helpers/fakeState';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+
 export const Tracks__List = () => {
   // Вешает класс loading на три секунды, а затем убирает его
   const [loadingClass, setLoadingClass] = useState('loading');
@@ -13,12 +14,16 @@ export const Tracks__List = () => {
 
   const [state, setState] = useState(fakeState);
   const getTracks = () => {
+    debugger;
     axios
       .get('https://painassasin.online/catalog/track/all/')
       .then((response) => setState(response.data));
   };
-  useEffect(() => getTracks(), state);
-
+  // Если вторым аргументном в useEffect поставить state,
+  // то получается бесконечный цикл. Пустой массив решает проблему,
+  // но мне кажется это каким-то неправильным.
+  // Как правильно в этом случае сделать get-запрос через useEffect?
+  useEffect(() => getTracks(), []);
 
   const trackElements = state.map((track) => (
     <Tracks__Track
@@ -33,9 +38,9 @@ export const Tracks__List = () => {
   ));
 
   return (
-    <div className={classes.trackList}>
+    <S.TracksList>
       <Tracks__ListHead />
       {trackElements}
-    </div>
+    </S.TracksList>
   );
 };

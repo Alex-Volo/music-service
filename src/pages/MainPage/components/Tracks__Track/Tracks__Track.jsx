@@ -1,4 +1,4 @@
-import classes from './Tracks__Track.module.css';
+import * as S from './styles';
 import sprite from 'assets/img/icon/sprite.svg';
 import { formatTime } from 'helpers/helpers';
 
@@ -11,25 +11,23 @@ export const Tracks__Track = ({
   loadingClass,
 }) => {
   return (
-    <div className={classes.track}>
-      <div className={classes.trackLogo + ` ${loadingClass}`}>
+    <S.Track>
+      <S.TrackLogo className={loadingClass}>
         {!logo && (
-          <svg className={classes.trackLogoSvg}>
+          <S.TrackLogoSvg>
             <use xlinkHref={`${sprite}#icon-note`} />
-          </svg>
+          </S.TrackLogoSvg>
         )}
-      </div>
-      <div className={classes.trackName + ` ${loadingClass}`}>{name}</div>
-      <div className={classes.trackAuthor + ` ${loadingClass}`}>{author}</div>
-      <div className={classes.trackAlbum + ` ${loadingClass}`}>{album}</div>
+      </S.TrackLogo>
+      <S.TrackName className={loadingClass}>{name}</S.TrackName>
+      <div className={loadingClass}>{author}</div>
+      <div className={loadingClass}>{album}</div>
       <div className={loadingClass}>
-        <svg className={classes.trackLike}>
+        <S.TrackLikeSvg>
           <use xlinkHref={`${sprite}#icon-like`} />
-        </svg>
+        </S.TrackLikeSvg>
       </div>
-      <div className={classes.trackTime + ` ${loadingClass}`}>
-        {formatTime(duration)}
-      </div>
-    </div>
+      <S.TrackTime className={loadingClass}>{formatTime(duration)}</S.TrackTime>
+    </S.Track>
   );
 };

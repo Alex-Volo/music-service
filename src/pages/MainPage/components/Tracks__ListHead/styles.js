@@ -1,4 +1,6 @@
-.listHead {
+import { styled } from 'styled-components';
+
+export const ListHead  = styled.div`
   max-width: 100%;
   display: grid;
   grid-template-columns: 40% 30% 24% 2% 4%;
@@ -6,15 +8,15 @@
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 2px;
-}
+`;
 
-.watchSvg {
+export const WatchSvg  = styled.svg`
   height: 12px;
   width: 12px;
-}
+`;
 
-.timeCol {
+export const TimeCol  = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-}
+`;

@@ -1,4 +1,6 @@
-.form {
+import { styled } from 'styled-components';
+
+export const Form  = styled.form `
   box-sizing: border-box;
   background-color: #fff;
   width: 366px;
@@ -6,26 +8,27 @@
   border-radius: 12px;
   padding: 45px;
   margin: auto auto;
-}
+`;
 
-.logo {
+export const Logo  = styled.img `
   display: block;
   margin: 0 auto;
-}
+`;
 
-.inputsList {
+export const InputsList  = styled.ul `
   margin: 0;
   padding: 0;
   list-style: none;
   margin-bottom: 60px;
-}
+  
+  & li {
+    margin-top: 40px;
+  }
+`;
 
-.inputsList li {
-  margin-top: 40px;
-}
 
-.btnContainer {
+export const BtnContainer  = styled.div `
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
+`;

@@ -1,8 +1,5 @@
-import classes from './MusicPlayer__ProgressBar.module.css';
+import * as S from './styles';
 
 export const MusicPlayer__ProgressBar = () => {
-  return (
-<div className={classes.progressBar}></div>
-  );
+  return <S.ProgressBar />;
 };
-

@@ -1,9 +1,7 @@
-import classes from './EntryInput.module.css';
+import * as S from './styles';
 
 const EntryInput = ({ placeholder }) => {
-  return (
-    <input className={classes.input} type="text" placeholder={placeholder} />
-  );
+  return <S.Input type="text" placeholder={placeholder} />;
 };
 
 export default EntryInput;

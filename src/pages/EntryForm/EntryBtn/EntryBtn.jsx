@@ -1,11 +1,7 @@
-import classes from './EntryBtn.module.css';
+import * as S from './styles';
 
 const EntryBtn = ({ value, colored }) => {
-  return (
-    <button className={classes.btn + ' ' + (colored && classes.purple)}>
-      {value}
-    </button>
-  );
+  return <S.Btn colored={colored}>{value}</S.Btn>;
 };
 
 export default EntryBtn;

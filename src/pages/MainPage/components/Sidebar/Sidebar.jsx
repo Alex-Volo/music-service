@@ -1,4 +1,4 @@
-import classes from './Sidebar.module.css';
+import * as S from './styles';
 import { Sidebar__Item } from '../Sidebar__Item/Sidebar__Item';
 import playlist01 from 'assets/img/playlist01.png';
 import playlist02 from 'assets/img/playlist02.png';
@@ -13,7 +13,7 @@ export const Sidebar = () => {
   });
 
   return (
-    <div className={classes.sideBar}>
+    <S.Sidebar>
       <Sidebar__Item
         img={playlist01}
         description="day's playlist"
@@ -30,6 +30,6 @@ export const Sidebar = () => {
         description="indie charge"
         loadingClass={loadingClass}
       />
-    </div>
+    </S.Sidebar>
   );
 };

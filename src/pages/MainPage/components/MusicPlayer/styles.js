@@ -1,4 +1,6 @@
-.musicPlayer {
+import { styled } from 'styled-components';
+
+export const MusicPlayer = styled.div`
   /* grid-column: 1 / 3; */
   width: inherit;
   display: flex;
@@ -8,4 +10,4 @@
   bottom: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.844);
-}
+`;

@@ -1,14 +1,14 @@
-import classes from './Header__Sidebar.module.css';
+import * as S from './styles';
 import sprite from 'assets/img/icon/sprite.svg'
 
 export const Header__Sidebar = () => {
   return (
-    <div className={classes.sidebarPersonal__container}>
+    <S.Container>
       <p>Name</p>
-      <svg className={classes.logout}>
+      <S.Logout>
           <use xlinkHref={`${sprite}#icon-logout`} />
-        </svg>
-    </div>
+        </S.Logout>
+    </S.Container>
   );
 };
 

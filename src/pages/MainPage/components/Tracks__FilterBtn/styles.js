@@ -1,4 +1,6 @@
-.filterBtn {
+import { styled } from 'styled-components';
+
+export const FilterBtn = styled.div`
   position: relative;
   font-size: 16px;
   line-height: 18px;
@@ -7,18 +9,15 @@
   border-radius: 60px;
   white-space: nowrap;
   cursor: pointer;
-}
-.filterBtn:hover {
-  color: #d9b6ff;
-  border-color: #d9b6ff;
-}
+  ${({ isActive }) => isActive && 'color: #ad61ff;\nborder-color: #d9b6ff;'}
 
-.active {
-  color: #ad61ff;
-  border-color: #ad61ff;
-}
+  &:hover {
+    color: #d9b6ff;
+    border-color: #d9b6ff;
+  }
+`;
 
-.shortcut {
+export const Shortcut = styled.div`
   position: absolute;
   display: flex;
   align-items: center;
@@ -31,4 +30,4 @@
   font-size: 13px;
   background-color: #ad61ff;
   color: #fff;
-}
+`;
