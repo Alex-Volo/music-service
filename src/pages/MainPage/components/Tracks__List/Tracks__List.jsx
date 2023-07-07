@@ -1,30 +1,30 @@
 import * as S from './styles';
 import { Tracks__Track } from '../Tracks__Track/Tracks__Track';
 import { Tracks__ListHead } from '../Tracks__ListHead/Tracks__ListHead';
-import { fakeState } from 'helpers/fakeState';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteList, setTracks } from 'store/appSlice';
+import { fetchAllTracks } from 'helpers/DAL';
 
 export const Tracks__List = () => {
+  const dispatch = useDispatch();
+  const tracks = useSelector((state) => state.tracks.list);
   // Вешает класс loading на три секунды, а затем убирает его
   const [loadingClass, setLoadingClass] = useState('loading');
   useEffect(() => {
     setTimeout(setLoadingClass, 3000, '');
   });
+  // useEffect(() => fetchAllTracks().then((data) => dispatch(setTracks(data))) )
+    
+  // const [state, setState] = useState(fakeState);
+  // const getTracks = () => {
+  //   axios
+  //     .get('https://painassasin.online/catalog/track/all/')
+  //     .then((response) => setState(response.data));
+  // };
 
-  const [state, setState] = useState(fakeState);
-  const getTracks = () => {
-    axios
-      .get('https://painassasin.online/catalog/track/all/')
-      .then((response) => setState(response.data));
-  };
-  // Если вторым аргументном в useEffect поставить state,
-  // то получается бесконечный цикл. Пустой массив решает проблему,
-  // но мне кажется это каким-то неправильным.
-  // Как правильно в этом случае сделать get-запрос через useEffect?
-  useEffect(() => getTracks(), []);
-
-  const trackElements = state.map((track) => (
+  const trackElements = tracks.map((track) => (
     <Tracks__Track
       key={track.id}
       logo={track.logo}
@@ -38,6 +38,13 @@ export const Tracks__List = () => {
 
   return (
     <S.TracksList>
+      <button
+        onClick={() => {
+          dispatch(deleteList());
+        }}
+      >
+        Обнулить
+      </button>
       <Tracks__ListHead />
       {trackElements}
     </S.TracksList>

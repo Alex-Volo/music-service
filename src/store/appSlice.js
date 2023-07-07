@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllTracks } from 'helpers/DAL';
 
 const initialState = {
   list: [
@@ -373,13 +372,11 @@ export const tracksSlice = createSlice({
         },
       ];
     },
-
-    getAll: (state) => {
-      state.list = getAllTracks();
-    },
+    setTracks: (state, action) => {
+      state.list = action.payload;
+    }
   },
 });
+export const { deleteList, setTracks } = tracksSlice.actions
 
-export const { deleteList, getAll } = tracksSlice.actions;
-
-export default tracksSlice.reducer;
+export default tracksSlice.reducer
