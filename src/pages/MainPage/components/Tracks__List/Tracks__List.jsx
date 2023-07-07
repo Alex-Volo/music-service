@@ -14,7 +14,6 @@ export const Tracks__List = () => {
 
   const [state, setState] = useState(fakeState);
   const getTracks = () => {
-    debugger;
     axios
       .get('https://painassasin.online/catalog/track/all/')
       .then((response) => setState(response.data));
