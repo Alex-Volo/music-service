@@ -2,27 +2,23 @@ import * as S from './styles';
 import { Tracks__Track } from '../Tracks__Track/Tracks__Track';
 import { Tracks__ListHead } from '../Tracks__ListHead/Tracks__ListHead';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteList, setTracks } from 'store/appSlice';
+import { setTracks } from 'store/tracksSlice';
 import { fetchAllTracks } from 'helpers/DAL';
 
 export const Tracks__List = () => {
   const dispatch = useDispatch();
   const tracks = useSelector((state) => state.tracks.list);
-  // Вешает класс loading на три секунды, а затем убирает его
+  // Вешает класс loading на время загрузки треков
   const [loadingClass, setLoadingClass] = useState('loading');
+
+  // Загружаю данные в store убираю класс loading
   useEffect(() => {
-    setTimeout(setLoadingClass, 3000, '');
-  });
-  // useEffect(() => fetchAllTracks().then((data) => dispatch(setTracks(data))) )
-    
-  // const [state, setState] = useState(fakeState);
-  // const getTracks = () => {
-  //   axios
-  //     .get('https://painassasin.online/catalog/track/all/')
-  //     .then((response) => setState(response.data));
-  // };
+    fetchAllTracks().then((data) => {
+      dispatch(setTracks(data));
+      setLoadingClass('');
+    });
+  }, []);
 
   const trackElements = tracks.map((track) => (
     <Tracks__Track
@@ -38,13 +34,6 @@ export const Tracks__List = () => {
 
   return (
     <S.TracksList>
-      <button
-        onClick={() => {
-          dispatch(deleteList());
-        }}
-      >
-        Обнулить
-      </button>
       <Tracks__ListHead />
       {trackElements}
     </S.TracksList>

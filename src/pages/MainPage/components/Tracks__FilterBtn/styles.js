@@ -9,7 +9,7 @@ export const FilterBtn = styled.div`
   border-radius: 60px;
   white-space: nowrap;
   cursor: pointer;
-  ${({ isActive }) => isActive && 'color: #ad61ff;\nborder-color: #d9b6ff;'}
+  ${({ $isActive }) => $isActive && 'color: #ad61ff;\nborder-color: #d9b6ff;'}
 
   &:hover {
     color: #d9b6ff;
