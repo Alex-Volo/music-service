@@ -23,12 +23,14 @@ export const tracksSlice = createSlice({
   name: 'tracks',
   initialState: initialState,
   reducers: {
-
     setTracks: (state, action) => {
       state.list = action.payload;
     },
+    setCurrentSet: (state, action) => {
+      state.currentSet = action.payload;
+    },
   },
 });
-export const {  setTracks } = tracksSlice.actions;
+export const { setTracks, setCurrentSet } = tracksSlice.actions;
 
 export default tracksSlice.reducer;

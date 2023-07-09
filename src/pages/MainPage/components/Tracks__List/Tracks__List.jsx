@@ -3,7 +3,7 @@ import { Tracks__Track } from '../Tracks__Track/Tracks__Track';
 import { Tracks__ListHead } from '../Tracks__ListHead/Tracks__ListHead';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setTracks } from 'store/tracksSlice';
+import { setTracks, setCurrentSet } from 'store/tracksSlice';
 import { fetchAllTracks } from 'helpers/DAL';
 
 export const Tracks__List = () => {
@@ -16,6 +16,7 @@ export const Tracks__List = () => {
   useEffect(() => {
     fetchAllTracks().then((data) => {
       dispatch(setTracks(data));
+      dispatch(setCurrentSet(data));      
       setLoadingClass('');
     });
   }, []);
