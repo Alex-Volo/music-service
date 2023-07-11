@@ -11,6 +11,7 @@ export const Btn = styled.button`
   font-size: 18px;
   line-height: 24px;
   cursor: pointer;
+  padding: 0;
 
   &:hover {
     background-color: #f4f5f6;
@@ -19,9 +20,22 @@ export const Btn = styled.button`
   &:active {
     background-color: #d0cece;
   }
+  & a {
+    margin: -1px -1px -1px -1px;
+    border-radius: 6px;
+    color: inherit;
+    background-color: inherit;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
   ${({ colored }) => {
     if (colored) {
       return `
+      border: none;
       background-color: #580ea2;
       color: #fff;
       &:hover {
