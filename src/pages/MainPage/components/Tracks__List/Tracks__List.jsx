@@ -1,31 +1,27 @@
 import * as S from './styles';
 import { Tracks__Track } from '../Tracks__Track/Tracks__Track';
 import { Tracks__ListHead } from '../Tracks__ListHead/Tracks__ListHead';
-import { fakeState } from 'helpers/fakeState';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { setTracks, setCurrentSet } from 'store/tracksSlice';
+import { fetchAllTracks } from 'helpers/DAL';
 
 export const Tracks__List = () => {
-  // Вешает класс loading на три секунды, а затем убирает его
+  const dispatch = useDispatch();
+  const tracks = useSelector((state) => state.tracks.list);
+  // Вешает класс loading на время загрузки треков
   const [loadingClass, setLoadingClass] = useState('loading');
+
+  // Загружаю данные в store убираю класс loading
   useEffect(() => {
-    setTimeout(setLoadingClass, 3000, '');
-  });
+    fetchAllTracks().then((data) => {
+      dispatch(setTracks(data));
+      dispatch(setCurrentSet(data));      
+      setLoadingClass('');
+    });
+  }, []);
 
-  const [state, setState] = useState(fakeState);
-  const getTracks = () => {
-    debugger;
-    axios
-      .get('https://painassasin.online/catalog/track/all/')
-      .then((response) => setState(response.data));
-  };
-  // Если вторым аргументном в useEffect поставить state,
-  // то получается бесконечный цикл. Пустой массив решает проблему,
-  // но мне кажется это каким-то неправильным.
-  // Как правильно в этом случае сделать get-запрос через useEffect?
-  useEffect(() => getTracks(), []);
-
-  const trackElements = state.map((track) => (
+  const trackElements = tracks.map((track) => (
     <Tracks__Track
       key={track.id}
       logo={track.logo}

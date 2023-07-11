@@ -12,7 +12,7 @@ export const Tracks__FilterBtn = ({ id, isActive, title, makeBtnActive }) => {
   const sortList = getSortList(title, fakeState);
   return (
     <div>
-      <S.FilterBtn onClick={handleOnClick} isActive={isActive}>
+      <S.FilterBtn onClick={handleOnClick} $isActive={isActive}>
         {title}
         {isActive && <S.Shortcut>{sortList.length}</S.Shortcut>}
       </S.FilterBtn>

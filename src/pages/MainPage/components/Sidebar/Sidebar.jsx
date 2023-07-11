@@ -6,29 +6,23 @@ import playlist03 from 'assets/img/playlist03.png';
 import { useEffect, useState } from 'react';
 
 export const Sidebar = () => {
-  // Вешает класс loading на три секунды, а затем убирает его
-  const [loadingClass, setLoadingClass] = useState('loading');
-  useEffect(() => {
-    setTimeout(setLoadingClass, 3000, '');
-  });
-
   return (
     <S.Sidebar>
       <Sidebar__Item
         img={playlist01}
         description="day's playlist"
-        loadingClass={loadingClass}
+        loadingClass={''}
       />
       <Sidebar__Item
         img={playlist02}
         description="
 100 dance hits"
-        loadingClass={loadingClass}
+        loadingClass={''}
       />
       <Sidebar__Item
         img={playlist03}
         description="indie charge"
-        loadingClass={loadingClass}
+        loadingClass={''}
       />
     </S.Sidebar>
   );

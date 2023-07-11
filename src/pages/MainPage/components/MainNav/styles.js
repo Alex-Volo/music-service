@@ -18,7 +18,7 @@ export const NavListContainer = styled.div`
 export const NavList = styled.ul`
   transition: top 0.5s;
   position: absolute;
-  top: ${({isVisible}) => (isVisible ? '0' : '-150px')};
+  top: ${({$isVisible}) => ($isVisible ? '0' : '-150px')};
   list-style: none;
   margin: 0;
   padding: 18px 0 10px 0;
