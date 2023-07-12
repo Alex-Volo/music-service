@@ -16,7 +16,7 @@ function App() {
       <Route path="/login" element={<EntryForm form="login" />} />
       <Route path="/registration" element={<EntryForm form="registration" />} />
       <Route element={<ProtectedRoute isAllowed={isAllowed} />}>
-        <Route path="/" element={<MainPage />} />
+        <Route path="/*" element={<MainPage />} />
       </Route>
     </Routes>
   );

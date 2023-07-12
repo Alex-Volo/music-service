@@ -6,9 +6,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setTracks, setCurrentSet } from 'store/tracksSlice';
 import { fetchAllTracks } from 'helpers/DAL';
 
-export const Tracks__List = () => {
+export const Tracks__List = ({ playlist }) => {
   const dispatch = useDispatch();
-  const tracks = useSelector((state) => state.tracks.list);
+
+  let tracks = [];
+  switch (playlist) {
+    case 'favorites':
+      tracks = useSelector((state) => state.tracks.favorites);
+      break;
+    default:
+      tracks = useSelector((state) => state.tracks.list);
+  }
   // Вешает класс loading на время загрузки треков
   const [loadingClass, setLoadingClass] = useState('loading');
 
@@ -16,7 +24,7 @@ export const Tracks__List = () => {
   useEffect(() => {
     fetchAllTracks().then((data) => {
       dispatch(setTracks(data));
-      dispatch(setCurrentSet(data));      
+      dispatch(setCurrentSet(data));
       setLoadingClass('');
     });
   }, []);
