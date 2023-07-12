@@ -32,8 +32,8 @@ export const Btn = styled.button`
     width: 100%;
     height: 100%;
   }
-  ${({ colored }) => {
-    if (colored) {
+  ${({ $isColored }) => {
+    if ($isColored) {
       return `
       border: none;
       background-color: #580ea2;

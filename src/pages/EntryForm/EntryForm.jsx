@@ -2,13 +2,12 @@ import * as S from './styles';
 import logo_black from './logo_black.svg';
 import EntryInput from './EntryInput/EntryInput';
 import EntryBtn from './EntryBtn/EntryBtn';
+import { AdviseBox } from 'components/AdviseBox/AdviseBox';
 
 const EntryForm = ({ form }) => {
-  const handleEnterClick = (e) => {
-    e.preventDefault();
-  };
   return (
     <S.Form>
+      <AdviseBox />
       <S.Logo src={logo_black} alt="logo" />
       <S.InputsList>
         <li>
@@ -25,16 +24,21 @@ const EntryForm = ({ form }) => {
       </S.InputsList>
       <S.BtnContainer>
         {form !== 'registration' && (
-          <EntryBtn value="Войти" colored={true} link="/" />
+          <EntryBtn value="Войти" $isColored={true} link="/" />
         )}
         {form !== 'registration' ? (
           <EntryBtn
             value="Зарегистрироваться"
-            colored={false}
+            $isColored={false}
             link="/registration"
           />
         ) : (
-          <EntryBtn value="Зарегистрироваться" colored={true} link="/login" />
+          <EntryBtn
+            value="Зарегистрироваться"
+            $isColored={true}
+            link="/login"
+            isNeedAction={true}
+          />
         )}
       </S.BtnContainer>
     </S.Form>

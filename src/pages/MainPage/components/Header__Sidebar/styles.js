@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 
 export const Container = styled.div`
+  cursor: pointer;
   color: #fff;
   display: flex;
   justify-content: flex-end;
