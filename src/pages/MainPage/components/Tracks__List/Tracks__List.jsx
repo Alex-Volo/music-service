@@ -8,7 +8,10 @@ import { fetchAllTracks } from 'helpers/DAL';
 
 export const Tracks__List = ({ playlist }) => {
   const dispatch = useDispatch();
-  const tracks = useSelector((state) => state.tracks.currentSet);
+  const [tracks, setTrackss] = useState(
+    useSelector((state) => state.tracks.currentSet)
+  );
+  // let tracks = useSelector((state) => state.tracks.currentSet);
   // Вешает класс loading на время загрузки треков
   const [loadingClass, setLoadingClass] = useState('loading');
   const favorites = useSelector((state) => state.tracks.favorites);
@@ -16,17 +19,21 @@ export const Tracks__List = ({ playlist }) => {
   useEffect(() => {
     switch (playlist) {
       case 'favorites':
+        debugger;
         dispatch(setCurrentSet(favorites));
+        setTrackss(favorites);
         setLoadingClass('');
         break;
       default:
         fetchAllTracks().then((data) => {
           dispatch(setTracks(data));
           dispatch(setCurrentSet(data));
+          setTrackss(data);
           setLoadingClass('');
         });
     }
-  }, []);
+  }, [tracks]);
+  // tracks = useSelector((state) => state.tracks.currentSet);
 
   const trackElements = tracks.map((track) => (
     <Tracks__Track
