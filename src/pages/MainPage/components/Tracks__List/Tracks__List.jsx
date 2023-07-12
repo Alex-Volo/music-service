@@ -8,25 +8,24 @@ import { fetchAllTracks } from 'helpers/DAL';
 
 export const Tracks__List = ({ playlist }) => {
   const dispatch = useDispatch();
-
-  let tracks = [];
-  switch (playlist) {
-    case 'favorites':
-      tracks = useSelector((state) => state.tracks.favorites);
-      break;
-    default:
-      tracks = useSelector((state) => state.tracks.list);
-  }
+  const tracks = useSelector((state) => state.tracks.currentSet);
   // Вешает класс loading на время загрузки треков
   const [loadingClass, setLoadingClass] = useState('loading');
-
+  const favorites = useSelector((state) => state.tracks.favorites);
   // Загружаю данные в store убираю класс loading
   useEffect(() => {
-    fetchAllTracks().then((data) => {
-      dispatch(setTracks(data));
-      dispatch(setCurrentSet(data));
-      setLoadingClass('');
-    });
+    switch (playlist) {
+      case 'favorites':
+        dispatch(setCurrentSet(favorites));
+        setLoadingClass('');
+        break;
+      default:
+        fetchAllTracks().then((data) => {
+          dispatch(setTracks(data));
+          dispatch(setCurrentSet(data));
+          setLoadingClass('');
+        });
+    }
   }, []);
 
   const trackElements = tracks.map((track) => (

@@ -16,7 +16,7 @@ const initialState = (() => {
         'https://painassasin.online/media/music_files/Alexander_Nakarada_-_Chase.mp3',
     });
   }
-  return { list: fakeList, favorites: fakeList };
+  return { list: fakeList, favorites: fakeList, currentSet: fakeList };
 })();
 
 export const tracksSlice = createSlice({

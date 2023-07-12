@@ -18,8 +18,16 @@ export const MainPage = () => {
           element={<Tracks heading="Избранное" playlist="favorites" />}
         />
         <Route
-          path="/playlist/:id"
-          element={<Tracks heading="Избранное" playlist="favorites" />}
+          path="/playlist/1"
+          element={<Tracks heading="Плейлист дня" playlist="playlist1" />}
+        />
+        <Route
+          path="/playlist/2"
+          element={<Tracks heading="100 танцевальных хитов" playlist="playlist2" />}
+        />
+        <Route
+          path="/playlist/3"
+          element={<Tracks heading="Инди-заряд" playlist="playlist3" />}
         />
       </Routes>
       <Sidebar />
