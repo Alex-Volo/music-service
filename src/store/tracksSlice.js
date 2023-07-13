@@ -16,7 +16,13 @@ const initialState = (() => {
         'https://painassasin.online/media/music_files/Alexander_Nakarada_-_Chase.mp3',
     });
   }
-  return { list: fakeList, favorites: fakeList, currentSet: fakeList };
+  return {
+    list: fakeList,
+    favorites: fakeList,
+    playlist1: fakeList,
+    playlist2: fakeList,
+    playlist3: fakeList,
+  };
 })();
 
 export const tracksSlice = createSlice({
@@ -26,11 +32,18 @@ export const tracksSlice = createSlice({
     setTracks: (state, action) => {
       state.list = action.payload;
     },
-    setCurrentSet: (state, action) => {
-      state.currentSet = action.payload;
+    setPlaylist1: (state, action) => {
+      state.playlist1 = action.payload;
+    },
+    setPlaylist2: (state, action) => {
+      state.playlist2 = action.payload;
+    },
+    setPlaylist3: (state, action) => {
+      state.playlist3 = action.payload;
     },
   },
 });
-export const { setTracks, setCurrentSet } = tracksSlice.actions;
+export const { setTracks, setPlaylist1, setPlaylist2, setPlaylist3 } =
+  tracksSlice.actions;
 
 export default tracksSlice.reducer;

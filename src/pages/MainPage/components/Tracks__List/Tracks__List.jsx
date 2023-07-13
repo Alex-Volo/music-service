@@ -3,37 +3,55 @@ import { Tracks__Track } from '../Tracks__Track/Tracks__Track';
 import { Tracks__ListHead } from '../Tracks__ListHead/Tracks__ListHead';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setTracks, setCurrentSet } from 'store/tracksSlice';
-import { fetchAllTracks } from 'helpers/DAL';
+import {
+  setTracks,
+  setPlaylist1,
+  setPlaylist2,
+  setPlaylist3,
+} from 'store/tracksSlice';
+import { fetchAllPlaylists, fetchAllTracks } from 'helpers/DAL';
 
 export const Tracks__List = ({ playlist }) => {
   const dispatch = useDispatch();
-  const [tracks, setTrackss] = useState(
-    useSelector((state) => state.tracks.currentSet)
-  );
-  // let tracks = useSelector((state) => state.tracks.currentSet);
+
+  let tracks = [];
   // Вешает класс loading на время загрузки треков
   const [loadingClass, setLoadingClass] = useState('loading');
-  const favorites = useSelector((state) => state.tracks.favorites);
-  // Загружаю данные в store убираю класс loading
+
+  // Через свитч выбираю какой плейлист показывать
+  switch (playlist) {
+    case 'favorites':
+      tracks = useSelector((state) => state.tracks.favorites);
+      break;
+    case 'playlist1':
+      tracks = useSelector((state) => state.tracks.playlist1);
+      break;
+    case 'playlist2':
+      tracks = useSelector((state) => state.tracks.playlist2);
+      break;
+    case 'playlist3':
+      tracks = useSelector((state) => state.tracks.playlist3);
+      break;
+    default:
+      tracks = useSelector((state) => state.tracks.list);
+  }
+
+  // Загружаю все треки
   useEffect(() => {
-    switch (playlist) {
-      case 'favorites':
-        debugger;
-        dispatch(setCurrentSet(favorites));
-        setTrackss(favorites);
-        setLoadingClass('');
-        break;
-      default:
-        fetchAllTracks().then((data) => {
-          dispatch(setTracks(data));
-          dispatch(setCurrentSet(data));
-          setTrackss(data);
-          setLoadingClass('');
-        });
-    }
-  }, [tracks]);
-  // tracks = useSelector((state) => state.tracks.currentSet);
+    fetchAllTracks().then((data) => {
+      dispatch(setTracks(data));
+      setLoadingClass('');
+    });
+  }, []);
+
+  // Загружаю все плейлисты и убираю в store
+  useEffect(() => {
+    fetchAllPlaylists().then((data) => {
+      dispatch(setPlaylist1(data[0].items));
+      dispatch(setPlaylist2(data[1].items));
+      dispatch(setPlaylist3(data[2].items));
+    });
+  }, []);
 
   const trackElements = tracks.map((track) => (
     <Tracks__Track
