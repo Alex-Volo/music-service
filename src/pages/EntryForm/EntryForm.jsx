@@ -1,5 +1,5 @@
 import * as S from './styles';
-import logo_black from './logo_black.svg';
+import logo_black from 'assets/img/logo_black.svg';
 import EntryInput from './EntryInput/EntryInput';
 import EntryBtn from './EntryBtn/EntryBtn';
 import { AdviseBox } from 'components/AdviseBox/AdviseBox';

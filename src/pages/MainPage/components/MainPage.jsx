@@ -5,6 +5,7 @@ import { Tracks } from './Tracks/Tracks';
 import { Sidebar } from './Sidebar/Sidebar';
 import { MusicPlayer } from './MusicPlayer/MusicPlayer';
 import { Route, Routes } from 'react-router-dom';
+import { NotFound } from 'pages/NotFound/NotFound';
 
 export const MainPage = () => {
   return (
@@ -28,6 +29,10 @@ export const MainPage = () => {
         <Route
           path="/playlist/3"
           element={<Tracks heading="Инди-заряд" playlist="playlist3" />}
+        />
+               <Route
+          path="*"
+          element={<NotFound />}
         />
       </Routes>
       <Sidebar />
