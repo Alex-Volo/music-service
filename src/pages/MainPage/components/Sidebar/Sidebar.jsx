@@ -3,7 +3,6 @@ import { Sidebar__Item } from '../Sidebar__Item/Sidebar__Item';
 import playlist01 from 'assets/img/playlist01.png';
 import playlist02 from 'assets/img/playlist02.png';
 import playlist03 from 'assets/img/playlist03.png';
-import { useEffect, useState } from 'react';
 
 export const Sidebar = () => {
   return (
