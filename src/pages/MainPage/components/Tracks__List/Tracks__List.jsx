@@ -3,13 +3,8 @@ import { Tracks__Track } from '../Tracks__Track/Tracks__Track';
 import { Tracks__ListHead } from '../Tracks__ListHead/Tracks__ListHead';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  setTracks,
-  setPlaylist1,
-  setPlaylist2,
-  setPlaylist3,
-} from 'store/tracksSlice';
-import { fetchAllPlaylists, fetchAllTracks } from 'helpers/DAL';
+import { setTracks } from 'store/tracksSlice';
+import { fetchAllTracks } from 'helpers/DAL';
 
 export const Tracks__List = ({ playlist }) => {
   const dispatch = useDispatch();
@@ -41,15 +36,6 @@ export const Tracks__List = ({ playlist }) => {
     fetchAllTracks().then((data) => {
       dispatch(setTracks(data));
       setLoadingClass('');
-    });
-  }, []);
-
-  // Загружаю все плейлисты и убираю в store
-  useEffect(() => {
-    fetchAllPlaylists().then((data) => {
-      dispatch(setPlaylist1(data[0].items));
-      dispatch(setPlaylist2(data[1].items));
-      dispatch(setPlaylist3(data[2].items));
     });
   }, []);
 

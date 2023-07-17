@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseURL = 'https://painassasin.online/'
+const baseURL = 'https://painassasin.online/';
 export const fetchAllTracks = () => {
   return axios
     .get(baseURL + 'catalog/track/all/')
@@ -8,6 +8,12 @@ export const fetchAllTracks = () => {
 
 export const fetchAllPlaylists = () => {
   return axios
-  .get(baseURL + 'catalog/selection/')
-  .then((response) => response.data);
-}
+    .get(baseURL + 'catalog/selection/')
+    .then((response) => response.data);
+};
+
+export const fetchPlaylist = (id) => {
+  return axios
+    .get(baseURL + `catalog/selection/${id}`)
+    .then((response) => response.data);
+};
