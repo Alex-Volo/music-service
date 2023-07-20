@@ -1,16 +1,16 @@
 import * as S from './styles';
 import { Header } from './Header/Header';
 import { MainNav } from './MainNav/MainNav';
-import { Tracks } from './Tracks/Tracks';
 import { Sidebar } from './Sidebar/Sidebar';
 import { MusicPlayer } from './MusicPlayer/MusicPlayer';
+import { MainPageRoutes } from './MainPageRoutes';
 
 export const MainPage = () => {
   return (
     <S.wrapper>
       <Header />
       <MainNav />
-      <Tracks />
+      <MainPageRoutes />
       <Sidebar />
       <MusicPlayer />
     </S.wrapper>

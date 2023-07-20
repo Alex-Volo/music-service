@@ -3,20 +3,38 @@ import { Tracks__Track } from '../Tracks__Track/Tracks__Track';
 import { Tracks__ListHead } from '../Tracks__ListHead/Tracks__ListHead';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setTracks, setCurrentSet } from 'store/tracksSlice';
+import { setTracks } from 'store/tracksSlice';
 import { fetchAllTracks } from 'helpers/DAL';
 
-export const Tracks__List = () => {
+export const Tracks__List = ({ playlist }) => {
   const dispatch = useDispatch();
-  const tracks = useSelector((state) => state.tracks.list);
+
+  let tracks = [];
   // Вешает класс loading на время загрузки треков
   const [loadingClass, setLoadingClass] = useState('loading');
 
-  // Загружаю данные в store убираю класс loading
+  // Через свитч выбираю какой плейлист показывать
+  switch (playlist) {
+    case 'favorites':
+      tracks = useSelector((state) => state.tracks.favorites);
+      break;
+    case 'playlist1':
+      tracks = useSelector((state) => state.tracks.playlist1);
+      break;
+    case 'playlist2':
+      tracks = useSelector((state) => state.tracks.playlist2);
+      break;
+    case 'playlist3':
+      tracks = useSelector((state) => state.tracks.playlist3);
+      break;
+    default:
+      tracks = useSelector((state) => state.tracks.list);
+  }
+
+  // Загружаю все треки
   useEffect(() => {
     fetchAllTracks().then((data) => {
       dispatch(setTracks(data));
-      dispatch(setCurrentSet(data));      
       setLoadingClass('');
     });
   }, []);

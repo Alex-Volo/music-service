@@ -17,9 +17,9 @@ export const MainNav = () => {
       </S.BurgerSvg>
       <S.NavListContainer>
         <S.NavList $isVisible={isMenuVisible}>
-          <MainNav__Link linkName={'Главное'} />
-          <MainNav__Link linkName={'Мой плейлист'} />
-          <MainNav__Link linkName={'Выйти'} />
+          <MainNav__Link linkName={'Главное'} link="/" />
+          <MainNav__Link linkName={'Мой плейлист'} link="/favorites" />
+          <MainNav__Link linkName={'Выйти'} link="/login" logout={true} />
         </S.NavList>
       </S.NavListContainer>
     </S.MainNav>
