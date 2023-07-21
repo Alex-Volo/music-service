@@ -22,6 +22,7 @@ export const MusicPlayer__Track = () => {
           </a>
         </S.Text>
       </div>
+      <audio controls src={currentTrack.track_file} />
     </S.PlayerTrack>
   );
 };
