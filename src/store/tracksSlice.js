@@ -32,6 +32,9 @@ export const tracksSlice = createSlice({
     setTracks: (state, action) => {
       state.list = action.payload;
     },
+    setCurrentTrack: (state, action) => {
+      state.currentTrack = action.payload;
+    },
     setPlaylist: {
       reducer: (state, action) => {
         state[`playlist${action.payload.id}`] = action.payload.tracksList;
@@ -44,6 +47,7 @@ export const tracksSlice = createSlice({
 });
 export const {
   setTracks,
+  setCurrentTrack,
   setPlaylist1,
   setPlaylist2,
   setPlaylist3,

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isMenuVisible: false,
+  isPlayerVisible: false,
   token: '',
 };
 export const UISlice = createSlice({
@@ -9,11 +10,15 @@ export const UISlice = createSlice({
   initialState: initialState,
   reducers: {
     toggleMenu: (state) => ({ ...state, isMenuVisible: !state.isMenuVisible }),
+    setPlayerVisible: (state) => ({
+      ...state,
+      isPlayerVisible: true,
+    }),
     setToken: (state, action) => {
       state.token = action.payload;
     },
   },
 });
 
-export const { toggleMenu, setToken } = UISlice.actions;
+export const { toggleMenu, setPlayerVisible, setToken } = UISlice.actions;
 export default UISlice.reducer;
