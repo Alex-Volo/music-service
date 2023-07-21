@@ -6,7 +6,7 @@ import { Playlist } from './Playlist/Playlist';
 export const MainPageRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Tracks />} />
+      <Route path="/" element={<Tracks playlist="list" />} />
       <Route
         path="/favorites"
         element={<Tracks heading="Избранное" playlist="favorites" />}
