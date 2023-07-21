@@ -20,13 +20,19 @@ export const Playlist = () => {
 
   // Загружаю плейлист по динамической ссылке и диспатчу в store
   useEffect(() => {
-    fetchPlaylist(playlistNumber).then((data) => {
-      const id = playlistNumber;
-      const tracksList = data.items;
-      dispatch(setPlaylist({ id, tracksList }));
-      setLoadingClass('');
-    });
-  },);
+    fetchPlaylist(playlistNumber)
+      .then((data) => {
+        const id = playlistNumber;
+        const tracksList = data.items;
+        dispatch(setPlaylist({ id, tracksList }));
+        setLoadingClass('');
+      })
+      .catch((error) => {
+        const id = playlistNumber;
+        const tracksList = error.message;
+        dispatch(setPlaylist({ id, tracksList }));
+      });
+  });
   if (isNaN(playlistNumber)) {
     return <NotFound />;
   }
@@ -36,7 +42,7 @@ export const Playlist = () => {
   return (
     <main>
       <S.Heading>{playlistTitles[playlistNumber - 1]}</S.Heading>
-      <Tracks__List playlist={playlistString} loadingClass={loadingClass}/>
+      <Tracks__List playlist={playlistString} loadingClass={loadingClass} />
     </main>
   );
 };

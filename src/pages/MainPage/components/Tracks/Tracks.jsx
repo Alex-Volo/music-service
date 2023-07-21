@@ -14,7 +14,8 @@ export const Tracks = ({ heading = 'Треки', playlist }) => {
     fetchAllTracks().then((data) => {
       dispatch(setTracks(data));
       setLoadingClass('');
-    });
+    }).catch(error => {console.warn(error.message)
+      dispatch(setTracks(error.message))});
   });
 
   return (
