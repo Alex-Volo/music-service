@@ -1,11 +1,20 @@
+import { useState } from 'react';
 import * as S from './styles';
 import sprite from 'assets/img/icon/sprite.svg';
 
 export const MusicPlayer__Controls = ({ audioAPI }) => {
+  const [isPaused, setIsPaused] = useState(true);
+
   const handlerOnPlay = () => {
     audioAPI.play();
+    setIsPaused(false);
   };
-  const isPaused = false;
+
+  const handlerOnPause = () => {
+    audioAPI.pause();
+    setIsPaused(true);
+  };
+
   return (
     <S.PlayerControls>
       <S.Previos>
@@ -21,9 +30,9 @@ export const MusicPlayer__Controls = ({ audioAPI }) => {
           </S.PlaySvg>
         </S.Play>
       ) : (
-        <S.Pause onClick={() => handlerOnPlay()}>
+        <S.Pause onClick={() => handlerOnPause()}>
           <S.PlaySvg alt="play">
-            <use xlinkHref={`${sprite}#icon-search`}></use>
+            <use xlinkHref={`${sprite}#icon-pause`}></use>
           </S.PlaySvg>
         </S.Pause>
       )}
