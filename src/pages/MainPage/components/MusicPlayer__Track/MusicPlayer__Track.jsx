@@ -3,7 +3,7 @@ import sprite from 'assets/img/icon/sprite.svg';
 import { useSelector } from 'react-redux';
 
 export const MusicPlayer__Track = () => {
-  const currentTrack = useSelector((state) => state.tracks.currentTrack) || [];
+  const currentTrack = useSelector((state) => state.tracks.currentTrack);
   console.log(currentTrack);
   return (
     <S.PlayerTrack>

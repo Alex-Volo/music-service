@@ -29,8 +29,8 @@ export const Playlist = () => {
       })
       .catch((error) => {
         const id = playlistNumber;
-        const tracksList = error.message;
-        dispatch(setPlaylist({ id, tracksList }));
+        const errorMessage = error.message;
+        dispatch(setPlaylist({ id, tracksList: errorMessage }));
       });
   });
   if (isNaN(playlistNumber)) {

@@ -16,7 +16,7 @@ export const Tracks = ({ heading = 'Треки', playlist }) => {
       setLoadingClass('');
     }).catch(error => {console.warn(error.message)
       dispatch(setTracks(error.message))});
-  });
+  }, []);
 
   return (
     <main>
