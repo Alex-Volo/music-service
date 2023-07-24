@@ -16,6 +16,10 @@ export const PreviosSvg = styled.svg`
 export const Play = styled.div`
   display: flex;
 `;
+
+export const Pause = styled.div`
+  display: flex;
+`;
 export const PlaySvg = styled.svg`
   width: 22px;
   height: 20px;

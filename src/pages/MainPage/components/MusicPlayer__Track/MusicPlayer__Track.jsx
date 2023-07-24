@@ -1,10 +1,19 @@
 import * as S from './styles';
 import sprite from 'assets/img/icon/sprite.svg';
+import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
-export const MusicPlayer__Track = () => {
+export const MusicPlayer__Track = ({ setAudioAPI }) => {
   const currentTrack = useSelector((state) => state.tracks.currentTrack);
-  console.log(currentTrack);
+  const audioAPI = useRef(null);
+  useEffect(() => {
+    setAudioAPI(audioAPI.current);
+  }, []);
+
+  const hadlerPlayClick = () => {
+    audioAPI.current.play();
+    console.log(audioAPI.current);
+  };
   return (
     <S.PlayerTrack>
       <S.TrackLogo>
@@ -12,17 +21,11 @@ export const MusicPlayer__Track = () => {
           <use xlinkHref={`${sprite}#icon-note`}></use>
         </S.TrackLogoSvg>
       </S.TrackLogo>
-      <div>
-        <S.Text>
-          <a href="http://">{currentTrack.name}</a>
-        </S.Text>
-        <S.Text>
-          <a className="track-play__album-link" href="http://">
-            {currentTrack.author}
-          </a>
-        </S.Text>
+      <div onClick={() => hadlerPlayClick()}>
+        <S.Text>{currentTrack.name}</S.Text>
+        <S.Text>{currentTrack.author}</S.Text>
       </div>
-      <audio controls src={currentTrack.track_file} />
+      <audio ref={audioAPI} controls src={currentTrack.track_file} />
     </S.PlayerTrack>
   );
 };

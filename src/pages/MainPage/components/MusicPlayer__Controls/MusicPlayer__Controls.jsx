@@ -1,7 +1,11 @@
 import * as S from './styles';
 import sprite from 'assets/img/icon/sprite.svg';
 
-export const MusicPlayer__Controls = () => {
+export const MusicPlayer__Controls = ({ audioAPI }) => {
+  const handlerOnPlay = () => {
+    audioAPI.play();
+  };
+  const isPaused = false;
   return (
     <S.PlayerControls>
       <S.Previos>
@@ -9,11 +13,21 @@ export const MusicPlayer__Controls = () => {
           <use xlinkHref={`${sprite}#icon-prev`}></use>
         </S.PreviosSvg>
       </S.Previos>
-      <S.Play>
-        <S.PlaySvg alt="play">
-          <use xlinkHref={`${sprite}#icon-play`}></use>
-        </S.PlaySvg>
-      </S.Play>
+
+      {isPaused ? (
+        <S.Play onClick={() => handlerOnPlay()}>
+          <S.PlaySvg alt="play">
+            <use xlinkHref={`${sprite}#icon-play`}></use>
+          </S.PlaySvg>
+        </S.Play>
+      ) : (
+        <S.Pause onClick={() => handlerOnPlay()}>
+          <S.PlaySvg alt="play">
+            <use xlinkHref={`${sprite}#icon-search`}></use>
+          </S.PlaySvg>
+        </S.Pause>
+      )}
+
       <S.Next>
         <S.NextSvg alt="next">
           <use xlinkHref={`${sprite}#icon-next`}></use>
