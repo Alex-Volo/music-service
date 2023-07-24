@@ -5,7 +5,7 @@ import { NotFound } from 'pages/NotFound/NotFound';
 import { fetchPlaylist } from 'helpers/DAL';
 import { useDispatch } from 'react-redux';
 import { setPlaylist } from 'store/tracksSlice';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export const Playlist = () => {
   const params = useParams();
@@ -16,16 +16,22 @@ export const Playlist = () => {
     '100 танцевальных хитов',
     'Инди-заряд',
   ];
+  const [loadingClass, setLoadingClass] = useState('loading');
 
   // Загружаю плейлист по динамической ссылке и диспатчу в store
   useEffect(() => {
-    fetchPlaylist(playlistNumber).then((data) => {
-      const id = playlistNumber;
-      const tracksList = data.items;
-      dispatch(setPlaylist({ id, tracksList }));
-      console.log('Да, да именно здесь');
-      console.log(data);
-    });
+    fetchPlaylist(playlistNumber)
+      .then((data) => {
+        const id = playlistNumber;
+        const tracksList = data.items;
+        dispatch(setPlaylist({ id, tracksList }));
+        setLoadingClass('');
+      })
+      .catch((error) => {
+        const id = playlistNumber;
+        const errorMessage = error.message;
+        dispatch(setPlaylist({ id, tracksList: errorMessage }));
+      });
   });
   if (isNaN(playlistNumber)) {
     return <NotFound />;
@@ -36,7 +42,7 @@ export const Playlist = () => {
   return (
     <main>
       <S.Heading>{playlistTitles[playlistNumber - 1]}</S.Heading>
-      <Tracks__List playlist={playlistString} />
+      <Tracks__List playlist={playlistString} loadingClass={loadingClass} />
     </main>
   );
 };

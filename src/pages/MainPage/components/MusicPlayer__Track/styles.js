@@ -7,8 +7,8 @@ export const PlayerTrack = styled.div`
   gap: 10px;
 `;
 export const TrackLogo = styled.div`
-  height: 50px;
-  width: 50px;
+  max-height: 50px;
+  min-width: 50px;
   background-color: #313131;
   display: flex;
   align-items: center;
@@ -25,10 +25,8 @@ export const Text = styled.p`
   padding: 0;
   font-size: 13px;
   line-height: 24px;
-  width: 50px;
   & a {
     color: #fff;
     text-decoration: none;
   }
 `;
-

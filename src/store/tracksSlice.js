@@ -22,6 +22,7 @@ const initialState = (() => {
     playlist1: fakeList,
     playlist2: fakeList,
     playlist3: fakeList,
+    currentTrack: {name: '', author: '', track_file: '', }
   };
 })();
 
@@ -31,6 +32,9 @@ export const tracksSlice = createSlice({
   reducers: {
     setTracks: (state, action) => {
       state.list = action.payload;
+    },
+    setCurrentTrack: (state, action) => {
+      state.currentTrack = action.payload;
     },
     setPlaylist: {
       reducer: (state, action) => {
@@ -44,6 +48,7 @@ export const tracksSlice = createSlice({
 });
 export const {
   setTracks,
+  setCurrentTrack,
   setPlaylist1,
   setPlaylist2,
   setPlaylist3,
