@@ -3,16 +3,23 @@ import * as S from './styles';
 import sprite from 'assets/img/icon/sprite.svg';
 
 export const MusicPlayer__Controls = ({ audioAPI }) => {
-  const [isPaused, setIsPaused] = useState(true);
-
+  const [playerState, setPlayerState] = useState({
+    isPaused: true,
+    isLoop: false,
+  });
+  if (audioAPI) audioAPI.loop = playerState.isLoop;
   const handlerOnPlay = () => {
     audioAPI.play();
-    setIsPaused(false);
+    setPlayerState({ ...playerState, isPaused: false });
   };
 
   const handlerOnPause = () => {
     audioAPI.pause();
-    setIsPaused(true);
+    setPlayerState({ ...playerState, isPaused: true });
+  };
+
+  const handlerOnLoop = () => {
+    setPlayerState({ ...playerState, isLoop: !playerState.isLoop });
   };
 
   return (
@@ -23,7 +30,7 @@ export const MusicPlayer__Controls = ({ audioAPI }) => {
         </S.PreviosSvg>
       </S.Previos>
 
-      {isPaused ? (
+      {playerState.isPaused ? (
         <S.Play onClick={() => handlerOnPlay()}>
           <S.PlaySvg alt="play">
             <use xlinkHref={`${sprite}#icon-play`}></use>
@@ -42,7 +49,7 @@ export const MusicPlayer__Controls = ({ audioAPI }) => {
           <use xlinkHref={`${sprite}#icon-next`}></use>
         </S.NextSvg>
       </S.Next>
-      <S.Repeat>
+      <S.Repeat $isActive={playerState.isLoop} onClick={() => handlerOnLoop()}>
         <S.RepeatSvg alt="repeat">
           <use xlinkHref={`${sprite}#icon-repeat`}></use>
         </S.RepeatSvg>

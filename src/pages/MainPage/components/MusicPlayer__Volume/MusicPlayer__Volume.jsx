@@ -1,7 +1,13 @@
+import { useState } from 'react';
 import * as S from './styles';
 import sprite from 'assets/img/icon/sprite.svg';
 
-export const MusicPlayer__Volume = () => {
+export const MusicPlayer__Volume = ({ audioAPI }) => {
+  const [volumeValue, setVolumeValue] = useState('1');
+  const handlerOnChangeVolume = (e) => {
+    setVolumeValue(e.target.value);
+  };
+  if (audioAPI) audioAPI.volume = parseFloat(volumeValue);
   return (
     <S.volumeBlock>
       <div>
@@ -10,7 +16,15 @@ export const MusicPlayer__Volume = () => {
         </S.iconSvg>
       </div>
       <div>
-        <input type="range" name="range" />
+        <input
+          onInput={(e) => handlerOnChangeVolume(e)}
+          type="range"
+          id="volume"
+          min="0"
+          max="1"
+          value={volumeValue}
+          step="0.01"
+        />
       </div>
     </S.volumeBlock>
   );
