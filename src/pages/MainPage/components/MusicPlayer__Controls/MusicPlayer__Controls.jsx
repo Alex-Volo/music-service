@@ -4,7 +4,7 @@ import sprite from 'assets/img/icon/sprite.svg';
 
 export const MusicPlayer__Controls = ({ audioAPI }) => {
   const [playerState, setPlayerState] = useState({
-    isPaused: true,
+    isPaused: false,
     isLoop: false,
   });
   if (audioAPI) audioAPI.loop = playerState.isLoop;

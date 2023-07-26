@@ -1,13 +1,12 @@
 import { styled } from 'styled-components';
 
-
 export const ProgressBar = styled.input`
   --progress-height: 8px;
   --progress-color: #b672ff;
-  --progress-color: ${(props) => props.$color ?? "#b672ff"};
+  --progress-color: ${(props) => props.$color ?? '#b672ff'};
 
   --progress-bg-color: #2e2e2e;
-
+  position: relatve;
   margin: 0 10px;
   width: 100%;
   height: var(--progress-height);
@@ -55,4 +54,11 @@ export const ProgressBar = styled.input`
     background-color: var(--progress-color);
     height: var(--progress-height);
   }
+`;
+
+export const Duration = styled.div`
+  position: absolute;
+  top: -25px;
+  width: 100%;
+  text-align: right;
 `;

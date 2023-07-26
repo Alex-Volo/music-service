@@ -5,7 +5,6 @@ export const fetchAllTracks = () => {
   return axios
     .get(baseURL + 'catalog/track/all/')
     .then((response) => {
-      console.log(response);
       return response.data;
     })
 };
