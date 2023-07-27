@@ -1,7 +1,27 @@
+import { useState } from 'react';
 import * as S from './styles';
 import sprite from 'assets/img/icon/sprite.svg';
 
-export const MusicPlayer__Controls = () => {
+export const MusicPlayer__Controls = ({ audioAPI }) => {
+  const [playerState, setPlayerState] = useState({
+    isPaused: false,
+    isLoop: false,
+  });
+  if (audioAPI) audioAPI.loop = playerState.isLoop;
+  const handlerOnPlay = () => {
+    audioAPI.play();
+    setPlayerState({ ...playerState, isPaused: false });
+  };
+
+  const handlerOnPause = () => {
+    audioAPI.pause();
+    setPlayerState({ ...playerState, isPaused: true });
+  };
+
+  const handlerOnLoop = () => {
+    setPlayerState({ ...playerState, isLoop: !playerState.isLoop });
+  };
+
   return (
     <S.PlayerControls>
       <S.Previos>
@@ -9,17 +29,27 @@ export const MusicPlayer__Controls = () => {
           <use xlinkHref={`${sprite}#icon-prev`}></use>
         </S.PreviosSvg>
       </S.Previos>
-      <S.Play>
-        <S.PlaySvg alt="play">
-          <use xlinkHref={`${sprite}#icon-play`}></use>
-        </S.PlaySvg>
-      </S.Play>
+
+      {playerState.isPaused ? (
+        <S.Play onClick={() => handlerOnPlay()}>
+          <S.PlaySvg alt="play">
+            <use xlinkHref={`${sprite}#icon-play`}></use>
+          </S.PlaySvg>
+        </S.Play>
+      ) : (
+        <S.Pause onClick={() => handlerOnPause()}>
+          <S.PlaySvg alt="play">
+            <use xlinkHref={`${sprite}#icon-pause`}></use>
+          </S.PlaySvg>
+        </S.Pause>
+      )}
+
       <S.Next>
         <S.NextSvg alt="next">
           <use xlinkHref={`${sprite}#icon-next`}></use>
         </S.NextSvg>
       </S.Next>
-      <S.Repeat>
+      <S.Repeat $isActive={playerState.isLoop} onClick={() => handlerOnLoop()}>
         <S.RepeatSvg alt="repeat">
           <use xlinkHref={`${sprite}#icon-repeat`}></use>
         </S.RepeatSvg>

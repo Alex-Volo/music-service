@@ -22,7 +22,7 @@ const initialState = (() => {
     playlist1: fakeList,
     playlist2: fakeList,
     playlist3: fakeList,
-    currentTrack: {name: '', author: '', track_file: '', }
+    currentTrack: { name: '', author: '', track_file: '' },
   };
 })();
 
