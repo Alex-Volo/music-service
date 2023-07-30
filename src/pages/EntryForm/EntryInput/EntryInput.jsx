@@ -1,7 +1,7 @@
 import * as S from './styles';
 
-const EntryInput = ({ placeholder }) => {
-  return <S.Input type="text" placeholder={placeholder} />;
+const EntryInput = (props) => {
+  return <S.Input {...props} />;
 };
 
 export default EntryInput;
