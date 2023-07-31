@@ -3,10 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './styles';
 import Cookies from 'js-cookie';
 import { setToken } from 'store/UISlice';
+import { useState } from 'react';
 
 const RegBtn = ({ value, $isColored, link, isNeedAction, handler }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isDisabled, setIsDisabled] = useState(false);
+
   const handleBtnClick = (e) => {
     e.preventDefault();
     if (isNeedAction) {
@@ -18,9 +21,14 @@ const RegBtn = ({ value, $isColored, link, isNeedAction, handler }) => {
   return (
     <S.Btn
       $isColored={$isColored}
+      disabled={isDisabled}
       onClick={(e) => {
+        setIsDisabled(true);
+
         e.preventDefault();
-        handler();
+        handler().then(() => {
+          setIsDisabled(false);
+        });
       }}
     >
       {value}

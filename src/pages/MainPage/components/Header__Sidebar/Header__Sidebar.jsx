@@ -6,13 +6,15 @@ import { setToken } from 'store/UISlice';
 
 export const Header__Sidebar = () => {
   const dispatch = useDispatch();
+  const name = Cookies.get('user');
+  console.log(name);
   const handlerOnclick = () => {
-    Cookies.remove('token');
-    dispatch(setToken(Boolean(Cookies.get('token'))));
+    Cookies.remove('user');
+    dispatch(setToken(Boolean(Cookies.get('user'))));
   };
   return (
     <S.Container>
-      <p>Name</p>
+      <p>{name}</p>
       <S.Logout onClick={handlerOnclick}>
         <use xlinkHref={`${sprite}#icon-logout`} />
       </S.Logout>
