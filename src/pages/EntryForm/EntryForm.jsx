@@ -20,6 +20,7 @@ const EntryForm = ({ form }) => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const { currentUser, setCurrentUser } = useContext(UserContext);
 
   const handleLogin = async () => {
     if (!login) {
@@ -32,8 +33,8 @@ const EntryForm = ({ form }) => {
     }
     return fetchLogin(login, password)
       .then((response) => {
-        console.log(response);
-        Cookies.set('user', response.username);
+        localStorage.setItem('user', JSON.stringify(response));
+        setCurrentUser(response);
         debugger;
         // dispatch(setToken(Boolean(Cookies.get('token'))));
         navigate('/', { replace: true });
