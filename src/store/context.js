@@ -1,5 +1,6 @@
 const { createContext } = require('react');
-const getUserFromLS = () => {
+
+export const getUserFromLS = () => {
   const userJSON = localStorage.getItem('user');
 
   if (userJSON === null) {
@@ -12,6 +13,7 @@ const getUserFromLS = () => {
     return null;
   }
 };
+
 export const UserContext = createContext({
   currentUser: getUserFromLS(),
   setCurrentUser: () => {},

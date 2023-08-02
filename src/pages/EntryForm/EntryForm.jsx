@@ -35,7 +35,6 @@ const EntryForm = ({ form }) => {
       .then((response) => {
         localStorage.setItem('user', JSON.stringify(response));
         setCurrentUser(response);
-        debugger;
         // dispatch(setToken(Boolean(Cookies.get('token'))));
         navigate('/', { replace: true });
       })
@@ -81,7 +80,6 @@ const EntryForm = ({ form }) => {
 
   return (
     <S.Form>
-      <AdviseBox />
       <Link to="/login">
         <S.Logo src={logo_black} alt="logo" />
       </Link>
