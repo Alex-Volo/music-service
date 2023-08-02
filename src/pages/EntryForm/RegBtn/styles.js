@@ -20,7 +20,6 @@ export const Btn = styled.button`
   &:active {
     background-color: #d0cece;
   }
-
   &:disabled {
     opacity: 0.1;
   }
