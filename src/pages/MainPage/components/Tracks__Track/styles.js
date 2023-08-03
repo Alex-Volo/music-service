@@ -10,11 +10,35 @@ export const Track = styled.div`
 export const TrackLogo = styled.div`
   height: 50px;
   width: 50px;
+
   background-color: #313131;
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+  ${(props) => props.isAnimated && 'animation: pulse 2s infinite ease-in 1s;'}
+  @keyframes pulse {
+    from {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #ff0000;
+    }
+    50% {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+
+      background-color: #00ff00;
+    }
+    to {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+
+      background-color: #ff0000;
+    }
+  }
 `;
 
 export const TrackLogoSvg = styled.svg`

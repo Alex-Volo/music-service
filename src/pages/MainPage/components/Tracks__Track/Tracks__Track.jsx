@@ -1,15 +1,13 @@
 import * as S from './styles';
 import sprite from 'assets/img/icon/sprite.svg';
 import { formatTime } from 'helpers/helpers';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setPlayerVisible } from 'store/UISlice';
 import { setCurrentTrack } from 'store/tracksSlice';
 
-export const Tracks__Track = ({
-  loadingClass,
-  track,
-}) => {
+export const Tracks__Track = ({ loadingClass, track }) => {
   const dispatch = useDispatch();
+  const currentTrack = useSelector((state) => state.tracks.currentTrack);
   const handelerTrackClick = (track) => {
     dispatch(setPlayerVisible());
     dispatch(setCurrentTrack(track));
@@ -18,7 +16,9 @@ export const Tracks__Track = ({
   return (
     <S.Track onClick={() => handelerTrackClick(track)}>
       <S.TrackLogo className={loadingClass}>
-        {!track.logo && (
+        {currentTrack.id === track.id ? (
+          <S.TrackLogo isAnimated="true" />
+        ) : (
           <S.TrackLogoSvg>
             <use xlinkHref={`${sprite}#icon-note`} />
           </S.TrackLogoSvg>
