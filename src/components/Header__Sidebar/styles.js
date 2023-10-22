@@ -1,7 +1,6 @@
 import { styled } from 'styled-components';
 
 export const Container = styled.div`
-  cursor: pointer;
   color: #fff;
   display: flex;
   justify-content: flex-end;
@@ -12,4 +11,12 @@ export const Container = styled.div`
 export const Logout = styled.svg`
   width: 43px;
   height: 43px;
+  cursor: pointer;
+  
+  stroke: white;
+  fill: transparent;
+  
+  &:hover {
+    stroke: #696969;
+  }
 `;

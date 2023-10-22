@@ -1,6 +1,6 @@
 import * as S from './styles';
 import sprite from 'assets/img/icon/sprite.svg';
-export const Header__Search = () => {
+export const Search = () => {
   return (
     <S.Search>
       <S.SearchSvg>

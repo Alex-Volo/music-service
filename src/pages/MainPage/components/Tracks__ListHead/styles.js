@@ -13,6 +13,8 @@ export const ListHead  = styled.div`
 export const WatchSvg  = styled.svg`
   height: 12px;
   width: 12px;
+  stroke: #696969;
+  fill: transparent;
 `;
 
 export const TimeCol  = styled.div`

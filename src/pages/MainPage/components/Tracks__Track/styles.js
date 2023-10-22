@@ -16,27 +16,21 @@ export const TrackLogo = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  ${(props) => props.isAnimated && 'animation: pulse 2s infinite ease-in 1s;'}
+    & > svg {
+      ${(props) => props.isAnimated && 'animation: pulse 2s infinite ease-in 1s;'}
+    }
+  
   @keyframes pulse {
     from {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: #ff0000;
+      transform: scale(1.5);
     }
     50% {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
+      transform: scale(1.2);
 
-      background-color: #00ff00;
     }
     to {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
+      transform: scale(1.8);
 
-      background-color: #ff0000;
     }
   }
 `;
@@ -44,6 +38,7 @@ export const TrackLogo = styled.div`
 export const TrackLogoSvg = styled.svg`
   height: 20px;
   width: 20px;
+  
   fill: transparent;
   stroke: #696969;
 `;
@@ -53,9 +48,15 @@ export const TrackName = styled.div`
 `;
 
 export const TrackLikeSvg = styled.svg`
-  width: 14px;
-  height: 12px;
+  width: 16px;
+  height: 14px;
+  cursor: pointer;
+
   stroke: #696969;
+  fill: transparent;
+    &:hover {
+      stroke: #ACACAC;
+    }
 `;
 
 export const TrackTime = styled.div`

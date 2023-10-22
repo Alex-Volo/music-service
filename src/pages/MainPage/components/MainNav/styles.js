@@ -2,6 +2,7 @@ import { styled } from 'styled-components';
 export const MainNav = styled.nav`
   margin-top: 30px;
   grid-column: 1 / 2;
+
 `;
 
 export const BurgerSvg = styled.svg`

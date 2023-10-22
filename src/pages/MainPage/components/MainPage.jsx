@@ -1,5 +1,5 @@
 import * as S from './styles';
-import { Header } from './Header/Header';
+import { Header } from '../../../components';
 import { MainNav } from './MainNav/MainNav';
 import { Sidebar } from './Sidebar/Sidebar';
 import { MusicPlayer } from './MusicPlayer/MusicPlayer';
