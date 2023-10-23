@@ -1,5 +1,5 @@
 import * as S from './styles';
-import { Tracks__FilterBtn } from '../Tracks__FilterBtn/Tracks__FilterBtn';
+import { Tracks__FilterBtn } from 'components';
 import { useState } from 'react';
 
 export const Tracks__SearchFilter = () => {

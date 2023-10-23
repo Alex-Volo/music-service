@@ -1,6 +1,6 @@
 import * as S from './styles';
-import { Tracks__SearchFilter } from '../MainPage/components/Tracks__SearchFilter/Tracks__SearchFilter';
-import { Tracks__List } from '../MainPage/components/Tracks__List/Tracks__List';
+import { Tracks__SearchFilter } from 'components';
+import { Tracks__List } from 'components';
 import { useEffect, useState } from 'react';
 import { setTracks } from 'store/tracksSlice';
 import { fetchAllTracks } from 'helpers/DAL';

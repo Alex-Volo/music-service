@@ -1,6 +1,6 @@
 import { ProtectedRoute } from 'components/ProtectedRoute/ProtectedRoute';
 import EntryForm from 'pages/EntryForm/EntryForm';
-import { MainPage } from 'pages/MainPage/components/MainPage';
+import { MainPage } from 'pages/MainPage/MainPage';
 import { Route, Routes } from 'react-router-dom';
 
 export const AppRoutes = ({isAllowed}) => {

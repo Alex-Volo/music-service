@@ -1,5 +1,5 @@
 import * as S from './styles';
-import { Tracks__FilterModal } from '../Tracks__FilterModal/Tracks__FilterModal';
+import { Tracks__FilterModal } from 'components';
 import { fakeState } from 'helpers/fakeState';
 import { getSortList } from 'helpers/helpers';
 

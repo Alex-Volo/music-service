@@ -1,6 +1,6 @@
 import * as S from './styles';
-import { Tracks__Track } from '../Tracks__Track/Tracks__Track';
-import { Tracks__ListHead } from '../Tracks__ListHead/Tracks__ListHead';
+import { Tracks__Track } from 'components';
+import { Tracks__ListHead } from 'components';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const Tracks__List = ({ playlist, loadingClass }) => {
