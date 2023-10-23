@@ -2,7 +2,7 @@ import { formatTime } from 'helpers/helpers';
 import * as S from './styles';
 import { useEffect, useState } from 'react';
 
-export const MusicPlayer__ProgressBar = ({ audioAPI }) => {
+export const ProgressBar = ({ audioAPI }) => {
   const [currentTime, setCurrentTime] = useState(0);
   let duration = 0;
   if (audioAPI?.duration) {

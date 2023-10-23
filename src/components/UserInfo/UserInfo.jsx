@@ -6,7 +6,7 @@ import { setToken } from 'store/UISlice';
 import { useContext } from 'react';
 import { UserContext } from 'store/context';
 
-export const Header__Sidebar = () => {
+export const UserInfo = () => {
   const dispatch = useDispatch();
   const { currentUser, setCurrentUser } = useContext(UserContext);
   const userName = currentUser.username;

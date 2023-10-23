@@ -1,6 +1,6 @@
 import * as S from './styles';
-import { MusicPlayer__ProgressBar } from 'components';
-import { MusicPlayer__Interface } from 'components';
+import { ProgressBar } from 'components';
+import { Interface } from 'components';
 import { useSelector } from 'react-redux';
 import { useRef, useState } from 'react';
 
@@ -12,8 +12,8 @@ export const MusicPlayer = () => {
 
   return (
     <S.MusicPlayer $isPlayerVisible={isPlayerVisible}>
-      <MusicPlayer__ProgressBar audioAPI={audioAPI} />
-      <MusicPlayer__Interface audioAPI={audioAPI} currentTrack={currentTrack} />
+      <ProgressBar audioAPI={audioAPI} />
+      <Interface audioAPI={audioAPI} currentTrack={currentTrack} />
       <audio ref={audioAPIRef} src={currentTrack.track_file} />
     </S.MusicPlayer>
   );

@@ -1,7 +1,7 @@
-import { Tracks } from './Tracks/Tracks';
+import { Tracks } from '../../Tracks/Tracks';
 import { Route, Routes } from 'react-router-dom';
 import { NotFound } from 'pages/NotFound/NotFound';
-import { Playlist } from './Playlist/Playlist';
+import { Playlist } from '../../Playlist/Playlist';
 
 export const MainPageRoutes = () => {
   return (

@@ -1,5 +1,5 @@
 import * as S from './styles';
-import { Sidebar__Item } from '../Sidebar__Item/Sidebar__Item';
+import { Sidebar__Item } from 'components';
 import playlist01 from 'assets/img/playlist01.png';
 import playlist02 from 'assets/img/playlist02.png';
 import playlist03 from 'assets/img/playlist03.png';

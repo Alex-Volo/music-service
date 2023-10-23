@@ -4,7 +4,7 @@ import { TrackInfo } from 'components';
 import { LikeDislike } from 'components';
 import { Volume } from 'components';
 
-export const MusicPlayer__Interface = ({ currentTrack, audioAPI }) => {
+export const Interface = ({ currentTrack, audioAPI }) => {
   return (
     <S.PlayerInterface>
       <S.LeftBlock>
