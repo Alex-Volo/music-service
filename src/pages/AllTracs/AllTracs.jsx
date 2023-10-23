@@ -1,12 +1,11 @@
 import * as S from './styles';
-import { Tracks__SearchFilter } from 'components';
-import { Tracks__List } from 'components';
+import { SearchFilter, TracksList } from 'components';
 import { useEffect, useState } from 'react';
 import { setTracks } from 'store/tracksSlice';
 import { fetchAllTracks } from 'helpers/DAL';
 import { useDispatch } from 'react-redux';
 
-export const Tracks = ({ heading = 'Треки', playlist }) => {
+export const AllTracs = () => {
   const [loadingClass, setLoadingClass] = useState('loading');
   const dispatch = useDispatch();
   // Загружаю все треки
@@ -24,9 +23,9 @@ export const Tracks = ({ heading = 'Треки', playlist }) => {
 
   return (
     <main>
-      <S.Heading>{heading}</S.Heading>
-      <Tracks__SearchFilter />
-      <Tracks__List playlist={playlist} loadingClass={loadingClass} />
+      <S.Heading>Треки</S.Heading>
+      <SearchFilter />
+      <TracksList playlist='list' loadingClass={loadingClass} />
     </main>
   );
 };

@@ -1,5 +1,5 @@
 import * as S from './styles';
-import { Tracks__List } from 'components';
+import { TracksList } from 'components';
 import { useParams } from 'react-router-dom';
 import { NotFound } from 'pages/NotFound/NotFound';
 import { fetchPlaylist } from 'helpers/DAL';
@@ -42,7 +42,7 @@ export const Playlist = () => {
   return (
     <main>
       <S.Heading>{playlistTitles[playlistNumber - 1]}</S.Heading>
-      <Tracks__List playlist={playlistString} loadingClass={loadingClass} />
+      <TracksList playlist={playlistString} loadingClass={loadingClass} />
     </main>
   );
 };

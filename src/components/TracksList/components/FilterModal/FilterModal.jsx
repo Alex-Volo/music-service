@@ -1,6 +1,6 @@
 import * as S from './styles';
 
-export const Tracks__FilterModal = ({ sortList }) => {
+export const FilterModal = ({ sortList }) => {
   const sortListElements = sortList.map((e) => (
     <li key={e}>
       <a href="#">{e}</a>

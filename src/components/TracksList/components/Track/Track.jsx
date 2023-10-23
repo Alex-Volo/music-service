@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setPlayerVisible } from 'store/UISlice';
 import { setCurrentTrack } from 'store/tracksSlice';
 
-export const Tracks__Track = ({ loadingClass, track }) => {
+export const Track = ({ loadingClass, track }) => {
   const dispatch = useDispatch();
   const currentTrack = useSelector((state) => state.tracks.currentTrack);
   const handelerTrackClick = (track) => {

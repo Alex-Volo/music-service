@@ -1,9 +1,9 @@
 import * as S from './styles';
-import { Tracks__FilterModal } from 'components';
+import { FilterModal } from 'components';
 import { fakeState } from 'helpers/fakeState';
 import { getSortList } from 'helpers/helpers';
 
-export const Tracks__FilterBtn = ({ id, isActive, title, makeBtnActive }) => {
+export const FilterBtn = ({ id, isActive, title, makeBtnActive }) => {
   const handleOnClick = () => {
     isActive ? makeBtnActive(0) : makeBtnActive(id);
   };
@@ -16,7 +16,7 @@ export const Tracks__FilterBtn = ({ id, isActive, title, makeBtnActive }) => {
         {title}
         {isActive && <S.Shortcut>{sortList.length}</S.Shortcut>}
       </S.FilterBtn>
-      {isActive && <Tracks__FilterModal sortList={sortList} />}
+      {isActive && <FilterModal sortList={sortList} />}
     </div>
   );
 };

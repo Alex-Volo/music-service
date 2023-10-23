@@ -1,6 +1,5 @@
 import * as S from './styles';
-import { Tracks__SearchFilter } from 'components';
-import { Tracks__List } from 'components';
+import { SearchFilter, TracksList } from 'components';
 import { useEffect, useState } from 'react';
 import { setTracks } from 'store/tracksSlice';
 import { fetchAllTracks } from 'helpers/DAL';
@@ -25,8 +24,8 @@ export const Favorites = ({ heading = 'Треки', playlist }) => {
   return (
     <main>
       <S.Heading>Избранное</S.Heading>
-      <Tracks__SearchFilter />
-      <Tracks__List playlist="favorites" />
+      <SearchFilter />
+      <TracksList playlist="favorites" />
     </main>
   );
 };
