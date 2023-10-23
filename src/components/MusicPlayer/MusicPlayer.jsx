@@ -1,6 +1,5 @@
 import * as S from './styles';
-import { ProgressBar } from 'components';
-import { Interface } from 'components';
+import { ProgressBar, Interface } from 'components';
 import { useSelector } from 'react-redux';
 import { useRef, useState } from 'react';
 

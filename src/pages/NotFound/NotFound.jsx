@@ -1,4 +1,4 @@
-import Btn from 'components/Btn/Btn';
+import { Btn } from 'components';
 import * as S from './styles';
 import cryingSmile from 'assets/img/crying.png';
 

@@ -1,8 +1,5 @@
 import * as S from './styles';
-import { Header } from 'components';
-import { Nav } from 'components';
-import { Sidebar } from 'components';
-import { MusicPlayer } from 'components';
+import { Header, Nav, Sidebar, MusicPlayer } from 'components';
 import { MainPageRoutes } from './MainPageRoutes';
 import { useSelector } from 'react-redux';
 

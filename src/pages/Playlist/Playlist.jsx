@@ -1,5 +1,5 @@
 import * as S from './styles';
-import { Tracks__List } from '../../components/Tracks__List/Tracks__List';
+import { Tracks__List } from 'components';
 import { useParams } from 'react-router-dom';
 import { NotFound } from 'pages/NotFound/NotFound';
 import { fetchPlaylist } from 'helpers/DAL';

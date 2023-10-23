@@ -1,3 +1,5 @@
+export { Btn } from './Btn/Btn';
+
 // Header
 export { UserInfo } from './UserInfo/UserInfo';
 export { Search } from './Search/Search';

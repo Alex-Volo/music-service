@@ -1,7 +1,7 @@
 import * as S from './styles';
 import sprite from 'assets/img/icon/sprite.svg';
 
-export const Tracks__ListHead = ({ heading = 'Треки' }) => {
+export const Tracks__ListHead = () => {
   return (
     <S.ListHead>
       <div>Трек</div>

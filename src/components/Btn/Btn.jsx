@@ -4,7 +4,7 @@ import * as S from './styles';
 import Cookies from 'js-cookie';
 import { setToken } from 'store/UISlice';
 
-const Btn = ({ value, $isColored, link, isNeedAction }) => {
+export const Btn = ({ value, $isColored, link, isNeedAction }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleBtnClick = (e) => {
@@ -22,4 +22,3 @@ const Btn = ({ value, $isColored, link, isNeedAction }) => {
   );
 };
 
-export default Btn;

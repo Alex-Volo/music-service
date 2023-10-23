@@ -1,5 +1,5 @@
 import * as S from './styles';
-import { NavLink } from '../NavLink/NavLink';
+import { NavLink } from 'components';
 import sprite from 'assets/img/icon/sprite.svg';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
