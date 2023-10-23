@@ -1,8 +1,6 @@
-export { Btn } from './Btn/Btn';
 export { ProtectedRoute } from './ProtectedRoute/ProtectedRoute';
 export { AdviseBox } from './AdviseBox/AdviseBox';
 export { AppRoutes } from './AppRoutes/AppRoutes';
-
 // Header
 export { UserInfo } from './UserInfo/UserInfo';
 export { Search } from './Search/Search';

@@ -1,11 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import * as S from './styles';
-import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-export const EntryBtn = ({ value, $isColored, link, handler }) => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
+export const EntryBtn = ({ value, $isColored, handler }) => {
 
   const [isDisabled, setIsDisabled] = useState(false);
 
@@ -15,15 +12,15 @@ export const EntryBtn = ({ value, $isColored, link, handler }) => {
       disabled={isDisabled}
       onClick={(e) => {
         e.preventDefault();
-        setIsDisabled(true);
 
         if (handler) {
+          setIsDisabled(true);
           handler().then(() => {
             setIsDisabled(false);
           });
-        } else {
-          navigate(link, { replace: true });
-        }
+        };
+
+        setIsDisabled(false);
       }}
     >
       {value}
