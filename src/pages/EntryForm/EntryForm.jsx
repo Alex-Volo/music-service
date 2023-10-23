@@ -13,7 +13,7 @@ import { fetchLogin, regNewUser } from 'helpers/DAL';
 import { useDispatch } from 'react-redux';
 import { UserContext } from 'store/context';
 
-const EntryForm = ({ form }) => {
+export const EntryForm = ({ form }) => {
   const navigate = useNavigate();
   // const dispatch = useDispatch();
 
@@ -154,5 +154,3 @@ const EntryForm = ({ form }) => {
     </S.Form>
   );
 };
-
-export default EntryForm;

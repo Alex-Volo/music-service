@@ -2,7 +2,7 @@
 import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from 'react-redux';
 import { setToken } from 'store/UISlice';
-import { AppRoutes } from 'components/AppRoutes/AppRoutes';
+import { AppRoutes } from 'components';
 import { useContext, useState } from 'react';
 import { getUserFromLS, UserContext } from 'store/context';
 
