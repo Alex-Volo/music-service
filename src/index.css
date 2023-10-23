@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Stratos';
-  src: url(./assets/Stratos-Regular.woff2) format(woff2);
+  src: url(./assets/fonts/Stratos-Regular.woff2) format(woff2);
 }
 body {
   margin: 0;

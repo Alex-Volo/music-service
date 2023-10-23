@@ -1,7 +1,7 @@
 import * as S from './styles';
 import { TracksList } from 'components';
 import { useParams } from 'react-router-dom';
-import { NotFound } from 'pages/NotFound/NotFound';
+import { NotFound } from 'pages';
 import { fetchPlaylist } from 'helpers/DAL';
 import { useDispatch } from 'react-redux';
 import { setPlaylist } from 'store/tracksSlice';
