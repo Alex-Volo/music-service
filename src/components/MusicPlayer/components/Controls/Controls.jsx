@@ -2,7 +2,7 @@ import { useState } from 'react';
 import * as S from './styles';
 import sprite from 'assets/img/icon/sprite.svg';
 
-export const MusicPlayer__Controls = ({ audioAPI }) => {
+export const Controls = ({ audioAPI }) => {
   const [playerState, setPlayerState] = useState({
     isPaused: false,
     isLoop: false,

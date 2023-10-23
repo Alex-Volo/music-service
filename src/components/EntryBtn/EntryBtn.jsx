@@ -3,7 +3,7 @@ import * as S from './styles';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-const EntryBtn = ({ value, $isColored, link, handler }) => {
+export const EntryBtn = ({ value, $isColored, link, handler }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -30,5 +30,3 @@ const EntryBtn = ({ value, $isColored, link, handler }) => {
     </S.Btn>
   );
 };
-
-export default EntryBtn;

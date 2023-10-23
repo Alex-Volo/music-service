@@ -1,11 +1,11 @@
 import * as S from './styles';
-import { MainNav__Link } from '../MainNav__Link/MainNav__Link';
+import { NavLink } from '../NavLink/NavLink';
 import sprite from 'assets/img/icon/sprite.svg';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleMenu } from 'store/UISlice';
 
-export const MainNav = () => {
+export const Nav = () => {
   const dispatch = useDispatch();
   const isMenuVisible = useSelector((state) => state.UI.isMenuVisible);
 
@@ -17,9 +17,9 @@ export const MainNav = () => {
       </S.BurgerSvg>
       <S.NavListContainer>
         <S.NavList $isVisible={isMenuVisible}>
-          <MainNav__Link linkName={'Главное'} link="/" />
-          <MainNav__Link linkName={'Мой плейлист'} link="/favorites" />
-          <MainNav__Link linkName={'Выйти'} link="/login" logout={true} />
+          <NavLink linkName={'Главное'} link="/" />
+          <NavLink linkName={'Мой плейлист'} link="/favorites" />
+          <NavLink linkName={'Выйти'} link="/login" logout={true} />
         </S.NavList>
       </S.NavListContainer>
     </S.MainNav>

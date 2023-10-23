@@ -1,7 +1,7 @@
 import * as S from './styles';
 import sprite from 'assets/img/icon/sprite.svg';
 
-export const MusicPlayer__Track = ({ audioAPI, currentTrack }) => {
+export const TrackInfo = ({ audioAPI, currentTrack }) => {
   return (
     <S.PlayerTrack>
       <S.TrackLogo>

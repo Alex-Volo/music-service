@@ -1,20 +1,21 @@
+// import { AdviseBox } from 'components/AdviseBox/AdviseBox';
 import * as S from './styles';
 import logo_black from 'assets/img/logo_black.svg';
-import EntryInput from './EntryInput/EntryInput';
-import EntryBtn from './EntryBtn/EntryBtn';
-import { AdviseBox } from 'components/AdviseBox/AdviseBox';
+import { EntryInput } from 'components';
+import { EntryBtn } from 'components';
+import { RegBtn } from 'components';
+
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { fetchLogin, regNewUser } from 'helpers/DAL';
-import RegBtn from './RegBtn/RegBtn';
-import Cookies from 'js-cookie';
-import { setToken } from 'store/UISlice';
+// import Cookies from 'js-cookie';
+// import { setToken } from 'store/UISlice';
 import { useDispatch } from 'react-redux';
 import { UserContext } from 'store/context';
 
 const EntryForm = ({ form }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [error, setError] = useState(null);
   const [login, setLogin] = useState('');
@@ -31,6 +32,7 @@ const EntryForm = ({ form }) => {
       setError('Введите пароль');
       return;
     }
+    
     return fetchLogin(login, password)
       .then((response) => {
         localStorage.setItem('user', JSON.stringify(response));

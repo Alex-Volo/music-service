@@ -1,7 +1,7 @@
 import * as S from './styles';
 import sprite from 'assets/img/icon/sprite.svg';
 
-export const MusicPlayer__LikeDislike = () => {
+export const LikeDislike = () => {
   return (
     <S.PlayerLikeDislikeGroup>
       <S.LikeSvg alt="like">

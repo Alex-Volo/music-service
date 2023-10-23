@@ -1,6 +1,6 @@
 import * as S from './styles';
-import { MusicPlayer__ProgressBar } from '../MusicPlayer__ProgressBar/MusicPlayer__ProgressBar';
-import { MusicPlayer__Interface } from '../MusicPlayer__Interface/MusicPlayer__Interface';
+import { MusicPlayer__ProgressBar } from 'components';
+import { MusicPlayer__Interface } from 'components';
 import { useSelector } from 'react-redux';
 import { useRef, useState } from 'react';
 

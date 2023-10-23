@@ -5,7 +5,7 @@ import Cookies from 'js-cookie';
 import { setToken } from 'store/UISlice';
 import { useState } from 'react';
 
-const RegBtn = ({ value, $isColored, link, isNeedAction, handler }) => {
+export const RegBtn = ({ value, $isColored, link, isNeedAction, handler }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [isDisabled, setIsDisabled] = useState(false);
@@ -35,5 +35,3 @@ const RegBtn = ({ value, $isColored, link, isNeedAction, handler }) => {
     </S.Btn>
   );
 };
-
-export default RegBtn;

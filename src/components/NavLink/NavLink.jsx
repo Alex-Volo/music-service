@@ -6,7 +6,7 @@ import { UserContext } from 'store/context';
 import { setToken } from 'store/UISlice';
 import * as S from './styles';
 
-export const MainNav__Link = ({ linkName, link, logout }) => {
+export const NavLink = ({ linkName, link, logout }) => {
   const {currentUser, setCurrentUser} = useContext(UserContext);
   const dispatch = useDispatch();
   const handlerOnclick = () => {
