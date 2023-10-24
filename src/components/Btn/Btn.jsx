@@ -1,9 +1,7 @@
-import { useNavigate } from 'react-router-dom';
 import * as S from './styles';
 import { useState } from 'react';
 
-export const EntryBtn = ({ value, $isColored, handler }) => {
-
+export const Btn = ({ value, $isColored, handler }) => {
   const [isDisabled, setIsDisabled] = useState(false);
 
   return (
@@ -18,7 +16,7 @@ export const EntryBtn = ({ value, $isColored, handler }) => {
           handler().then(() => {
             setIsDisabled(false);
           });
-        };
+        }
 
         setIsDisabled(false);
       }}

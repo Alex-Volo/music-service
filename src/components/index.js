@@ -6,9 +6,8 @@ export { UserInfo } from './UserInfo/UserInfo';
 export { Search } from './Search/Search';
 export { Header } from './Header/Header';
 // Login
-export { EntryBtn } from './EntryBtn/EntryBtn';
+export { Btn } from './Btn/Btn';
 export { EntryInput } from './EntryInput/EntryInput';
-export { RegBtn } from './RegBtn/RegBtn';
 // Navigation
 export { NavLink } from './NavLink/NavLink';
 export { Nav } from './Nav/Nav';

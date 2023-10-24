@@ -2,18 +2,17 @@
 import * as S from './styles';
 import logo_black from 'assets/img/logo_black.svg';
 import { EntryInput } from 'components';
-import { EntryBtn } from 'components';
-import { RegBtn } from 'components';
+import { Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import { fetchLogin, regNewUser } from 'helpers/DAL';
+import { regNewUser } from 'helpers/DAL';
 // import Cookies from 'js-cookie';
 // import { setToken } from 'store/UISlice';
 import { useDispatch } from 'react-redux';
 import { UserContext } from 'store/context';
 
-export const EntryForm = ({ form }) => {
+export const SignUp = ({ form }) => {
   const navigate = useNavigate();
   // const dispatch = useDispatch();
 
@@ -102,12 +101,9 @@ export const EntryForm = ({ form }) => {
       </S.InputsList>
 
       <S.BtnContainer>
-        <RegBtn
+        <Btn
           value="Зарегистрироваться"
           $isColored={true}
-          link="/login"
-          isNeedAction={true}
-          regData={{ email, password, login }}
           handler={handleRegister}
         />
       </S.BtnContainer>

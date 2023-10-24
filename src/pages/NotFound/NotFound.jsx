@@ -1,4 +1,4 @@
-import { EntryBtn } from 'components';
+import { Btn } from 'components';
 import * as S from './styles';
 import cryingSmile from 'assets/img/crying.png';
 import { useNavigate } from 'react-router-dom';
@@ -15,7 +15,7 @@ export const NotFound = () => {
         <S.Image src={cryingSmile} alt="crying smile" />
       </S.Lead>
       <S.Text>Возможно, она была удалена или перенесена на другой адрес</S.Text>
-      <EntryBtn value="Вернуться на главную" $isColored={true} handler={goToMain} />
+      <Btn value="Вернуться на главную" $isColored={true} handler={goToMain} />
     </S.Container>
   );
 };

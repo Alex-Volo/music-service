@@ -1,7 +1,7 @@
 // import { AdviseBox } from 'components/AdviseBox/AdviseBox';
 import * as S from './styles';
 import logo_black from 'assets/img/logo_black.svg';
-import { EntryInput, EntryBtn } from 'components';
+import { EntryInput, Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
@@ -87,14 +87,14 @@ export const Login = () => {
       </S.InputsList>
       {/*Группа кнопок  */}
       <S.BtnContainer>
-        <EntryBtn
+        <Btn
           handler={handleLogin}
           value="Войти"
           $isColored={true}
           link="/"
         />
 
-        <EntryBtn
+        <Btn
           handler={regBtnHandler}
           value="Зарегистрироваться"
           $isColored={false}
