@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 export const Header = () => {
   return (
     <S.Header>
-      <S.LogoContainer>
+      {/* <S.LogoContainer>
         <Link to="/">
           <S.Logo src={logo} />
         </Link>
-      </S.LogoContainer>
+      </S.LogoContainer> */}
       <Search />
       <UserInfo />
     </S.Header>

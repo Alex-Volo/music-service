@@ -1,8 +1,9 @@
 import { styled } from 'styled-components';
 export const MainNav = styled.nav`
-  margin-top: 30px;
   grid-column: 1 / 2;
-
+  grid-row: 1 / 3;
+  padding: 36px;
+  height: 250px;
 `;
 
 export const BurgerSvg = styled.svg`
@@ -27,4 +28,13 @@ export const NavList = styled.ul`
 
 export const active = styled.div`
   top: 0;
+`;
+
+export const LogoContainer = styled.div `
+  margin-bottom: 46px;
+  `;
+
+export const Logo = styled.img `
+  width: 113.33px;
+  height: 17px;
 `;

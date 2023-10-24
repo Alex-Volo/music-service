@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 export const MainPage = () => {
   return (
     <S.wrapper>
-      <Header />
       <Nav />
+      <Header />
       <MainPageRoutes />
       <Sidebar />
       <MusicPlayer />

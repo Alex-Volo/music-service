@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 
 export const Search = styled.div `
-  grid-column: 2 / 3;
+  width: 1152px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #4e4e4e;

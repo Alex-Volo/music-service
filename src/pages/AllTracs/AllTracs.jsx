@@ -22,10 +22,10 @@ export const AllTracs = () => {
   }, []);
 
   return (
-    <main>
+    <S.Main>
       <S.Heading>Треки</S.Heading>
       <SearchFilter />
       <TracksList playlist='list' loadingClass={loadingClass} />
-    </main>
+    </S.Main>
   );
 };

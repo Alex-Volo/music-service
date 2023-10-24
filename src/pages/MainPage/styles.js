@@ -10,7 +10,7 @@ export const wrapper = styled.div`
   grid-template-rows: 70px 1fr;
   margin: 0 auto;
   padding: 20px 36px;
+  background-color: #181818;
   color: #fff;
-  padding-left: 1%;
-  padding-right: 1%;
+  padding: 0;
 `;
