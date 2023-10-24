@@ -14,6 +14,7 @@ export const Nav = () => {
 
   const handleClickBurger = () => dispatch(toggleMenu());
   return (
+    <S.NavContainer>
     <S.MainNav>
         <S.LogoContainer>
           <Link to="/">
@@ -32,5 +33,6 @@ export const Nav = () => {
           </S.NavList>
         </S.NavListContainer>
     </S.MainNav>
+    </S.NavContainer>
   );
 };

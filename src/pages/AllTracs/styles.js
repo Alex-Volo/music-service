@@ -7,5 +7,6 @@ export const Heading = styled.h1`
 `;
 
 export const Main = styled.main`
-  grid-column: 2 /3;
+  grid-column: 2 / 3;
+  padding: 0 4%;
 `;

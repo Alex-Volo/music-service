@@ -1,9 +1,19 @@
 import { styled } from 'styled-components';
+export const NavContainer = styled.div`
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  height: 100%;
+  width: 100%;
+  padding: 36px 14%;
+  box-sizing: border-box;
+  background-color: #1C1C1C;
+`;
+
 export const MainNav = styled.nav`
   grid-column: 1 / 2;
   grid-row: 1 / 3;
-  padding: 36px;
   height: 250px;
+  position: fixed;
 `;
 
 export const BurgerSvg = styled.svg`

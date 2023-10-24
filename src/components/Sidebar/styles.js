@@ -5,6 +5,6 @@ export const Sidebar = styled.div`
   margin: 240px 0 0;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: center;
   gap: 30px;
 `;

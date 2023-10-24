@@ -1,6 +1,10 @@
 import { styled } from 'styled-components';
 
 export const Container = styled.div`
+  box-sizing: border-box;
+  grid-column: 3 / -1;
+  padding-right: 8%;
+  min-width: 100%;
   color: #fff;
   display: flex;
   justify-content: flex-end;
