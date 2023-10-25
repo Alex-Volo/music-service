@@ -6,7 +6,6 @@ import { fetchTracks } from 'helpers/DAL';
 import { useDispatch } from 'react-redux';
 
 export const AllTracs = ({loadingClass, setLoadingClass}) => {
-  // const [loadingClass, setLoadingClass] = useState('loading');
   const dispatch = useDispatch();
   // Загружаю все треки
   useEffect(() => {

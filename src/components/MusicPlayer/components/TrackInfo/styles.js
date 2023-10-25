@@ -7,7 +7,7 @@ export const PlayerTrack = styled.div`
   gap: 10px;
 `;
 export const TrackLogo = styled.div`
-  max-height: 50px;
+  height: 50px;
   min-width: 50px;
   background-color: #313131;
   display: flex;

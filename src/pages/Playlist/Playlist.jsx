@@ -16,7 +16,6 @@ export const Playlist = ({loadingClass, setLoadingClass}) => {
     '100 танцевальных хитов',
     'Инди-заряд',
   ];
-  // const [loadingClass, setLoadingClass] = useState('loading');
 
   // Загружаю плейлист по динамической ссылке и диспатчу в store
   useEffect(() => {

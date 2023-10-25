@@ -15,22 +15,27 @@ export const Track = ({ loadingClass, track }) => {
     dispatch(setPlayerVisible());
     dispatch(setCurrentTrack(track));
   };
-  
+
   // Реализовал вариант с библиотекой
   // Если закомитить блок с условием ниже, то будет использован скелетон
   // на CSS, именно поэтому проверка условия на loadingClass
   if (loadingClass) {
     return (
-      <SkeletonTheme baseColor="#202020" highlightColor="#444" height="50px" duration="3">
-        <S.Track>
+      <S.Track>
+        <SkeletonTheme
+          baseColor="#202020"
+          highlightColor="#444"
+          height="50px"
+          duration="3"
+        >
           <Skeleton />
           <Skeleton />
           <Skeleton />
           <Skeleton />
           <Skeleton />
           <Skeleton />
-        </S.Track>
-      </SkeletonTheme>
+        </SkeletonTheme>
+      </S.Track>
     );
   }
 
