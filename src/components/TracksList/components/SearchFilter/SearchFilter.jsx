@@ -13,19 +13,19 @@ export const SearchFilter = () => {
       <FilterBtn
         makeBtnActive={makeBtnActive}
         id="1"
-        isActive={activeButton === '1' && true}
+        isActive={activeButton === '1'}
         title="исполнителю"
       />
       <FilterBtn
         makeBtnActive={makeBtnActive}
         id="2"
-        isActive={activeButton === '2' && true}
+        isActive={activeButton === '2'}
         title="году выпуска"
       />
       <FilterBtn
         makeBtnActive={makeBtnActive}
         id="3"
-        isActive={activeButton === '3' && true}
+        isActive={activeButton === '3'}
         title="жанру"
       />
     </S.SearchFilter>
