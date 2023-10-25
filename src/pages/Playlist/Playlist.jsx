@@ -2,7 +2,7 @@ import * as S from './styles';
 import { TracksList } from 'components';
 import { useParams } from 'react-router-dom';
 import { NotFound } from 'pages';
-import { fetchPlaylist } from 'helpers/DAL';
+import { fetchPlaylist, fetchTracks } from 'helpers/DAL';
 import { useDispatch } from 'react-redux';
 import { setPlaylist } from 'store/tracksSlice';
 import { useEffect, useState } from 'react';
@@ -20,7 +20,7 @@ export const Playlist = () => {
 
   // Загружаю плейлист по динамической ссылке и диспатчу в store
   useEffect(() => {
-    fetchPlaylist(playlistNumber)
+    fetchTracks(playlistNumber)
       .then((data) => {
         const id = playlistNumber;
         const tracksList = data.items;

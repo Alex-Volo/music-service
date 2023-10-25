@@ -1,24 +1,22 @@
 // Data Access Layer
 import axios from 'axios';
 const baseURL = 'https://skypro-music-api.skyeng.tech/';
+const subURLs = {
+  all: 'catalog/track/all/',
+  allPlaylists: 'catalog/selection/',
+  playlist: 1,
+}
 
-export const fetchAllTracks = () => {
-  return axios.get(baseURL + 'catalog/track/all/').then((response) => {
-    return response.data;
-  });
+export const fetchTracks = (playlist) => {
+  let addURL = '';
+  // Если полученный аргумент можно привести к числу
+  if (!isNaN(Number(playlist))) addURL = `catalog/selection/${playlist}`;
+  else addURL = subURLs[playlist];
+
+  return axios.get(baseURL + addURL).then((response) => response.data);
 };
 
-export const fetchAllPlaylists = () => {
-  return axios
-    .get(baseURL + 'catalog/selection/')
-    .then((response) => response.data);
-};
 
-export const fetchPlaylist = (id) => {
-  return axios
-    .get(baseURL + `catalog/selection/${id}`)
-    .then((response) => response.data);
-};
 
 export const regNewUser = (email, pass, userName) => {
   return axios
@@ -50,20 +48,3 @@ export const fetchLogin = (email, pass) => {
       return response.data;
     });
 };
-
-// export const regNewUser = (email, pass, userName) => {
-//   fetch('https://painassasin.online/user/signup/', {
-//     method: 'POST',
-//     body: JSON.stringify({
-//       email: email,
-//       password: pass,
-//       username: userName,
-//     }),
-//     headers: {
-//       // API требует обязательного указания заголовка content-type, так апи понимает что мы посылаем ему json строчку в теле запроса
-//       'content-type': 'application/json',
-//     },
-//   })
-//     .then((response) => response.json())
-//     .then((json) => console.log(json));
-// };

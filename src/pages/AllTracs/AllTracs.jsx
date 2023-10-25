@@ -2,7 +2,7 @@ import * as S from './styles';
 import { SearchFilter, TracksList } from 'components';
 import { useEffect, useState } from 'react';
 import { setTracks } from 'store/tracksSlice';
-import { fetchAllTracks } from 'helpers/DAL';
+import { fetchTracks } from 'helpers/DAL';
 import { useDispatch } from 'react-redux';
 
 export const AllTracs = () => {
@@ -10,7 +10,7 @@ export const AllTracs = () => {
   const dispatch = useDispatch();
   // Загружаю все треки
   useEffect(() => {
-    fetchAllTracks()
+    fetchTracks('all')
       .then((data) => {
         dispatch(setTracks(data));
         setLoadingClass('');
