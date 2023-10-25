@@ -9,7 +9,6 @@ export const MainPage = () => {
       <Nav />
       <Search />
       <UserInfo />
-      {/* <Header /> */}
       <MainPageRoutes />
       <Sidebar />
       <MusicPlayer />

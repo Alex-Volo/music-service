@@ -1,10 +1,9 @@
 export { ProtectedRoute } from './ProtectedRoute/ProtectedRoute';
 export { AdviseBox } from './AdviseBox/AdviseBox';
 export { AppRoutes } from './AppRoutes/AppRoutes';
-// Header
+// Head
 export { UserInfo } from './UserInfo/UserInfo';
 export { Search } from './Search/Search';
-export { Header } from './Header/Header';
 // Login
 export { Btn } from './Btn/Btn';
 export { EntryInput } from './EntryInput/EntryInput';
