@@ -5,8 +5,8 @@ import { setTracks } from 'store/tracksSlice';
 import { fetchTracks } from 'helpers/DAL';
 import { useDispatch } from 'react-redux';
 
-export const AllTracs = () => {
-  const [loadingClass, setLoadingClass] = useState('loading');
+export const AllTracs = ({loadingClass, setLoadingClass}) => {
+  // const [loadingClass, setLoadingClass] = useState('loading');
   const dispatch = useDispatch();
   // Загружаю все треки
   useEffect(() => {
