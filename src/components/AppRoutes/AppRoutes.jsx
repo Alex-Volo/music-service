@@ -1,13 +1,12 @@
-import { ProtectedRoute } from 'components/ProtectedRoute/ProtectedRoute';
-import EntryForm from 'pages/EntryForm/EntryForm';
-import { MainPage } from 'pages/MainPage/components/MainPage';
+import { ProtectedRoute } from 'components';
+import { EntryForm, Login, MainPage, SignUp } from 'pages';
 import { Route, Routes } from 'react-router-dom';
 
 export const AppRoutes = ({isAllowed}) => {
   return (
     <Routes>
-      <Route path="/login" element={<EntryForm form="login" />} />
-      <Route path="/registration" element={<EntryForm form="registration" />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/registration" element={<SignUp />} />
       <Route element={<ProtectedRoute isAllowed={isAllowed} />}>
         <Route path="/*" element={<MainPage />} />
       </Route>

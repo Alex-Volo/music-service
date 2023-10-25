@@ -1,6 +1,6 @@
 // Data Access Layer
 import axios from 'axios';
-const baseURL = 'https://painassasin.online/';
+const baseURL = 'https://skypro-music-api.skyeng.tech/';
 
 export const fetchAllTracks = () => {
   return axios.get(baseURL + 'catalog/track/all/').then((response) => {

@@ -1,25 +1,27 @@
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import * as S from './styles';
-import Cookies from 'js-cookie';
-import { setToken } from 'store/UISlice';
+import { useState } from 'react';
 
-const Btn = ({ value, $isColored, link, isNeedAction }) => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const handleBtnClick = (e) => {
-    e.preventDefault();
-    if (isNeedAction) {
-      Cookies.set('token', '1');
-      dispatch(setToken(Boolean(Cookies.get('token'))));
-    }
-    navigate(link, { replace: true });
-  };
+export const Btn = ({ value, $isColored, handler }) => {
+  const [isDisabled, setIsDisabled] = useState(false);
+
   return (
-    <S.Btn $isColored={$isColored} onClick={handleBtnClick}>
+    <S.Btn
+      $isColored={$isColored}
+      disabled={isDisabled}
+      onClick={(e) => {
+        e.preventDefault();
+
+        if (handler) {
+          setIsDisabled(true);
+          handler().then(() => {
+            setIsDisabled(false);
+          });
+        }
+
+        setIsDisabled(false);
+      }}
+    >
       {value}
     </S.Btn>
   );
 };
-
-export default Btn;
