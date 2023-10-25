@@ -16,7 +16,7 @@ export const Logout = styled.svg`
   width: 43px;
   height: 43px;
   cursor: pointer;
-  
+  transition: .3s;
   stroke: white;
   fill: transparent;
   

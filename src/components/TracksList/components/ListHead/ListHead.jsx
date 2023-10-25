@@ -4,9 +4,9 @@ import sprite from 'assets/img/icon/sprite.svg';
 export const ListHead = () => {
   return (
     <S.ListHead>
-      <div>Трек</div>
-      <div>Исполнитель</div>
-      <div>Альбом</div>
+      <div>ТРЕК</div>
+      <div>ИСПОЛНИТЕЛЬ</div>
+      <div>АЛЬБОМ</div>
       <div></div>
       <S.TimeCol>
         <S.WatchSvg>

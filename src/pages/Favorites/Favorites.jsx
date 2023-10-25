@@ -22,10 +22,10 @@ export const Favorites = ({ heading = 'Треки', playlist }) => {
 //   }, []);
 
   return (
-    <main>
+    <S.Main>
       <S.Heading>Избранное</S.Heading>
       <SearchFilter />
       <TracksList playlist="favorites" />
-    </main>
+    </S.Main>
   );
 };

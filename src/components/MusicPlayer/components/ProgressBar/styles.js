@@ -7,7 +7,7 @@ export const ProgressBar = styled.input`
 
   --progress-bg-color: #2e2e2e;
   position: relatve;
-  margin: 0 10px;
+  box-sizing: border-box;
   width: 100%;
   height: var(--progress-height);
   -webkit-appearance: none;
@@ -58,6 +58,9 @@ export const ProgressBar = styled.input`
 
 export const Duration = styled.div`
   position: absolute;
+  box-sizing: border-box;
+  padding: 0 10px;
+
   top: -25px;
   width: 100%;
   text-align: right;

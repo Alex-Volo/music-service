@@ -13,7 +13,9 @@ export const Search = styled.div `
 export const SearchSvg = styled.svg `
   width: 17px;
   height: 18px;
-  padding: 10px 15px 10px 8px;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  padding: 0 15px 0px 8px;
   stroke: white;
   fill: transparent;
 `;
@@ -22,10 +24,14 @@ export const SearchInput = styled.input `
   display: block;
   color: #fff;
   width: 100%;
+  margin-top: 18px;
   background-color: transparent;
   border: none;
   outline: none;
   font-size: 16px;
-  font-family: StratosSkyeng;
-  line-height: 50px;
+  font-family: 'Stratos';
+  line-height: 1;
+    &::placeholder {
+      color: #fff;
+    }
 `;

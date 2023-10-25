@@ -5,3 +5,8 @@ export const Heading = styled.h1`
   font-size: 60px;
   line-height: 64px;
 `;
+
+export const Main = styled.main`
+  grid-column: 2 / 3;
+  padding: 0 4%;
+`;

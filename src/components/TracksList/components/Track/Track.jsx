@@ -25,8 +25,8 @@ export const Track = ({ loadingClass, track }) => {
         )}
       </S.TrackLogo>
       <S.TrackName className={loadingClass}>{track.name}</S.TrackName>
-      <div className={loadingClass}>{track.author}</div>
-      <div className={loadingClass}>{track.album}</div>
+      <S.TrackAuthor className={loadingClass}>{track.author}</S.TrackAuthor>
+      <S.TrackAlbum className={loadingClass}>{track.album}</S.TrackAlbum>
       <div className={loadingClass}>
         <S.TrackLikeSvg>
           <use xlinkHref={`${sprite}#icon-like`} />

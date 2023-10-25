@@ -40,9 +40,9 @@ export const Playlist = () => {
   const playlistString = `playlist${playlistNumber}`;
 
   return (
-    <main>
+    <S.Main>
       <S.Heading>{playlistTitles[playlistNumber - 1]}</S.Heading>
       <TracksList playlist={playlistString} loadingClass={loadingClass} />
-    </main>
+    </S.Main>
   );
 };
