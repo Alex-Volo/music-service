@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setPlayerVisible } from 'store/UISlice';
 import { setCurrentTrack } from 'store/tracksSlice';
 
+import { Skeletons } from './Skeletons';
+
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
@@ -16,25 +18,10 @@ export const Track = ({ loadingClass, track }) => {
     dispatch(setCurrentTrack(track));
   };
 
-  // Реализовал вариант с библиотекой
-  // Если закомитить блок с условием ниже, то будет использован скелетон
-  // на CSS, именно поэтому проверка условия на loadingClass
   if (loadingClass) {
     return (
       <S.Track>
-        <SkeletonTheme
-          baseColor="#202020"
-          highlightColor="#444"
-          height="50px"
-          duration="3"
-        >
-          <Skeleton />
-          <Skeleton />
-          <Skeleton />
-          <Skeleton />
-          <Skeleton />
-          <Skeleton />
-        </SkeletonTheme>
+        <Skeletons />
       </S.Track>
     );
   }

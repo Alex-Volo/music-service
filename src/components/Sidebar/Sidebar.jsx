@@ -1,29 +1,21 @@
 import * as S from './styles';
 import { SidebarItem } from 'components';
+import { Skeletons } from './Skeletons';
+
 import playlist01 from 'assets/img/playlist01.png';
 import playlist02 from 'assets/img/playlist02.png';
 import playlist03 from 'assets/img/playlist03.png';
 
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 
 export const Sidebar = ({ loadingClass }) => {
   if (loadingClass) {
     return (
-      <SkeletonTheme
-        baseColor="#202020"
-        highlightColor="#444"
-        duration="3"
-      >
-        <S.Sidebar>
-            <Skeleton width={250} height={150} />
-            <Skeleton width={250} height={150} />
-            <Skeleton width={250} height={150} />
-        </S.Sidebar>
-      </SkeletonTheme>
+      <S.Sidebar>
+        <Skeletons />
+      </S.Sidebar>
     );
   }
-  
+
   return (
     <S.Sidebar>
       <SidebarItem

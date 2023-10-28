@@ -2,9 +2,7 @@ import { styled } from 'styled-components';
 
 export const MusicPlayer = styled.div`
 
-  /*!!!Не забыть скрыть плеер после проверки ДЗ!!! */
-
-  ${(props) => (props.$isPlayerVisible ? 'display: flex;' : 'display: flex;')}
+  ${(props) => (props.$isPlayerVisible ? 'display: flex;' : 'display: none;')}
   width: inherit;
   z-index: 1;
   flex-direction: column;
