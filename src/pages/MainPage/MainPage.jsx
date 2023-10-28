@@ -1,6 +1,6 @@
 import * as S from './styles';
 import { Header, Nav, Sidebar, MusicPlayer, Search, UserInfo } from 'components';
-import { MainPageRoutes } from './MainPageRoutes';
+import { MainPageRoutes } from 'routes';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 

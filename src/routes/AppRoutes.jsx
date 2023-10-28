@@ -1,5 +1,5 @@
-import { ProtectedRoute } from 'components';
-import { EntryForm, Login, MainPage, SignUp } from 'pages';
+import { ProtectedRoute } from 'routes';
+import { Login, MainPage, SignUp } from 'pages';
 import { Route, Routes } from 'react-router-dom';
 
 export const AppRoutes = ({isAllowed}) => {
