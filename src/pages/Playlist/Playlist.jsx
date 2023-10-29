@@ -19,6 +19,8 @@ export const Playlist = ({loadingClass, setLoadingClass}) => {
 
   // Загружаю плейлист по динамической ссылке и диспатчу в store
   useEffect(() => {
+    console.log('Запущент юзЭффект и класс ставится лоадинг')
+    setLoadingClass('loading');
     fetchTracks(playlistNumber)
       .then((data) => {
         const id = playlistNumber;
@@ -31,7 +33,7 @@ export const Playlist = ({loadingClass, setLoadingClass}) => {
         const errorMessage = error.message;
         dispatch(setPlaylist({ id, tracksList: errorMessage }));
       });
-  }, []);
+  }, [playlistNumber]);
   if (isNaN(playlistNumber)) {
     return <NotFound />;
   }

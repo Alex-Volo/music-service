@@ -9,6 +9,8 @@ export const AllTracs = ({loadingClass, setLoadingClass}) => {
   const dispatch = useDispatch();
   // Загружаю все треки
   useEffect(() => {
+    console.log('Запущент юзЭффект и класс ставится лоадинг')
+    setLoadingClass('loading');
     fetchTracks('all')
       .then((data) => {
         dispatch(setTracks(data));
