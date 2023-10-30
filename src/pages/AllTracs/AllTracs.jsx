@@ -2,15 +2,16 @@ import * as S from './styles';
 import { SearchFilter, TracksList } from 'components';
 import { useEffect, useState } from 'react';
 import { setTracks } from 'store/tracksSlice';
-import { fetchAllTracks } from 'helpers/DAL';
+import { fetchTracks } from 'helpers/DAL';
 import { useDispatch } from 'react-redux';
 
-export const AllTracs = () => {
-  const [loadingClass, setLoadingClass] = useState('loading');
+export const AllTracs = ({loadingClass, setLoadingClass}) => {
   const dispatch = useDispatch();
   // Загружаю все треки
   useEffect(() => {
-    fetchAllTracks()
+    console.log('Запущент юзЭффект и класс ставится лоадинг')
+    setLoadingClass('loading');
+    fetchTracks('all')
       .then((data) => {
         dispatch(setTracks(data));
         setLoadingClass('');

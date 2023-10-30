@@ -5,6 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setPlayerVisible } from 'store/UISlice';
 import { setCurrentTrack } from 'store/tracksSlice';
 
+import { Skeletons } from './Skeletons';
+
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+
 export const Track = ({ loadingClass, track }) => {
   const dispatch = useDispatch();
   const currentTrack = useSelector((state) => state.tracks.currentTrack);
@@ -12,6 +17,14 @@ export const Track = ({ loadingClass, track }) => {
     dispatch(setPlayerVisible());
     dispatch(setCurrentTrack(track));
   };
+
+  if (loadingClass) {
+    return (
+      <S.Track>
+        <Skeletons />
+      </S.Track>
+    );
+  }
 
   return (
     <S.Track onClick={() => handelerTrackClick(track)}>

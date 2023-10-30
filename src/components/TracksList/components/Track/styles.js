@@ -6,6 +6,7 @@ export const Track = styled.div`
   grid-template-rows: 50px;
   align-items: center;
   margin-top: 12px;
+  cursor: pointer;
 `;
 export const TrackLogo = styled.div`
   height: 50px;

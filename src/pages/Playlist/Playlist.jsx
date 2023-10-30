@@ -2,12 +2,12 @@ import * as S from './styles';
 import { TracksList } from 'components';
 import { useParams } from 'react-router-dom';
 import { NotFound } from 'pages';
-import { fetchPlaylist } from 'helpers/DAL';
+import { fetchPlaylist, fetchTracks } from 'helpers/DAL';
 import { useDispatch } from 'react-redux';
 import { setPlaylist } from 'store/tracksSlice';
 import { useEffect, useState } from 'react';
 
-export const Playlist = () => {
+export const Playlist = ({loadingClass, setLoadingClass}) => {
   const params = useParams();
   const dispatch = useDispatch();
   const playlistNumber = Number(params.id);
@@ -16,11 +16,12 @@ export const Playlist = () => {
     '100 танцевальных хитов',
     'Инди-заряд',
   ];
-  const [loadingClass, setLoadingClass] = useState('loading');
 
   // Загружаю плейлист по динамической ссылке и диспатчу в store
   useEffect(() => {
-    fetchPlaylist(playlistNumber)
+    console.log('Запущент юзЭффект и класс ставится лоадинг')
+    setLoadingClass('loading');
+    fetchTracks(playlistNumber)
       .then((data) => {
         const id = playlistNumber;
         const tracksList = data.items;
@@ -32,7 +33,7 @@ export const Playlist = () => {
         const errorMessage = error.message;
         dispatch(setPlaylist({ id, tracksList: errorMessage }));
       });
-  });
+  }, [playlistNumber]);
   if (isNaN(playlistNumber)) {
     return <NotFound />;
   }

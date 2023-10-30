@@ -3,7 +3,7 @@ import { ProgressBar, Interface } from 'components';
 import { useSelector } from 'react-redux';
 import { useRef, useState } from 'react';
 
-export const MusicPlayer = () => {
+export const MusicPlayer = ({loadingClass}) => {
   const currentTrack = useSelector((state) => state.tracks.currentTrack);
   const audioAPIRef = useRef(null);
   const audioAPI = audioAPIRef.current;
@@ -12,7 +12,7 @@ export const MusicPlayer = () => {
   return (
     <S.MusicPlayer $isPlayerVisible={isPlayerVisible}>
       <ProgressBar audioAPI={audioAPI} />
-      <Interface audioAPI={audioAPI} currentTrack={currentTrack} />
+      <Interface loadingClass={loadingClass} audioAPI={audioAPI} currentTrack={currentTrack} />
       <audio ref={audioAPIRef} src={currentTrack.track_file} />
     </S.MusicPlayer>
   );
