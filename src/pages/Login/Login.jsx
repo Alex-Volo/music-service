@@ -14,7 +14,7 @@ export const Login = () => {
   const [error, setError] = useState(null);
   const [login, setLogin] = useState('test@test.test');
   const [password, setPassword] = useState('test@test.test');
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { setCurrentUser } = useContext(UserContext);
 
   const handleLogin = async () => {
     if (!login) {

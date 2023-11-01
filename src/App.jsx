@@ -1,6 +1,4 @@
 // import './App.css';
-import Cookies from 'js-cookie';
-import { useDispatch } from 'react-redux';
 import { AppRoutes } from 'routes';
 import { useState } from 'react';
 import { getUserFromLS, UserContext } from 'store/context';
