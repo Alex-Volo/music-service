@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 export const NotFound = () => {
   const navigate = useNavigate();
-  const goToMain = async () => navigate("/", { replace: true });
+  const goToMain = () => navigate('/', { replace: true });
 
   return (
     <S.Container>

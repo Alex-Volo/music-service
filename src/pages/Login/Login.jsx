@@ -16,7 +16,7 @@ export const Login = () => {
   const [password, setPassword] = useState('test@test.test');
   const { setCurrentUser } = useContext(UserContext);
 
-  const handleLogin = async () => {
+  const handleLogin = () => {
     if (!login) {
       setError('Введите Email');
       return;
@@ -42,7 +42,7 @@ export const Login = () => {
       });
   };
 
-  const regBtnHandler = async () => navigate("/registration", { replace: true });
+  const regBtnHandler = () => navigate("/registration", { replace: true });
   
 
   // Сбрасываем ошибку если пользователь меняет данные на форме
