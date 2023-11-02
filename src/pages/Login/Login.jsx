@@ -16,7 +16,7 @@ export const Login = () => {
   const [password, setPassword] = useState('test@test.test');
   const { setCurrentUser } = useContext(UserContext);
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
     if (!login) {
       setError('Введите Email');
       return;
@@ -26,7 +26,7 @@ export const Login = () => {
       return;
     }
 
-    return fetchLogin(login, password)
+    fetchLogin(login, password)
       .then((response) => {
         localStorage.setItem('user', JSON.stringify(response));
         setCurrentUser(response);
@@ -34,16 +34,16 @@ export const Login = () => {
       })
       .catch((error) => {
         console.warn(error);
-        if (error?.response?.data) {
+        if (error.response) {
           console.warn(error.response.data);
           const text = Object.values(error.response.data).join(' ');
           setError(text);
+        } else {
+          console.log(error.request);
+          setError('Проблемы с сетью, проверьте подключение к сети интернет');
         }
       });
   };
-
-  const regBtnHandler = () => navigate("/registration", { replace: true });
-  
 
   // Сбрасываем ошибку если пользователь меняет данные на форме
   useEffect(() => {
@@ -55,9 +55,10 @@ export const Login = () => {
       <Link to="/">
         <S.Logo src={logo_black} alt="logo" />
       </Link>
+
       {/*Группа инпутов  */}
       <S.InputsList>
-        <li style={{ color: 'red', position: 'absolute', width: '300px' }}>
+        <li style={{ color: 'red', position: 'absolute', width: '300px', marginTop: '28px', }}>
           {error}
         </li>
 
@@ -85,17 +86,13 @@ export const Login = () => {
           />
         </li>
       </S.InputsList>
+
       {/*Группа кнопок  */}
       <S.BtnContainer>
-        <Btn
-          handler={handleLogin}
-          value="Войти"
-          $isColored={true}
-          link="/"
-        />
+        <Btn handler={handleLogin} value="Войти" $isColored={true} link="/" />
 
         <Btn
-          handler={regBtnHandler}
+          handler={() => navigate('/registration', { replace: true })}
           value="Зарегистрироваться"
           $isColored={false}
         />
