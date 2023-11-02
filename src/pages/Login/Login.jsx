@@ -5,7 +5,7 @@ import { EntryInput, Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import { fetchLogin } from 'helpers/DAL';
+import { fetchLogin } from 'helpers/fetchAPI';
 import { UserContext } from 'store/context';
 
 export const Login = () => {
@@ -58,7 +58,14 @@ export const Login = () => {
 
       {/*Группа инпутов  */}
       <S.InputsList>
-        <li style={{ color: 'red', position: 'absolute', width: '300px', marginTop: '28px', }}>
+        <li
+          style={{
+            color: 'red',
+            position: 'absolute',
+            width: '300px',
+            marginTop: '28px',
+          }}
+        >
           {error}
         </li>
 

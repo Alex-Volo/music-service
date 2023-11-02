@@ -6,7 +6,7 @@ import { Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import { regNewUser } from 'helpers/DAL';
+import { regNewUser } from 'helpers/fetchAPI';
 // import Cookies from 'js-cookie';
 // import { setToken } from 'store/UISlice';
 import { useDispatch } from 'react-redux';

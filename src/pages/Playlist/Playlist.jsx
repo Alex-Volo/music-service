@@ -2,12 +2,12 @@ import * as S from './styles';
 import { TracksList } from 'components';
 import { useParams } from 'react-router-dom';
 import { NotFound } from 'pages';
-import { fetchPlaylist, fetchTracks } from 'helpers/DAL';
+import { fetchPlaylist, fetchTracks } from 'helpers/fetchAPI';
 import { useDispatch } from 'react-redux';
 import { setPlaylist } from 'store/tracksSlice';
 import { useEffect, useState } from 'react';
 
-export const Playlist = ({loadingClass, setLoadingClass}) => {
+export const Playlist = ({ loadingClass, setLoadingClass }) => {
   const params = useParams();
   const dispatch = useDispatch();
   const playlistNumber = Number(params.id);
@@ -19,7 +19,7 @@ export const Playlist = ({loadingClass, setLoadingClass}) => {
 
   // Загружаю плейлист по динамической ссылке и диспатчу в store
   useEffect(() => {
-    console.log('Запущент юзЭффект и класс ставится лоадинг')
+    console.log('Запущент юзЭффект и класс ставится лоадинг');
     setLoadingClass('loading');
     fetchTracks(playlistNumber)
       .then((data) => {
