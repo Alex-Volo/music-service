@@ -7,20 +7,18 @@ import { Btn } from 'components';
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
 import { regNewUser } from 'helpers/fetchAPI';
-// import Cookies from 'js-cookie';
-// import { setToken } from 'store/UISlice';
-import { useDispatch } from 'react-redux';
 import { UserContext } from 'store/context';
 
 export const SignUp = ({ form }) => {
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
 
   const [error, setError] = useState(null);
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  // Если вдруг решу после регистрации перекидывать не на логин пейдж
+  // А сразу давать доступ к главной
+  // const { currentUser, setCurrentUser } = useContext(UserContext);
 
   const handleRegister = async () => {
     if (!login) {
@@ -35,19 +33,23 @@ export const SignUp = ({ form }) => {
       setError('Введите Email');
       return;
     }
-    return regNewUser(email, password, login)
+
+    regNewUser(email, password, login)
       .then(() => navigate('/login', { replace: true }))
       .catch((error) => {
         console.warn(error);
-        if (error?.response?.data) {
+        if (error.response) {
           console.warn(error.response.data);
-          const text = Object.entries(error.response.data).join(' ');
+          const text = Object.values(error.response.data).join(' ');
           setError(text);
+        } else {
+          console.log(error.request);
+          setError('Проблемы с сетью, проверьте подключение к сети интернет');
         }
       });
   };
 
-  // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
+  // Сбрасываем ошибку если пользователь меняет данные на форме
   useEffect(() => {
     setError(null);
   }, [login, password, email]);
@@ -59,7 +61,14 @@ export const SignUp = ({ form }) => {
       </Link>
 
       <S.InputsList>
-        <li style={{ color: 'red', position: 'absolute', width: '300px' }}>
+      <li
+          style={{
+            color: 'red',
+            position: 'absolute',
+            width: '300px',
+            marginTop: '28px',
+          }}
+        >
           {error}
         </li>
 
