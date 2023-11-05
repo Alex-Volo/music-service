@@ -4,18 +4,15 @@ import sprite from 'assets/img/icon/sprite.svg';
 import logo from 'assets/img/logo.png';
 
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { toggleMenu } from 'store/UISlice';
 import { Link } from 'react-router-dom';
 
 export const Nav = () => {
-  const dispatch = useDispatch();
-  const isMenuVisible = useSelector((state) => state.UI.isMenuVisible);
+  const [isVisible, setIsVisible] = useState(false);
 
-  const handleClickBurger = () => dispatch(toggleMenu());
+  const handleClickBurger = () => setIsVisible(!isVisible);
   return (
-    <S.NavContainer>
-    <S.MainNav>
+    <S.NavContainer $isVisible={isVisible}>
+      <S.MainNav>
         <S.LogoContainer>
           <Link to="/">
             <S.Logo src={logo} />
@@ -26,13 +23,13 @@ export const Nav = () => {
           <use xlinkHref={`${sprite}#icon-burger`} />
         </S.BurgerSvg>
         <S.NavListContainer>
-          <S.NavList $isVisible={isMenuVisible}>
+          <S.NavList $isVisible={isVisible}>
             <NavLink linkName={'Главное'} link="/" />
             <NavLink linkName={'Мой плейлист'} link="/favorites" />
             <NavLink linkName={'Выйти'} link="/login" logout={true} />
           </S.NavList>
         </S.NavListContainer>
-    </S.MainNav>
+      </S.MainNav>
     </S.NavContainer>
   );
 };
