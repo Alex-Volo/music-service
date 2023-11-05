@@ -17,21 +17,35 @@ export const TrackLogo = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-    & > svg {
-      ${(props) => props.isAnimated && 'animation: pulse 2s infinite ease-in 1s;'}
-    }
+
   
   @keyframes pulse {
     from {
+      transform: scale(1.0);
+    }
+    12.5% {
+      transform: scale(1.5);
+    }
+    25% {
+      transform: scale(.9);
+    }
+    37.5% {
       transform: scale(1.5);
     }
     50% {
+      transform: scale(.9);
+    }
+    62.5% {
       transform: scale(1.2);
-
+    }
+    75% {
+      transform: scale(.9);
+    }
+    87.5% {
+      transform: scale(1.2);
     }
     to {
-      transform: scale(1.8);
-
+      transform: scale(.8);
     }
   }
 `;
@@ -39,10 +53,11 @@ export const TrackLogo = styled.div`
 export const TrackLogoSvg = styled.svg`
   height: 20px;
   width: 20px;
-  
+  ${({$isAnimated}) => $isAnimated && 'animation: pulse 2s infinite linear 1s;'}
   fill: transparent;
   stroke: #696969;
 `;
+
 export const TrackName = styled.div`
   box-sizing: border-box;
   margin: 0 15px;
