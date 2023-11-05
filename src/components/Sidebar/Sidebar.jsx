@@ -5,10 +5,11 @@ import { Skeletons } from './Skeletons';
 import playlist01 from 'assets/img/playlist01.png';
 import playlist02 from 'assets/img/playlist02.png';
 import playlist03 from 'assets/img/playlist03.png';
+import { useSelector } from 'react-redux';
 
-
-export const Sidebar = ({ loadingClass }) => {
-  if (loadingClass) {
+export const Sidebar = () => {
+  const isLoading = useSelector((state) => state.UI.isLoading);
+  if (isLoading) {
     return (
       <S.Sidebar>
         <Skeletons />

@@ -1,5 +1,12 @@
 import * as S from './styles';
-import { Header, Nav, Sidebar, MusicPlayer, Search, UserInfo } from 'components';
+import {
+  Header,
+  Nav,
+  Sidebar,
+  MusicPlayer,
+  Search,
+  UserInfo,
+} from 'components';
 import { MainPageRoutes } from 'routes';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -12,11 +19,9 @@ export const MainPage = () => {
       <Nav />
       <Search />
       <UserInfo />
-      <MainPageRoutes 
-      setLoadingClass={setLoadingClass} 
-      loadingClass={loadingClass}/>
+      <MainPageRoutes />
       <Sidebar loadingClass={loadingClass} />
-      <MusicPlayer loadingClass={loadingClass}/>
+      <MusicPlayer loadingClass={loadingClass} />
     </S.wrapper>
   );
 };

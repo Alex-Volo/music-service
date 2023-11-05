@@ -2,12 +2,13 @@ import * as S from './styles';
 import { TracksList } from 'components';
 import { useParams } from 'react-router-dom';
 import { NotFound } from 'pages';
-import { fetchPlaylist, fetchTracks } from 'helpers/fetchAPI';
+import { fetchTracks } from 'helpers/fetchAPI';
 import { useDispatch } from 'react-redux';
 import { setPlaylist } from 'store/tracksSlice';
-import { useEffect, useState } from 'react';
+import { setIsLoading } from 'store/UISlice';
+import { useEffect } from 'react';
 
-export const Playlist = ({ loadingClass, setLoadingClass }) => {
+export const Playlist = () => {
   const params = useParams();
   const dispatch = useDispatch();
   const playlistNumber = Number(params.id);
@@ -17,16 +18,21 @@ export const Playlist = ({ loadingClass, setLoadingClass }) => {
     'Инди-заряд',
   ];
 
+  if (isNaN(playlistNumber)) {
+    return <NotFound />;
+  }
+
   // Загружаю плейлист по динамической ссылке и диспатчу в store
   useEffect(() => {
-    console.log('Запущент юзЭффект и класс ставится лоадинг');
-    setLoadingClass('loading');
+    dispatch(setIsLoading(true));
+
     fetchTracks(playlistNumber)
       .then((data) => {
         const id = playlistNumber;
         const tracksList = data.items;
+
         dispatch(setPlaylist({ id, tracksList }));
-        setLoadingClass('');
+        dispatch(setIsLoading(false));
       })
       .catch((error) => {
         const id = playlistNumber;
@@ -34,16 +40,13 @@ export const Playlist = ({ loadingClass, setLoadingClass }) => {
         dispatch(setPlaylist({ id, tracksList: errorMessage }));
       });
   }, [playlistNumber]);
-  if (isNaN(playlistNumber)) {
-    return <NotFound />;
-  }
 
   const playlistString = `playlist${playlistNumber}`;
 
   return (
     <S.Main>
       <S.Heading>{playlistTitles[playlistNumber - 1]}</S.Heading>
-      <TracksList playlist={playlistString} loadingClass={loadingClass} />
+      <TracksList playlist={playlistString} />
     </S.Main>
   );
 };
