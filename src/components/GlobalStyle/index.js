@@ -1,9 +1,9 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   @font-face {
     font-family: 'Stratos';
-    src: url(./assets/fonts/Stratos-Regular.woff2) format(woff2);
+    src: url(./fonts/StratosSkyeng.woff2) format(woff2), url(./fonts/StratosSkyeng.woff) format(woff);
   }
   
   body {
