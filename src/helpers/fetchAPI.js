@@ -1,4 +1,3 @@
-// Data Access Layer
 import axios from 'axios';
 const baseURL = 'https://skypro-music-api.skyeng.tech/';
 const subURLs = {
@@ -16,8 +15,6 @@ export const fetchTracks = (playlist) => {
   return axios.get(baseURL + addURL).then((response) => response.data);
 };
 
-
-
 export const regNewUser = (email, pass, userName) => {
   return axios
     .post(baseURL + 'user/signup/', {
@@ -34,6 +31,7 @@ export const regNewUser = (email, pass, userName) => {
       return response.data;
     });
 };
+
 export const fetchLogin = (email, pass) => {
   return axios
     .post(baseURL + 'user/login/', {
@@ -44,7 +42,5 @@ export const fetchLogin = (email, pass) => {
         'content-type': 'application/json',
       },
     })
-    .then((response) => {
-      return response.data;
-    });
+    .then((response) => response.data);
 };

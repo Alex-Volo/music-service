@@ -7,10 +7,7 @@ import { setCurrentTrack } from 'store/tracksSlice';
 
 import { Skeletons } from './Skeletons';
 
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
-
-export const Track = ({ loadingClass, track }) => {
+export const Track = ({ isLoading, track }) => {
   const dispatch = useDispatch();
   const currentTrack = useSelector((state) => state.tracks.currentTrack);
   const handelerTrackClick = (track) => {
@@ -18,7 +15,7 @@ export const Track = ({ loadingClass, track }) => {
     dispatch(setCurrentTrack(track));
   };
 
-  if (loadingClass) {
+  if (isLoading) {
     return (
       <S.Track>
         <Skeletons />
@@ -28,7 +25,7 @@ export const Track = ({ loadingClass, track }) => {
 
   return (
     <S.Track onClick={() => handelerTrackClick(track)}>
-      <S.TrackLogo className={loadingClass}>
+      <S.TrackLogo>
         {currentTrack.id === track.id ? (
           <S.TrackLogo isAnimated="true" />
         ) : (
@@ -37,15 +34,15 @@ export const Track = ({ loadingClass, track }) => {
           </S.TrackLogoSvg>
         )}
       </S.TrackLogo>
-      <S.TrackName className={loadingClass}>{track.name}</S.TrackName>
-      <S.TrackAuthor className={loadingClass}>{track.author}</S.TrackAuthor>
-      <S.TrackAlbum className={loadingClass}>{track.album}</S.TrackAlbum>
-      <div className={loadingClass}>
+      <S.TrackName>{track.name}</S.TrackName>
+      <S.TrackAuthor>{track.author}</S.TrackAuthor>
+      <S.TrackAlbum>{track.album}</S.TrackAlbum>
+      <S.LikeWrapper>
         <S.TrackLikeSvg>
           <use xlinkHref={`${sprite}#icon-like`} />
         </S.TrackLikeSvg>
-      </div>
-      <S.TrackTime className={loadingClass}>
+      </S.LikeWrapper>
+      <S.TrackTime>
         {formatTime(track.duration_in_seconds)}
       </S.TrackTime>
     </S.Track>

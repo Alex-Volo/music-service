@@ -5,7 +5,7 @@ import { EntryInput, Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useState } from 'react';
-import { fetchLogin } from 'helpers/DAL';
+import { fetchLogin } from 'helpers/fetchAPI';
 import { UserContext } from 'store/context';
 
 export const Login = () => {
@@ -14,7 +14,7 @@ export const Login = () => {
   const [error, setError] = useState(null);
   const [login, setLogin] = useState('test@test.test');
   const [password, setPassword] = useState('test@test.test');
-  const { currentUser, setCurrentUser } = useContext(UserContext);
+  const { setCurrentUser } = useContext(UserContext);
 
   const handleLogin = async () => {
     if (!login) {
@@ -26,7 +26,7 @@ export const Login = () => {
       return;
     }
 
-    return fetchLogin(login, password)
+    fetchLogin(login, password)
       .then((response) => {
         localStorage.setItem('user', JSON.stringify(response));
         setCurrentUser(response);
@@ -34,16 +34,16 @@ export const Login = () => {
       })
       .catch((error) => {
         console.warn(error);
-        if (error?.response?.data) {
+        if (error.response) {
           console.warn(error.response.data);
           const text = Object.values(error.response.data).join(' ');
           setError(text);
+        } else {
+          console.log(error.request);
+          setError('Проблемы с сетью, проверьте подключение к сети интернет');
         }
       });
   };
-
-  const regBtnHandler = async () => navigate("/registration", { replace: true });
-  
 
   // Сбрасываем ошибку если пользователь меняет данные на форме
   useEffect(() => {
@@ -55,9 +55,17 @@ export const Login = () => {
       <Link to="/">
         <S.Logo src={logo_black} alt="logo" />
       </Link>
+
       {/*Группа инпутов  */}
       <S.InputsList>
-        <li style={{ color: 'red', position: 'absolute', width: '300px' }}>
+        <li
+          style={{
+            color: 'red',
+            position: 'absolute',
+            width: '300px',
+            marginTop: '28px',
+          }}
+        >
           {error}
         </li>
 
@@ -85,17 +93,13 @@ export const Login = () => {
           />
         </li>
       </S.InputsList>
+
       {/*Группа кнопок  */}
       <S.BtnContainer>
-        <Btn
-          handler={handleLogin}
-          value="Войти"
-          $isColored={true}
-          link="/"
-        />
+        <Btn handler={handleLogin} value="Войти" $isColored={true} link="/" />
 
         <Btn
-          handler={regBtnHandler}
+          handler={() => navigate('/registration', { replace: true })}
           value="Зарегистрироваться"
           $isColored={false}
         />

@@ -8,16 +8,12 @@ export const Btn = ({ value, $isColored, handler }) => {
     <S.Btn
       $isColored={$isColored}
       disabled={isDisabled}
-      onClick={(e) => {
+      onClick={async (e) => {
         e.preventDefault();
+        if (!handler) return;
 
-        if (handler) {
-          setIsDisabled(true);
-          handler().then(() => {
-            setIsDisabled(false);
-          });
-        }
-
+        setIsDisabled(true);
+        await handler();
         setIsDisabled(false);
       }}
     >

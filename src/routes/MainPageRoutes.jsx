@@ -1,29 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
 import { NotFound, Playlist, Favorites, AllTracs } from 'pages';
 
-export const MainPageRoutes = ({setLoadingClass, loadingClass}) => {
+export const MainPageRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element=
-      {<AllTracs 
-        setLoadingClass={setLoadingClass}
-        loadingClass={loadingClass}
-      />} />
+      <Route path="/" element={<AllTracs />} />
 
-      <Route
-        path="/favorites"
-        element={<Favorites />}
-      />
+      <Route path="/favorites" element={<Favorites />} />
 
-      <Route
-        path="/playlist/:id"
-        element=
-        {<Playlist 
-          setLoadingClass={setLoadingClass}
-          loadingClass={loadingClass}
-        />}
-      />
-      
+      <Route path="/playlist/:id" element={<Playlist />} />
+
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

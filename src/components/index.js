@@ -1,3 +1,4 @@
+export { GlobalStyle } from './GlobalStyle'
 export { AdviseBox } from './AdviseBox/AdviseBox';
 // Head
 export { UserInfo } from './UserInfo/UserInfo';

@@ -1,20 +1,23 @@
 import * as S from './styles';
 import { SearchFilter, TracksList } from 'components';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { setTracks } from 'store/tracksSlice';
-import { fetchTracks } from 'helpers/DAL';
-import { useDispatch } from 'react-redux';
+import { setIsLoading } from 'store/UISlice';
+import { fetchTracks } from 'helpers/fetchAPI';
+import { useDispatch, useSelector } from 'react-redux';
 
-export const AllTracs = ({loadingClass, setLoadingClass}) => {
+export const AllTracs = () => {
   const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.UI.isLoading);
+  
   // Загружаю все треки
   useEffect(() => {
-    console.log('Запущент юзЭффект и класс ставится лоадинг')
-    setLoadingClass('loading');
+    dispatch(setIsLoading(true));
+
     fetchTracks('all')
       .then((data) => {
         dispatch(setTracks(data));
-        setLoadingClass('');
+        dispatch(setIsLoading(false));
       })
       .catch((error) => {
         console.warn(error.message);
@@ -26,7 +29,7 @@ export const AllTracs = ({loadingClass, setLoadingClass}) => {
     <S.Main>
       <S.Heading>Треки</S.Heading>
       <SearchFilter />
-      <TracksList playlist='list' loadingClass={loadingClass} />
+      <TracksList playlist="list" isLoading={isLoading} />
     </S.Main>
   );
 };
