@@ -59,8 +59,13 @@ export const TrackAlbum = styled.div`
   color: #4E4E4E;
 `;
 
+export const LikeWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const TrackLikeSvg = styled.svg`
-  padding: 3px;
   width: 16px;
   height: 14px;
   cursor: pointer;
