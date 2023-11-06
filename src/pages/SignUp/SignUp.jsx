@@ -35,7 +35,7 @@ export const SignUp = ({ form }) => {
     }
 
     regNewUser(email, password, login)
-      .then(() => navigate('/login', { replace: true }))
+      .then(() => navigate('/login'))
       .catch((error) => {
         console.warn(error);
         if (error.response) {

@@ -1,12 +1,11 @@
 import { Link } from 'react-router-dom';
 import * as S from './styles';
 
-export const SidebarItem = ({ img, description, loadingClass, link, chidren }) => {
+export const SidebarItem = ({ img, description, link }) => {
   return (
-    <S.Sidebar__item className={loadingClass}>
+    <S.Sidebar__item>
       <Link to={link}>
         <img src={img} alt={description} />
-        {chidren}
       </Link>
     </S.Sidebar__item>
   );

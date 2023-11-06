@@ -99,7 +99,7 @@ export const Login = () => {
         <Btn handler={handleLogin} value="Войти" $isColored={true} link="/" />
 
         <Btn
-          handler={() => navigate('/registration', { replace: true })}
+          handler={() => navigate('/registration')}
           value="Зарегистрироваться"
           $isColored={false}
         />

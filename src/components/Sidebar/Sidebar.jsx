@@ -22,20 +22,17 @@ export const Sidebar = () => {
       <SidebarItem
         img={playlist01}
         description="day's playlist"
-        loadingClass={''}
         link="/playlist/1"
       />
       <SidebarItem
         img={playlist02}
         description="
 100 dance hits"
-        loadingClass={''}
         link="/playlist/2"
       />
       <SidebarItem
         img={playlist03}
         description="indie charge"
-        loadingClass={''}
         link="/playlist/3"
       />
     </S.Sidebar>
