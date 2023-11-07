@@ -5,12 +5,8 @@ import { useUser } from 'hooks';
 export const NavLink = ({ linkName, link, needsLogout }) => {
   const { logout } = useUser();
 
-  const handlerOnclick = () => {
-    logout();
-  };
-
   return (
-    <S.NavLink onClick={needsLogout && handlerOnclick}>
+    <S.NavLink onClick={needsLogout && logout}>
       <Link to={link} className="menu__link">
         {linkName}
       </Link>
