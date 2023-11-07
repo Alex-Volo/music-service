@@ -1,12 +1,12 @@
 import * as S from './styles';
 import { NavLink } from 'components';
-import sprite from 'assets/img/icon/sprite.svg';
-import logo from 'assets/img/logo.png';
-
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export const Nav = () => {
+  const sprite = 'assets/img/sprite.svg';
+
+  const logoImgURL = '/assets/img/logo.png';
   const [isVisible, setIsVisible] = useState(false);
 
   const handleClickBurger = () => setIsVisible(!isVisible);
@@ -15,7 +15,7 @@ export const Nav = () => {
       <S.MainNav>
         <S.LogoContainer>
           <Link to="/">
-            <S.Logo src={logo} />
+            <S.Logo src={logoImgURL} />
           </Link>
         </S.LogoContainer>
 

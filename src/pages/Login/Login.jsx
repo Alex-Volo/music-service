@@ -1,6 +1,5 @@
 // import { AdviseBox } from 'components/AdviseBox/AdviseBox';
 import * as S from './styles';
-import logo_black from 'assets/img/logo_black.svg';
 import { EntryInput, Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
@@ -10,6 +9,7 @@ import { UserContext } from 'store/context';
 
 export const Login = () => {
   const navigate = useNavigate();
+  const logoBlackImgURL = '/assets/img/logo_black.svg';
 
   const [error, setError] = useState(null);
   const [login, setLogin] = useState('test@test.test');
@@ -53,7 +53,7 @@ export const Login = () => {
   return (
     <S.Form>
       <Link to="/">
-        <S.Logo src={logo_black} alt="logo" />
+        <S.Logo src={logoBlackImgURL} alt="logo" />
       </Link>
 
       {/*Группа инпутов  */}

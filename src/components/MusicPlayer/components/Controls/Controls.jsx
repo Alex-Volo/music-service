@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import * as S from './styles';
-import sprite from 'assets/img/icon/sprite.svg';
 
 export const Controls = ({ audioAPI }) => {
+  const sprite = 'assets/img/sprite.svg';
+
   const [playerState, setPlayerState] = useState({
     isPaused: false,
     isLoop: false,

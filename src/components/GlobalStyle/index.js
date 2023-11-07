@@ -5,7 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Stratos';
     font-weight: normal;
     font-display: swap;
-    src: url('/fonts/StratosSkyeng.woff2') format('woff2'), url('/fonts/StratosSkyeng.woff') format('woff');
+    src: url('/assets/fonts/StratosSkyeng.woff2') format('woff2'), url('/assets/fonts/StratosSkyeng.woff') format('woff');
   }
   
   body {

@@ -1,6 +1,5 @@
 // import { AdviseBox } from 'components/AdviseBox/AdviseBox';
 import * as S from './styles';
-import logo_black from 'assets/img/logo_black.svg';
 import { EntryInput } from 'components';
 import { Btn } from 'components';
 
@@ -11,6 +10,7 @@ import { UserContext } from 'store/context';
 
 export const SignUp = ({ form }) => {
   const navigate = useNavigate();
+  const logoBlackImgURL = '/assets/img/logo_black.svg';
 
   const [error, setError] = useState(null);
   const [login, setLogin] = useState('');
@@ -57,7 +57,7 @@ export const SignUp = ({ form }) => {
   return (
     <S.Form>
       <Link to="/login">
-        <S.Logo src={logo_black} alt="logo" />
+        <S.Logo src={logoBlackImgURL} alt="logo" />
       </Link>
 
       <S.InputsList>

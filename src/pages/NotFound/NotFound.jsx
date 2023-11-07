@@ -1,9 +1,9 @@
 import { Btn } from 'components';
 import * as S from './styles';
-import cryingSmile from 'assets/img/crying.png';
 import { useNavigate } from 'react-router-dom';
 
 export const NotFound = () => {
+  const cryingSmileImgURL = '/assets/img/crying.png';
   const navigate = useNavigate();
   const goToMain = () => navigate('/', { replace: true });
 
@@ -12,7 +12,7 @@ export const NotFound = () => {
       <S.Heading>404</S.Heading>
       <S.Lead>
         Страница не найдена
-        <S.Image src={cryingSmile} alt="crying smile" />
+        <S.Image src={cryingSmileImgURL} alt="crying smile" />
       </S.Lead>
       <S.Text>Возможно, она была удалена или перенесена на другой адрес</S.Text>
       <Btn value="Вернуться на главную" $isColored={true} handler={goToMain} />

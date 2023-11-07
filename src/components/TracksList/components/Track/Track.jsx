@@ -1,5 +1,4 @@
 import * as S from './styles';
-import sprite from 'assets/img/icon/sprite.svg';
 import { formatTime } from 'helpers/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPlayerVisible } from 'store/UISlice';
@@ -8,6 +7,8 @@ import { setCurrentTrack } from 'store/tracksSlice';
 import { Skeletons } from './Skeletons';
 
 export const Track = ({ isLoading, track }) => {
+  const sprite = 'assets/img/sprite.svg';
+
   const dispatch = useDispatch();
   const currentTrack = useSelector((state) => state.tracks.currentTrack);
   const handlerTrackClick = (track) => {
