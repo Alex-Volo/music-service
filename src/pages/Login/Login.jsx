@@ -3,9 +3,9 @@ import * as S from './styles';
 import { EntryInput, Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { fetchLogin } from 'helpers/fetchAPI';
-import { UserContext } from 'store/context';
+import { useUser } from 'hooks';
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ export const Login = () => {
   const [error, setError] = useState(null);
   const [login, setLogin] = useState('test@test.test');
   const [password, setPassword] = useState('test@test.test');
-  const { setCurrentUser } = useContext(UserContext);
+  const { setCurrentUser } = useUser();
 
   const handleLogin = async () => {
     if (!login) {

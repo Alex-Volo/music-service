@@ -1,18 +1,16 @@
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { UserContext } from 'store/context';
 import * as S from './styles';
+import { useUser } from 'hooks';
 
-export const NavLink = ({ linkName, link, logout }) => {
-  const { setCurrentUser } = useContext(UserContext);
+export const NavLink = ({ linkName, link, needsLogout }) => {
+  const { logout } = useUser();
 
   const handlerOnclick = () => {
-    localStorage.removeItem('user');
-    setCurrentUser(null);
+    logout();
   };
 
   return (
-    <S.NavLink onClick={logout && handlerOnclick}>
+    <S.NavLink onClick={needsLogout && handlerOnclick}>
       <Link to={link} className="menu__link">
         {linkName}
       </Link>

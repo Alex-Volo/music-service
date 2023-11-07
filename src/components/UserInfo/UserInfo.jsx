@@ -1,7 +1,7 @@
 import * as S from './styles';
-import { useDispatch } from 'react-redux';
 import { useContext } from 'react';
 import { UserContext } from 'store/context';
+import { useUser } from 'hooks';
 
 export const UserInfo = () => {
   const sprite = 'assets/img/sprite.svg';

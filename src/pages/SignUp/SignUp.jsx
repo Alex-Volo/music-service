@@ -4,9 +4,8 @@ import { EntryInput } from 'components';
 import { Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { regNewUser } from 'helpers/fetchAPI';
-import { UserContext } from 'store/context';
 
 export const SignUp = ({ form }) => {
   const navigate = useNavigate();
@@ -18,7 +17,7 @@ export const SignUp = ({ form }) => {
   const [email, setEmail] = useState('');
   // Если вдруг решу после регистрации перекидывать не на логин пейдж
   // А сразу давать доступ к главной
-  // const { currentUser, setCurrentUser } = useContext(UserContext);
+  // const { currentUser, setCurrentUser } = useUser();
 
   const handleRegister = async () => {
     if (!login) {

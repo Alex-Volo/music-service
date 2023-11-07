@@ -26,7 +26,7 @@ export const Nav = () => {
           <S.NavList $isVisible={isVisible}>
             <NavLink linkName={'Главное'} link="/" />
             <NavLink linkName={'Мой плейлист'} link="/favorites" />
-            <NavLink linkName={'Выйти'} link="/login" logout={true} />
+            <NavLink linkName={'Выйти'} link="/login" needsLogout={true} />
           </S.NavList>
         </S.NavListContainer>
       </S.MainNav>

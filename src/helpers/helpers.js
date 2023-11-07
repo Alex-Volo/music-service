@@ -1,4 +1,3 @@
-
 export const formatTime = (timeInSeconds) => {
   const minutes = Math.floor(timeInSeconds / 60);
   const seconds = ('0' + (timeInSeconds % 60)).slice(-2);
@@ -35,4 +34,17 @@ export const getSortList = (title, state) => {
   }
 
   return sortList;
+};
+
+export const getUserFromLS = () => {
+  const userJSON = localStorage.getItem('user');
+  if (userJSON === null) return null;
+
+  try {
+    return JSON.parse(userJSON);
+  } catch (e) {
+    localStorage.removeItem('user');
+
+    return null;
+  }
 };
