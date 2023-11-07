@@ -1,4 +1,3 @@
-// import './App.css';
 import { AppRoutes } from 'routes';
 import { useState } from 'react';
 import { getUserFromLS, UserContext } from 'store/context';
