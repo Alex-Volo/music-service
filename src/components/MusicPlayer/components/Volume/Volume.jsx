@@ -2,7 +2,7 @@ import { useState } from 'react';
 import * as S from './styles';
 
 export const Volume = ({ audioAPI }) => {
-  const sprite = 'assets/img/sprite.svg';
+  const sprite = '/assets/img/sprite.svg';
 
   const [volumeValue, setVolumeValue] = useState('1');
   const handlerOnChangeVolume = (e) => {

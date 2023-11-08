@@ -7,7 +7,7 @@ import { setCurrentTrack } from 'store/tracksSlice';
 import { Skeletons } from './Skeletons';
 
 export const Track = ({ isLoading, track }) => {
-  const sprite = 'assets/img/sprite.svg';
+  const sprite = '/assets/img/sprite.svg';
 
   const dispatch = useDispatch();
   const currentTrack = useSelector((state) => state.tracks.currentTrack);

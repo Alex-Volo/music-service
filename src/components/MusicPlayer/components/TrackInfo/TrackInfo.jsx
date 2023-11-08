@@ -1,7 +1,7 @@
 import * as S from './styles';
 
 export const TrackInfo = ({ currentTrack }) => {
-  const sprite = 'assets/img/sprite.svg';
+  const sprite = '/assets/img/sprite.svg';
 
   return (
     <S.PlayerTrack>

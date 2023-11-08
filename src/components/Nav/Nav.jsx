@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export const Nav = () => {
-  const sprite = 'assets/img/sprite.svg';
+  const sprite = '/assets/img/sprite.svg';
 
   const logoImgURL = '/assets/img/logo.png';
   const [isVisible, setIsVisible] = useState(false);
