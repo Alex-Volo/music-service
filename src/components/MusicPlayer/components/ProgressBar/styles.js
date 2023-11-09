@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 export const ProgressBar = styled.input`
   --progress-height: 8px;
   --progress-color: #b672ff;
-  --progress-color: ${(props) => props.$color ?? '#b672ff'};
+  --progress-color: ${(props) => props.$color ?? '#626bb2'};
 
   --progress-bg-color: #2e2e2e;
   position: relatve;

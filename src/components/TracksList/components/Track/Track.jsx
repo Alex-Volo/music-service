@@ -27,8 +27,8 @@ export const Track = ({ isLoading, track }) => {
   const isAnimated = currentTrack.id === track.id ? true : false;
 
   return (
-    <S.Track onClick={() => handlerTrackClick(track)}>
-      <S.TrackLogo>
+    <S.Track $isAnimated={isAnimated} onClick={() => handlerTrackClick(track)}>
+      <S.TrackLogo $isAnimated={isAnimated}>
         <S.TrackLogoSvg $isAnimated={isAnimated}>
           <use xlinkHref={`${sprite}#icon-note`} />
         </S.TrackLogoSvg>

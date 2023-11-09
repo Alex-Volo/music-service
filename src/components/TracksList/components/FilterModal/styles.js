@@ -34,7 +34,7 @@ export const ModalList  = styled.ul`
 
   & a:hover {
     text-decoration: underline;
-    color: #b672ff;
+    color: #626bb2;
   }
 
   &::-webkit-scrollbar {

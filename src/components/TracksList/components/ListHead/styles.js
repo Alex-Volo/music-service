@@ -8,6 +8,7 @@ export const ListHead  = styled.div`
   font-size: 14px;
   line-height: 24px;
   letter-spacing: 2px;
+  padding-right: 8px;
 `;
 
 export const WatchSvg  = styled.svg`

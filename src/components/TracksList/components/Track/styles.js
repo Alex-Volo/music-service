@@ -7,12 +7,21 @@ export const Track = styled.div`
   align-items: center;
   margin-top: 12px;
   cursor: pointer;
+  border-radius: 10px;
+  padding-right: 8px;
+  transition: box-shadow .2s;
+  ${({$isAnimated}) => $isAnimated && 'box-shadow: inset 0px 0px 30px #020202c7, 0px 0px 10px #7787ffb8;'}
+
+  &:hover {
+    box-shadow: inset 0px 0px 30px #7787ffb8, 0px 0px 10px #7787ffb8;
+  }
 `;
 export const TrackLogo = styled.div`
   height: 50px;
   width: 50px;
 
-  background-color: #313131;
+  background-color:${({$isAnimated}) => $isAnimated ? 'transparent' : '#313131'};
+  
   display: flex;
   align-items: center;
   justify-content: center;
