@@ -1,7 +1,6 @@
 // import { AdviseBox } from 'components/AdviseBox/AdviseBox';
 import * as S from './styles';
-import { EntryInput } from 'components';
-import { Btn } from 'components';
+import { EntryInput, Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';

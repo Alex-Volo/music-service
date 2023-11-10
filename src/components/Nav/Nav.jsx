@@ -5,11 +5,12 @@ import { Link } from 'react-router-dom';
 
 export const Nav = () => {
   const sprite = '/assets/img/sprite.svg';
-
   const logoImgURL = '/assets/img/logo.png';
+
   const [isVisible, setIsVisible] = useState(false);
 
-  const handleClickBurger = () => setIsVisible(!isVisible);
+  const toggleBurger = () => setIsVisible(!isVisible);
+
   return (
     <S.NavContainer $isVisible={isVisible}>
       <S.MainNav>
@@ -19,7 +20,7 @@ export const Nav = () => {
           </Link>
         </S.LogoContainer>
 
-        <S.BurgerSvg onClick={handleClickBurger}>
+        <S.BurgerSvg onClick={toggleBurger}>
           <use xlinkHref={`${sprite}#icon-burger`} />
         </S.BurgerSvg>
         <S.NavListContainer>

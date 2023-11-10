@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 export const ProgressBar = ({ audioAPI }) => {
   const [currentTime, setCurrentTime] = useState(0);
   let duration = 0;
-  if (audioAPI?.duration) {
+  if (audioAPI) {
     duration = audioAPI.duration;
   }
 
