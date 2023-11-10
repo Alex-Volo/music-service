@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { regNewUser } from 'helpers/fetchAPI';
 
-export const SignUp = ({ form }) => {
+export const SignUp = () => {
   const navigate = useNavigate();
   const logoBlackImgURL = '/assets/img/logo_black.svg';
 
@@ -15,9 +15,6 @@ export const SignUp = ({ form }) => {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  // Если вдруг решу после регистрации перекидывать не на логин пейдж
-  // А сразу давать доступ к главной
-  // const { currentUser, setCurrentUser } = useUser();
 
   const handleRegister = async () => {
     if (!login) {

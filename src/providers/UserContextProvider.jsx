@@ -15,7 +15,11 @@ export const UserContextProvider = ({ children }) => {
     setCurrentUser(null);
   };
 
-  const value = { currentUser, setCurrentUser, logout };
+  const login = () => {
+    setCurrentUser(getUserFromLS());
+  }
+
+  const value = { currentUser, login, logout };
 
   return (
     <UserContext.Provider value={value}>

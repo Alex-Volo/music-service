@@ -12,12 +12,12 @@ export const Login = () => {
   const logoBlackImgURL = '/assets/img/logo_black.svg';
 
   const [error, setError] = useState(null);
-  const [login, setLogin] = useState('test@test.test');
+  const [loginValue, setLoginValue] = useState('test@test.test');
   const [password, setPassword] = useState('test@test.test');
-  const { setCurrentUser } = useUser();
+  const { login } = useUser();
 
   const handleLogin = async () => {
-    if (!login) {
+    if (!loginValue) {
       setError('Введите Email');
       return;
     }
@@ -26,10 +26,10 @@ export const Login = () => {
       return;
     }
 
-    fetchLogin(login, password)
+    fetchLogin(loginValue, password)
       .then((response) => {
         localStorage.setItem('user', JSON.stringify(response));
-        setCurrentUser(response);
+        login();
         navigate('/', { replace: true });
       })
       .catch((error) => {
@@ -48,7 +48,7 @@ export const Login = () => {
   // Сбрасываем ошибку если пользователь меняет данные на форме
   useEffect(() => {
     setError(null);
-  }, [login, password]);
+  }, [loginValue, password]);
 
   return (
     <S.Form>
@@ -74,9 +74,9 @@ export const Login = () => {
             type="text"
             name="login"
             placeholder="E-mail"
-            value={login}
+            value={loginValue}
             onChange={(event) => {
-              setLogin(event.target.value);
+              setLoginValue(event.target.value);
             }}
           />
         </li>

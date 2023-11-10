@@ -4,7 +4,7 @@ import * as S from './styles';
 export const Volume = ({ audioAPI }) => {
   const sprite = '/assets/img/sprite.svg';
 
-  const [volumeValue, setVolumeValue] = useState('1');
+  const [volumeValue, setVolumeValue] = useState('0.2');
   const handlerOnChangeVolume = (e) => {
     setVolumeValue(e.target.value);
   };
