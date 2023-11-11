@@ -2,7 +2,7 @@ import * as S from './styles';
 import { TracksList } from 'components';
 import { useParams } from 'react-router-dom';
 import { NotFound } from 'pages';
-import { fetchTracks } from 'helpers/fetchAPI';
+import { fetchTracks } from 'services/fetchAPI';
 import { useDispatch } from 'react-redux';
 import { setPlaylist } from 'store/tracksSlice';
 import { setIsLoading } from 'store/UISlice';

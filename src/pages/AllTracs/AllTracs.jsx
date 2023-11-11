@@ -3,13 +3,13 @@ import { SearchFilter, TracksList } from 'components';
 import { useEffect } from 'react';
 import { setTracks } from 'store/tracksSlice';
 import { setIsLoading } from 'store/UISlice';
-import { fetchTracks } from 'helpers/fetchAPI';
+import { fetchTracks } from 'services/fetchAPI';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const AllTracs = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.UI.isLoading);
-  
+
   // Загружаю все треки
   useEffect(() => {
     dispatch(setIsLoading(true));

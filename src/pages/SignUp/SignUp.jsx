@@ -4,7 +4,7 @@ import { EntryInput, Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { regNewUser } from 'helpers/fetchAPI';
+import { regNewUser } from 'services/fetchAPI';
 
 export const SignUp = () => {
   const navigate = useNavigate();
@@ -56,7 +56,7 @@ export const SignUp = () => {
       </Link>
 
       <S.InputsList>
-      <li
+        <li
           style={{
             color: 'red',
             position: 'absolute',
