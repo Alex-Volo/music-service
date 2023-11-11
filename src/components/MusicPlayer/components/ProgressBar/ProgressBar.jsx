@@ -14,13 +14,13 @@ export const ProgressBar = ({ audioAPI }) => {
       audioAPI.addEventListener('timeupdate', () => {
         setCurrentTime(audioAPI.currentTime);
       });
+      // willUnmount и при существующем audioAPI иначе возникает ошибка при перезагрузке страницы
+      return () => {
+        audioAPI.removeEventListener('timeupdate', () => {
+          setCurrentTime(audioAPI.currentTime);
+        });
+      };
     }
-
-    return () => {
-      audioAPI.removeEventListener('timeupdate', () => {
-        setCurrentTime(audioAPI.currentTime);
-      });
-    };
   });
 
   return (
