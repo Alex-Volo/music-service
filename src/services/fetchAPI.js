@@ -3,7 +3,6 @@ const baseURL = 'https://skypro-music-api.skyeng.tech/';
 const subURLs = {
   all: 'catalog/track/all/',
   allPlaylists: 'catalog/selection/',
-  playlist: 1,
 }
 
 export const fetchTracks = (playlist) => {
