@@ -1,20 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import * as S from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsPaused } from 'store/playerSlice';
+import { setIsPaused, toggleLoop } from 'store/playerSlice';
 
 export const Controls = ({ audioAPI }) => {
   const sprite = '/assets/img/sprite.svg';
   const dispatch = useDispatch();
   const isPaused = useSelector((state) => state.player.isPaused);
-
-  const [playerState, setPlayerState] = useState({
-    isPaused: false,
-    isLoop: false,
-  });
+  const isLoop = useSelector((state) => state.player.isLoop);
 
   if (audioAPI) {
-    audioAPI.loop = playerState.isLoop;
+    audioAPI.loop = isLoop;
   }
 
   const playOrPause = () => {
@@ -22,9 +18,11 @@ export const Controls = ({ audioAPI }) => {
     dispatch(setIsPaused(audioAPI.paused));
   };
 
-  const handlerOnLoop = () => {
-    setPlayerState({ ...playerState, isLoop: !playerState.isLoop });
-  };
+  const onLoopClick = () => {
+    dispatch(toggleLoop());
+  }
+
+
 
   return (
     <S.PlayerControls>
@@ -49,11 +47,13 @@ export const Controls = ({ audioAPI }) => {
           <use xlinkHref={`${sprite}#icon-next`}></use>
         </S.NextSvg>
       </S.Next>
-      <S.Repeat $isActive={playerState.isLoop} onClick={() => handlerOnLoop()}>
+
+      <S.Repeat $isActive={isLoop} onClick={onLoopClick}>
         <S.RepeatSvg alt="repeat">
           <use xlinkHref={`${sprite}#icon-repeat`}></use>
         </S.RepeatSvg>
       </S.Repeat>
+      
       <S.Shuffle>
         <S.ShuffleSvg alt="shuffle">
           <use xlinkHref={`${sprite}#icon-shuffle`}></use>

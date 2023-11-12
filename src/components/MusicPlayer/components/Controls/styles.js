@@ -46,6 +46,7 @@ export const NextSvg = styled.svg`
 `;
 export const Repeat = styled.div`
   display: flex;
+  cursor: pointer;
   & svg {
     fill: ${({ $isActive }) => ($isActive ? 'white' : 'gray')};
   }
