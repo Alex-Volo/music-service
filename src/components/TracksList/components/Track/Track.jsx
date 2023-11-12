@@ -8,17 +8,6 @@ import { setCurrentTrack } from 'store/tracksSlice';
 import { Skeletons } from './Skeletons';
 
 export const Track = ({ isLoading, track }) => {
-  const sprite = '/assets/img/sprite.svg';
-
-  const dispatch = useDispatch();
-  const currentTrack = useSelector((state) => state.tracks.currentTrack);
-
-  const handlerTrackClick = (track) => {
-    dispatch(setPlayerVisible());
-    dispatch(setCurrentTrack(track));
-    dispatch(setIsPaused(false));
-  };
-
   if (isLoading) {
     return (
       <S.Track>
@@ -27,13 +16,28 @@ export const Track = ({ isLoading, track }) => {
     );
   }
 
+  const sprite = '/assets/img/sprite.svg';
+  const dispatch = useDispatch();
+  const currentTrack = useSelector((state) => state.tracks.currentTrack);
+
   const isAnimated = currentTrack.id === track.id ? true : false;
+  const isPaused = useSelector((state) => state.player.isPaused) && isAnimated;
+
+  const handlerTrackClick = (track) => {
+    dispatch(setCurrentTrack(track));
+    dispatch(setPlayerVisible());
+    dispatch(isAnimated ? setIsPaused(!isPaused) : setIsPaused(false));
+  };
 
   return (
     <S.Track $isAnimated={isAnimated} onClick={() => handlerTrackClick(track)}>
       <S.TrackLogo $isAnimated={isAnimated}>
-        <S.TrackLogoSvg $isAnimated={isAnimated}>
-          <use xlinkHref={`${sprite}#icon-note`} />
+        <S.TrackLogoSvg $isAnimated={isAnimated} $isPaused={isPaused}>
+          {isPaused ? (
+            <use xlinkHref={`${sprite}#icon-pause`} />
+          ) : (
+            <use xlinkHref={`${sprite}#icon-note`} />
+          )}
         </S.TrackLogoSvg>
       </S.TrackLogo>
 

@@ -10,7 +10,6 @@ export const ProgressBar = ({ audioAPI }) => {
 
   useEffect(() => {
     if (audioAPI) {
-      audioAPI.autoplay = true;
       audioAPI.addEventListener('timeupdate', () => {
         setCurrentTime(audioAPI.currentTime);
       });

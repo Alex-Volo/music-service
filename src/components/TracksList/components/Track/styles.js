@@ -63,6 +63,7 @@ export const TrackLogoSvg = styled.svg`
   height: 20px;
   width: 20px;
   ${({$isAnimated}) => $isAnimated && 'animation: pulse 2s infinite linear 1s;'}
+  ${({$isPaused}) => $isPaused && 'animation: none;'}
   fill: transparent;
   stroke: #696969;
 `;
