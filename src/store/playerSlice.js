@@ -1,18 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  audioAPI: null,
+  isPaused: true,
 };
 
 export const playerSlice = createSlice({
   name: 'player',
-  initialState: initialState,
+  initialState,
   reducers: {
-    setAudioAPI: (state, action) => {
-      state.audioAPI = action.payload;
+    setIsPaused: (state, action) => {
+      state.isPaused = action.payload;
     },
   },
 });
-export const { setAudioAPI } = playerSlice.actions;
 
+export const { setIsPaused } = playerSlice.actions;
 export default playerSlice.reducer;

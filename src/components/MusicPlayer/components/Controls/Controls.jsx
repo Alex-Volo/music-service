@@ -1,22 +1,25 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import * as S from './styles';
+import { useDispatch, useSelector } from 'react-redux';
+import { setIsPaused } from 'store/playerSlice';
 
 export const Controls = ({ audioAPI }) => {
   const sprite = '/assets/img/sprite.svg';
+  const dispatch = useDispatch();
+  const isPaused = useSelector((state) => state.player.isPaused);
 
   const [playerState, setPlayerState] = useState({
     isPaused: false,
     isLoop: false,
   });
-  if (audioAPI) audioAPI.loop = playerState.isLoop;
-  const handlerOnPlay = () => {
-    audioAPI.play();
-    setPlayerState({ ...playerState, isPaused: false });
-  };
 
-  const handlerOnPause = () => {
-    audioAPI.pause();
-    setPlayerState({ ...playerState, isPaused: true });
+  if (audioAPI) {
+    audioAPI.loop = playerState.isLoop;
+  }
+
+  const playOrPause = () => {
+    isPaused ? audioAPI.play() : audioAPI.pause();
+    dispatch(setIsPaused(audioAPI.paused));
   };
 
   const handlerOnLoop = () => {
@@ -31,19 +34,15 @@ export const Controls = ({ audioAPI }) => {
         </S.PreviosSvg>
       </S.Previos>
 
-      {playerState.isPaused ? (
-        <S.Play onClick={() => handlerOnPlay()}>
-          <S.PlaySvg alt="play">
+      <S.Play onClick={() => playOrPause()}>
+        <S.PlaySvg alt="play/pause">
+          {isPaused ? (
             <use xlinkHref={`${sprite}#icon-play`}></use>
-          </S.PlaySvg>
-        </S.Play>
-      ) : (
-        <S.Pause onClick={() => handlerOnPause()}>
-          <S.PlaySvg alt="play">
+          ) : (
             <use xlinkHref={`${sprite}#icon-pause`}></use>
-          </S.PlaySvg>
-        </S.Pause>
-      )}
+          )}
+        </S.PlaySvg>
+      </S.Play>
 
       <S.Next>
         <S.NextSvg alt="next">

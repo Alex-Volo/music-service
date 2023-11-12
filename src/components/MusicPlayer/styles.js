@@ -10,5 +10,7 @@ export const MusicPlayer = styled.div`
   position: fixed;
   bottom: 0;
   left: 0;
+
   background-color: rgba(0, 0, 0, 0.844);
+  user-select: none;
 `;

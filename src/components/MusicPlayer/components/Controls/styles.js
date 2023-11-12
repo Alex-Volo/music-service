@@ -9,24 +9,13 @@ export const PlayerControls = styled.div`
 export const Previos = styled.div`
   display: flex;
 `;
+
 export const PreviosSvg = styled.svg`
   width: 15px;
   height: 14px;
 `;
-export const Play = styled.div`
-  display: flex;
-  &:hover svg {
-    cursor: pointer;
-    fill: #696969;
-    stroke: #696969;
-  }
-  &:active svg {
-    fill: #d9d9d9;
-    stroke: #d9d9d9;
-  }
-`;
 
-export const Pause = styled.div`
+export const Play = styled.div`
   display: flex;
   & svg {
     fill: #d9d9d9;
@@ -41,6 +30,7 @@ export const Pause = styled.div`
     stroke: #d9d9d9;
   }
 `;
+
 export const PlaySvg = styled.svg`
   width: 22px;
   height: 20px;
