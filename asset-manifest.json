@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/music-service/static/css/main.4afb337a.css",
+    "main.js": "/music-service/static/js/main.6f5f55e8.js",
+    "index.html": "/music-service/index.html",
+    "main.4afb337a.css.map": "/music-service/static/css/main.4afb337a.css.map",
+    "main.6f5f55e8.js.map": "/music-service/static/js/main.6f5f55e8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4afb337a.css",
+    "static/js/main.6f5f55e8.js"
+  ]
+}
