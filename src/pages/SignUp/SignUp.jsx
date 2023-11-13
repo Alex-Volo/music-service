@@ -1,24 +1,19 @@
 // import { AdviseBox } from 'components/AdviseBox/AdviseBox';
 import * as S from './styles';
-import logo_black from 'assets/img/logo_black.svg';
-import { EntryInput } from 'components';
-import { Btn } from 'components';
+import { EntryInput, Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
-import { regNewUser } from 'helpers/fetchAPI';
-import { UserContext } from 'store/context';
+import { useEffect, useState } from 'react';
+import { regNewUser } from 'services/fetchAPI';
 
-export const SignUp = ({ form }) => {
+export const SignUp = () => {
   const navigate = useNavigate();
+  const logoBlackImgURL = '/assets/img/logo_black.svg';
 
   const [error, setError] = useState(null);
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
-  // Если вдруг решу после регистрации перекидывать не на логин пейдж
-  // А сразу давать доступ к главной
-  // const { currentUser, setCurrentUser } = useContext(UserContext);
 
   const handleRegister = async () => {
     if (!login) {
@@ -35,7 +30,7 @@ export const SignUp = ({ form }) => {
     }
 
     regNewUser(email, password, login)
-      .then(() => navigate('/login', { replace: true }))
+      .then(() => navigate('/login'))
       .catch((error) => {
         console.warn(error);
         if (error.response) {
@@ -57,11 +52,11 @@ export const SignUp = ({ form }) => {
   return (
     <S.Form>
       <Link to="/login">
-        <S.Logo src={logo_black} alt="logo" />
+        <S.Logo src={process.env.PUBLIC_URL + logoBlackImgURL} alt="logo" />
       </Link>
 
       <S.InputsList>
-      <li
+        <li
           style={{
             color: 'red',
             position: 'absolute',

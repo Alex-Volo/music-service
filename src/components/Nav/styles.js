@@ -6,7 +6,8 @@ export const NavContainer = styled.div`
   width: 100%;
   padding: 36px 14%;
   box-sizing: border-box;
-  background-color: #1C1C1C;
+  background-color: ${({ $isVisible }) => ($isVisible && '#1C1C1C')};
+  transition: background-color 1s;
 `;
 
 export const MainNav = styled.nav`
@@ -30,7 +31,7 @@ export const NavListContainer = styled.div`
 export const NavList = styled.ul`
   transition: top 0.5s;
   position: absolute;
-  top: ${({$isVisible}) => ($isVisible ? '0' : '-150px')};
+  top: ${({ $isVisible }) => ($isVisible ? '0' : '-150px')};
   list-style: none;
   margin: 0;
   padding: 18px 0 10px 0;
@@ -40,11 +41,11 @@ export const active = styled.div`
   top: 0;
 `;
 
-export const LogoContainer = styled.div `
+export const LogoContainer = styled.div`
   margin-bottom: 46px;
-  `;
+`;
 
-export const Logo = styled.img `
+export const Logo = styled.img`
   width: 113.33px;
   height: 17px;
 `;

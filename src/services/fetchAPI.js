@@ -3,8 +3,7 @@ const baseURL = 'https://skypro-music-api.skyeng.tech/';
 const subURLs = {
   all: 'catalog/track/all/',
   allPlaylists: 'catalog/selection/',
-  playlist: 1,
-}
+};
 
 export const fetchTracks = (playlist) => {
   let addURL = '';
@@ -26,10 +25,7 @@ export const regNewUser = (email, pass, userName) => {
         'content-type': 'application/json',
       },
     })
-    .then((response) => {
-      console.log(response);
-      return response.data;
-    });
+    .then((response) => response.data);
 };
 
 export const fetchLogin = (email, pass) => {

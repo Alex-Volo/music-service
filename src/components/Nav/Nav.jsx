@@ -1,38 +1,36 @@
 import * as S from './styles';
 import { NavLink } from 'components';
-import sprite from 'assets/img/icon/sprite.svg';
-import logo from 'assets/img/logo.png';
-
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { toggleMenu } from 'store/UISlice';
 import { Link } from 'react-router-dom';
 
 export const Nav = () => {
-  const dispatch = useDispatch();
-  const isMenuVisible = useSelector((state) => state.UI.isMenuVisible);
+  const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
+  const logoImgURL = '/assets/img/logo.png';
 
-  const handleClickBurger = () => dispatch(toggleMenu());
+  const [isVisible, setIsVisible] = useState(false);
+
+  const toggleBurger = () => setIsVisible(!isVisible);
+
   return (
-    <S.NavContainer>
-    <S.MainNav>
+    <S.NavContainer $isVisible={isVisible}>
+      <S.MainNav>
         <S.LogoContainer>
           <Link to="/">
-            <S.Logo src={logo} />
+            <S.Logo src={process.env.PUBLIC_URL + logoImgURL} />
           </Link>
         </S.LogoContainer>
 
-        <S.BurgerSvg onClick={handleClickBurger}>
+        <S.BurgerSvg onClick={toggleBurger}>
           <use xlinkHref={`${sprite}#icon-burger`} />
         </S.BurgerSvg>
         <S.NavListContainer>
-          <S.NavList $isVisible={isMenuVisible}>
+          <S.NavList $isVisible={isVisible}>
             <NavLink linkName={'Главное'} link="/" />
             <NavLink linkName={'Мой плейлист'} link="/favorites" />
-            <NavLink linkName={'Выйти'} link="/login" logout={true} />
+            <NavLink linkName={'Выйти'} link="/login" needsLogout={true} />
           </S.NavList>
         </S.NavListContainer>
-    </S.MainNav>
+      </S.MainNav>
     </S.NavContainer>
   );
 };

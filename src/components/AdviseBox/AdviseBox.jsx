@@ -1,7 +1,7 @@
-import S from './AdviseBox.module.css';
+import * as S from './styles.js';
 export const AdviseBox = () => {
   return (
-    <div className={S.adviseBox}>
+    <S.AdviseBox>
       <p>
         Чтобы зарегистрироваться нужно нажать кнопку
         &quot;Зарегистрироваться&quot; и перейти на форму регистрации
@@ -12,6 +12,6 @@ export const AdviseBox = () => {
       <p>После этого кнопка &quot;Войти&quot; будет доступна</p>
       <p>Для логаута в правом верхнем углу есть соответствующая иконка</p>
       <p>Также логаут можно произвести из бургер меню слева</p>
-    </div>
+    </S.AdviseBox>
   );
 };

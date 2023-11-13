@@ -1,21 +1,12 @@
-import Cookies from 'js-cookie';
-import { useContext } from 'react';
-import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { UserContext } from 'store/context';
-import { setToken } from 'store/UISlice';
 import * as S from './styles';
+import { useUser } from 'hooks';
 
-export const NavLink = ({ linkName, link, logout }) => {
-  const {currentUser, setCurrentUser} = useContext(UserContext);
-  const dispatch = useDispatch();
-  const handlerOnclick = () => {
-    localStorage.removeItem('user');
-    setCurrentUser(null);
-    // dispatch(setToken(Boolean(Cookies.get('token'))));
-  };
+export const NavLink = ({ linkName, link, needsLogout }) => {
+  const { logout } = useUser();
+
   return (
-    <S.NavLink onClick={logout && handlerOnclick}>
+    <S.NavLink onClick={needsLogout && logout}>
       <Link to={link} className="menu__link">
         {linkName}
       </Link>

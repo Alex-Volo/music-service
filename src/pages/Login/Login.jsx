@@ -1,23 +1,23 @@
 // import { AdviseBox } from 'components/AdviseBox/AdviseBox';
 import * as S from './styles';
-import logo_black from 'assets/img/logo_black.svg';
 import { EntryInput, Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
-import { useContext, useEffect, useState } from 'react';
-import { fetchLogin } from 'helpers/fetchAPI';
-import { UserContext } from 'store/context';
+import { useEffect, useState } from 'react';
+import { fetchLogin } from 'services/fetchAPI';
+import { useUser } from 'hooks';
 
 export const Login = () => {
   const navigate = useNavigate();
+  const logoBlackImgURL = '/assets/img/logo_black.svg';
 
   const [error, setError] = useState(null);
-  const [login, setLogin] = useState('test@test.test');
+  const [loginValue, setLoginValue] = useState('test@test.test');
   const [password, setPassword] = useState('test@test.test');
-  const { setCurrentUser } = useContext(UserContext);
+  const { login } = useUser();
 
   const handleLogin = async () => {
-    if (!login) {
+    if (!loginValue) {
       setError('Введите Email');
       return;
     }
@@ -26,10 +26,10 @@ export const Login = () => {
       return;
     }
 
-    fetchLogin(login, password)
+    fetchLogin(loginValue, password)
       .then((response) => {
         localStorage.setItem('user', JSON.stringify(response));
-        setCurrentUser(response);
+        login();
         navigate('/', { replace: true });
       })
       .catch((error) => {
@@ -48,12 +48,12 @@ export const Login = () => {
   // Сбрасываем ошибку если пользователь меняет данные на форме
   useEffect(() => {
     setError(null);
-  }, [login, password]);
+  }, [loginValue, password]);
 
   return (
     <S.Form>
       <Link to="/">
-        <S.Logo src={logo_black} alt="logo" />
+        <S.Logo src={process.env.PUBLIC_URL + logoBlackImgURL} alt="logo" />
       </Link>
 
       {/*Группа инпутов  */}
@@ -74,9 +74,9 @@ export const Login = () => {
             type="text"
             name="login"
             placeholder="E-mail"
-            value={login}
+            value={loginValue}
             onChange={(event) => {
-              setLogin(event.target.value);
+              setLoginValue(event.target.value);
             }}
           />
         </li>
@@ -99,7 +99,7 @@ export const Login = () => {
         <Btn handler={handleLogin} value="Войти" $isColored={true} link="/" />
 
         <Btn
-          handler={() => navigate('/registration', { replace: true })}
+          handler={() => navigate('/registration')}
           value="Зарегистрироваться"
           $isColored={false}
         />

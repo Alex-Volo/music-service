@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import * as S from './styles';
-import sprite from 'assets/img/icon/sprite.svg';
 
 export const Volume = ({ audioAPI }) => {
-  const [volumeValue, setVolumeValue] = useState('1');
+  const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
+
+  const [volumeValue, setVolumeValue] = useState('0.2');
   const handlerOnChangeVolume = (e) => {
     setVolumeValue(e.target.value);
   };
+
   if (audioAPI) audioAPI.volume = parseFloat(volumeValue);
   return (
     <S.volumeBlock>

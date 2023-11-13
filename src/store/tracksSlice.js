@@ -49,9 +49,6 @@ export const tracksSlice = createSlice({
 export const {
   setTracks,
   setCurrentTrack,
-  setPlaylist1,
-  setPlaylist2,
-  setPlaylist3,
   setPlaylist,
 } = tracksSlice.actions;
 

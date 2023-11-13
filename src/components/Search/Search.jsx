@@ -1,6 +1,7 @@
 import * as S from './styles';
-import sprite from 'assets/img/icon/sprite.svg';
 export const Search = () => {
+  const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
+
   return (
     <S.Search>
       <S.SearchSvg>

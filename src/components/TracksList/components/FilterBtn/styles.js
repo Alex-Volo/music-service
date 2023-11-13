@@ -9,11 +9,11 @@ export const FilterBtn = styled.div`
   border-radius: 60px;
   white-space: nowrap;
   cursor: pointer;
-  ${({ $isActive }) => $isActive && 'color: #ad61ff;\nborder-color: #d9b6ff;'}
+  ${({ $isActive }) => $isActive && 'color: #99a4f7;\nborder-color: #99a4f7;'}
 
   &:hover {
-    color: #d9b6ff;
-    border-color: #d9b6ff;
+    color: #626bb2;
+    border-color: #626bb2;
   }
 `;
 
@@ -28,6 +28,6 @@ export const Shortcut = styled.div`
   width: 25px;
   height: 25px;
   font-size: 13px;
-  background-color: #ad61ff;
+  background-color: #626bb2;
   color: #fff;
 `;

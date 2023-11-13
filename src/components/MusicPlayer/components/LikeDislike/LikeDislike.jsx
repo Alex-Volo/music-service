@@ -1,7 +1,8 @@
 import * as S from './styles';
-import sprite from 'assets/img/icon/sprite.svg';
 
 export const LikeDislike = () => {
+  const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
+
   return (
     <S.PlayerLikeDislikeGroup>
       <S.LikeSvg alt="like">
