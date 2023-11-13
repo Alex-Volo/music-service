@@ -1,7 +1,7 @@
 import * as S from './styles';
 
 export const ListHead = () => {
-  const sprite = '/assets/img/sprite.svg';
+  const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
 
   return (
     <S.ListHead>

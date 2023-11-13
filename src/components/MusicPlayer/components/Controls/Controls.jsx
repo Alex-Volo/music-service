@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setIsPaused, toggleLoop } from 'store/playerSlice';
 
 export const Controls = ({ audioAPI }) => {
-  const sprite = '/assets/img/sprite.svg';
+  const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
   const dispatch = useDispatch();
   const isPaused = useSelector((state) => state.player.isPaused);
   const isLoop = useSelector((state) => state.player.isLoop);
@@ -14,8 +14,8 @@ export const Controls = ({ audioAPI }) => {
   // Строка 28 позволяет при нажатии на трек запускать и останавливать воспроизведение
   // В компоненте - \src\components\TracksList\components\Track\Track.jsx
   // можно посмотреть обработчик handlerTrackClick, который диспатчит в стор
-  // Если вытащить из useEffect строку 28, то При первом нажатии на трек 
-  // возникает ошибка: The element has no supported sources. 
+  // Если вытащить из useEffect строку 28, то При первом нажатии на трек
+  // возникает ошибка: The element has no supported sources.
   // после перезагрузки страницы. Оператор опциональной последовательности
   // оставил намеренно, чтоб удобней было проверять.
   // Не понимаю почему оно работает
@@ -27,7 +27,7 @@ export const Controls = ({ audioAPI }) => {
       audioAPI.loop = isLoop;
       isPaused ? audioAPI?.pause() : audioAPI?.play();
     }
-  })
+  });
 
   const playOrPause = () => {
     isPaused ? audioAPI?.play() : audioAPI?.pause();

@@ -52,7 +52,7 @@ export const SignUp = () => {
   return (
     <S.Form>
       <Link to="/login">
-        <S.Logo src={logoBlackImgURL} alt="logo" />
+        <S.Logo src={process.env.PUBLIC_URL + logoBlackImgURL} alt="logo" />
       </Link>
 
       <S.InputsList>

@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export const Nav = () => {
-  const sprite = '/assets/img/sprite.svg';
+  const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
   const logoImgURL = '/assets/img/logo.png';
 
   const [isVisible, setIsVisible] = useState(false);
@@ -16,7 +16,7 @@ export const Nav = () => {
       <S.MainNav>
         <S.LogoContainer>
           <Link to="/">
-            <S.Logo src={logoImgURL} />
+            <S.Logo src={process.env.PUBLIC_URL + logoImgURL} />
           </Link>
         </S.LogoContainer>
 

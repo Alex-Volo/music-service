@@ -16,7 +16,7 @@ export const Track = ({ isLoading, track }) => {
     );
   }
 
-  const sprite = '/assets/img/sprite.svg';
+  const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
   const dispatch = useDispatch();
   const currentTrack = useSelector((state) => state.tracks.currentTrack);
 

@@ -53,7 +53,7 @@ export const Login = () => {
   return (
     <S.Form>
       <Link to="/">
-        <S.Logo src={logoBlackImgURL} alt="logo" />
+        <S.Logo src={process.env.PUBLIC_URL + logoBlackImgURL} alt="logo" />
       </Link>
 
       {/*Группа инпутов  */}

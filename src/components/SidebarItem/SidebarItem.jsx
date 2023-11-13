@@ -5,7 +5,7 @@ export const SidebarItem = ({ img, description, link }) => {
   return (
     <S.Sidebar__item>
       <Link to={link}>
-        <img src={img} alt={description} />
+        <img src={process.env.PUBLIC_URL + img} alt={description} />
       </Link>
     </S.Sidebar__item>
   );
