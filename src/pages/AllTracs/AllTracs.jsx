@@ -1,14 +1,15 @@
 import * as S from './styles';
-import { SearchFilter, TracksList } from 'components';
-import { useEffect } from 'react';
+import { SearchFilter, TracksList, Error } from 'components';
+import { useEffect, useState } from 'react';
 import { setTracks } from 'store/tracksSlice';
 import { setIsLoading } from 'store/UISlice';
-import { fetchTracks } from 'services/fetchAPI';
+import { fetchTracks } from 'services/API';
 import { useDispatch, useSelector } from 'react-redux';
 
 export const AllTracs = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.UI.isLoading);
+  const [errorMessage, setErrorMessage] = useState(null);
 
   // Загружаю все треки
   useEffect(() => {
@@ -21,15 +22,21 @@ export const AllTracs = () => {
       })
       .catch((error) => {
         console.warn(error.message);
-        dispatch(setTracks(error.message));
+        setErrorMessage(error.message);
       });
   }, []);
 
   return (
     <S.Main>
       <S.Heading>Треки</S.Heading>
-      <SearchFilter />
-      <TracksList playlist="list" isLoading={isLoading} />
+      {errorMessage ? (
+        <Error value={errorMessage} />
+      ) : (
+        <>
+          <SearchFilter />
+          <TracksList playlist="list" isLoading={isLoading} />
+        </>
+      )}
     </S.Main>
   );
 };

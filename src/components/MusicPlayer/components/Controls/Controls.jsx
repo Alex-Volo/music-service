@@ -9,18 +9,6 @@ export const Controls = ({ audioAPI }) => {
   const isPaused = useSelector((state) => state.player.isPaused);
   const isLoop = useSelector((state) => state.player.isLoop);
 
-  // \music-service\src\components\MusicPlayer\components\Controls\Controls.jsx
-  // В общем спорное и очень непонятное для меня самого решение.
-  // Строка 28 позволяет при нажатии на трек запускать и останавливать воспроизведение
-  // В компоненте - \src\components\TracksList\components\Track\Track.jsx
-  // можно посмотреть обработчик handlerTrackClick, который диспатчит в стор
-  // Если вытащить из useEffect строку 28, то При первом нажатии на трек
-  // возникает ошибка: The element has no supported sources.
-  // после перезагрузки страницы. Оператор опциональной последовательности
-  // оставил намеренно, чтоб удобней было проверять.
-  // Не понимаю почему оно работает
-  // А еще хотелось бы понять, как сделать правильно
-
   useEffect(() => {
     if (audioAPI) {
       audioAPI.autoplay = true;
