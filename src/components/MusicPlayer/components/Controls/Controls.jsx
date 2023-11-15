@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import * as S from './styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { setIsPaused, toggleLoop } from 'store/playerSlice';
+import { setCurrentTrack } from 'store/tracksSlice';
 
 export const Controls = ({ audioAPI }) => {
   const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
@@ -15,7 +16,7 @@ export const Controls = ({ audioAPI }) => {
       audioAPI.loop = isLoop;
       isPaused ? audioAPI?.pause() : audioAPI?.play();
     }
-  });
+  },[audioAPI?.paused]);
 
   const playOrPause = () => {
     isPaused ? audioAPI?.play() : audioAPI?.pause();
@@ -25,10 +26,27 @@ export const Controls = ({ audioAPI }) => {
   const onLoopClick = () => {
     dispatch(toggleLoop());
   };
+  
+  // Определяю текущий список треков, текущий трек и индекс текущего трека
+  const currentTrackList = useSelector((store) => store.tracks.list);
+  const currentTrack = useSelector((store) => store.tracks.currentTrack);
+  const currentTrackIndex = currentTrackList.findIndex(
+    ({ id }) => currentTrack.id === id
+  );
+
+  const onNextClick = () => {
+    const nextTrack = (currentTrackIndex + 1) % currentTrackList.length;
+    dispatch(setCurrentTrack(currentTrackList[nextTrack]));
+  };
+
+  const onPreviousClick = () => {
+    const previousTrack = (currentTrackList.length + currentTrackIndex - 1) % currentTrackList.length;
+    dispatch(setCurrentTrack(currentTrackList[previousTrack]));
+  }
 
   return (
     <S.PlayerControls>
-      <S.Previos>
+      <S.Previos onClick={onPreviousClick}>
         <S.PreviosSvg alt="prev">
           <use xlinkHref={`${sprite}#icon-prev`}></use>
         </S.PreviosSvg>
@@ -44,7 +62,7 @@ export const Controls = ({ audioAPI }) => {
         </S.PlaySvg>
       </S.Play>
 
-      <S.Next>
+      <S.Next onClick={onNextClick}>
         <S.NextSvg alt="next">
           <use xlinkHref={`${sprite}#icon-next`}></use>
         </S.NextSvg>

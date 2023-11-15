@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { NotFound } from 'pages';
 import { fetchTracks } from 'services/API';
 import { useDispatch } from 'react-redux';
-import { setPlaylist } from 'store/tracksSlice';
+import { setPlaylist, setTracks } from 'store/tracksSlice';
 import { setIsLoading } from 'store/UISlice';
 import { useEffect, useState } from 'react';
 
@@ -32,8 +32,9 @@ export const Playlist = () => {
       .then((data) => {
         const id = playlistNumber;
         const tracksList = data.items;
+        dispatch(setTracks(tracksList));
 
-        dispatch(setPlaylist({ id, tracksList }));
+        // dispatch(setPlaylist({ id, tracksList }));
         dispatch(setIsLoading(false));
       })
       .catch((error) => {
@@ -42,7 +43,8 @@ export const Playlist = () => {
       });
   }, [playlistNumber]);
 
-  const playlistString = `playlist${playlistNumber}`;
+  // const playlistString = `playlist${playlistNumber}`;
+  const playlistString = 'list';
 
   return (
     <S.Main>
