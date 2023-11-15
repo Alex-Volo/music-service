@@ -36,20 +36,8 @@ export const tracksSlice = createSlice({
     setCurrentTrack: (state, action) => {
       state.currentTrack = action.payload;
     },
-    setPlaylist: {
-      reducer: (state, action) => {
-        state[`playlist${action.payload.id}`] = action.payload.tracksList;
-      },
-      prepare: ({ id, tracksList }) => {
-        return { payload: { id, tracksList } };
-      },
-    },
   },
 });
-export const {
-  setTracks,
-  setCurrentTrack,
-  setPlaylist,
-} = tracksSlice.actions;
+export const { setTracks, setCurrentTrack } = tracksSlice.actions;
 
 export default tracksSlice.reducer;
