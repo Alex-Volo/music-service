@@ -48,3 +48,19 @@ export const getUserFromLS = () => {
     return null;
   }
 };
+
+const shuffle = (sourceArr) => {
+  const arr = [...sourceArr];
+
+  for (let i = arr.length - 1; i > 0; i--) {
+    const newIndex = Math.floor(Math.random() * (i + 1));
+
+    [arr[i], arr[newIndex]] = [arr[newIndex], arr[i]];
+  }
+  return arr;
+};
+
+export const getShuffledIndices = (arr) => {
+  const indicesArr = Array.from({ length: arr.length }, (_, i) => i);
+  return shuffle(indicesArr);
+};

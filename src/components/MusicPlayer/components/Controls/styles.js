@@ -71,6 +71,9 @@ export const Shuffle = styled.div`
   cursor: pointer;
   align-items: center;
   height: 100%;
+  & svg {
+    fill: ${({ $isActive }) => ($isActive ? 'white' : 'gray')};
+  }
 `;
 export const ShuffleSvg = styled.svg`
   width: 19px;

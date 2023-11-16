@@ -9,7 +9,9 @@ export const Controls = ({ audioAPI }) => {
   const dispatch = useDispatch();
   const isPaused = useSelector((state) => state.player.isPaused);
   const [isLoop, setIsLoop] = useState(false);
+  const [isShuffle, setIsShuffle] = useState(false);
   const currentTrack = useSelector((store) => store.tracks.currentTrack);
+  const shuffledOrder = useSelector((store) => store.tracks.shuffledOrder);
 
   useEffect(() => {
     if (audioAPI) {
@@ -28,6 +30,10 @@ export const Controls = ({ audioAPI }) => {
     setIsLoop(!isLoop);
   };
 
+  const onShuffleClick = () => {
+    setIsShuffle(!isShuffle);
+  };
+
   // Определяю текущий список треков, текущий трек и индекс текущего трека
   const currentTrackList = useSelector((store) => store.tracks.list);
   const currentTrackIndex = currentTrackList.findIndex(
@@ -36,7 +42,9 @@ export const Controls = ({ audioAPI }) => {
 
   const onNextClick = () => {
     const nextTrack = (currentTrackIndex + 1) % currentTrackList.length;
-    dispatch(setCurrentTrack(currentTrackList[nextTrack]));
+    if (isShuffle)
+      dispatch(setCurrentTrack(currentTrackList[shuffledOrder[nextTrack]]));
+    else dispatch(setCurrentTrack(currentTrackList[nextTrack]));
   };
 
   const onPreviousClick = () => {
@@ -92,7 +100,7 @@ export const Controls = ({ audioAPI }) => {
         </S.RepeatSvg>
       </S.Repeat>
 
-      <S.Shuffle>
+      <S.Shuffle $isActive={isShuffle} onClick={onShuffleClick}>
         <S.ShuffleSvg alt="shuffle">
           <use xlinkHref={`${sprite}#icon-shuffle`}></use>
         </S.ShuffleSvg>

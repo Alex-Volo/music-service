@@ -1,10 +1,11 @@
 import * as S from './styles';
 import { SearchFilter, TracksList, Error } from 'components';
 import { useEffect, useState } from 'react';
-import { setTracks } from 'store/tracksSlice';
+import { setShuffledOrder, setTracks } from 'store/tracksSlice';
 import { setIsLoading } from 'store/UISlice';
 import { fetchTracks } from 'services/API';
 import { useDispatch, useSelector } from 'react-redux';
+import { getShuffledIndices } from 'helpers/helpers';
 
 export const AllTracs = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,8 @@ export const AllTracs = () => {
     fetchTracks('all')
       .then((data) => {
         dispatch(setTracks(data));
+        const shuffledIndices = getShuffledIndices(data);
+        dispatch(setShuffledOrder(shuffledIndices));
         dispatch(setIsLoading(false));
       })
       .catch((error) => {
