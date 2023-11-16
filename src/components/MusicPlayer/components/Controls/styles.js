@@ -8,6 +8,9 @@ export const PlayerControls = styled.div`
 
 export const Previos = styled.div`
   display: flex;
+  cursor: pointer;
+  height: 100%;
+  align-items: center;
 `;
 
 export const PreviosSvg = styled.svg`
@@ -17,11 +20,14 @@ export const PreviosSvg = styled.svg`
 
 export const Play = styled.div`
   display: flex;
+  height: 100%;
+  align-items: center;
+  cursor: pointer;
+
   & svg {
     fill: #d9d9d9;
   }
   &:hover svg {
-    cursor: pointer;
     fill: #696969;
     stroke: #696969;
   }
@@ -38,6 +44,9 @@ export const PlaySvg = styled.svg`
 `;
 export const Next = styled.div`
   display: flex;
+  cursor: pointer;
+  height: 100%;
+  align-items: center;
 `;
 
 export const NextSvg = styled.svg`
@@ -47,6 +56,8 @@ export const NextSvg = styled.svg`
 export const Repeat = styled.div`
   display: flex;
   cursor: pointer;
+  align-items: center;
+  height: 100%;
   & svg {
     fill: ${({ $isActive }) => ($isActive ? 'white' : 'gray')};
   }
@@ -57,6 +68,9 @@ export const RepeatSvg = styled.svg`
 `;
 export const Shuffle = styled.div`
   display: flex;
+  cursor: pointer;
+  align-items: center;
+  height: 100%;
 `;
 export const ShuffleSvg = styled.svg`
   width: 19px;

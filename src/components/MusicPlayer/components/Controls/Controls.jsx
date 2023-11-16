@@ -9,15 +9,15 @@ export const Controls = ({ audioAPI }) => {
   const dispatch = useDispatch();
   const isPaused = useSelector((state) => state.player.isPaused);
   const [isLoop, setIsLoop] = useState(false);
+  const currentTrack = useSelector((store) => store.tracks.currentTrack);
 
   useEffect(() => {
     if (audioAPI) {
       audioAPI.autoplay = true;
       audioAPI.loop = isLoop;
       isPaused ? audioAPI?.pause() : audioAPI?.play();
-      console.dir(audioAPI);
     }
-  }, [audioAPI?.paused]);
+  }, [audioAPI?.paused, isLoop, currentTrack]);
 
   const playOrPause = () => {
     isPaused ? audioAPI?.play() : audioAPI?.pause();
@@ -26,12 +26,10 @@ export const Controls = ({ audioAPI }) => {
 
   const onLoopClick = () => {
     setIsLoop(!isLoop);
-    audioAPI.loop = isLoop;
   };
 
   // Определяю текущий список треков, текущий трек и индекс текущего трека
   const currentTrackList = useSelector((store) => store.tracks.list);
-  const currentTrack = useSelector((store) => store.tracks.currentTrack);
   const currentTrackIndex = currentTrackList.findIndex(
     ({ id }) => currentTrack.id === id
   );
@@ -48,17 +46,21 @@ export const Controls = ({ audioAPI }) => {
     dispatch(setCurrentTrack(currentTrackList[previousTrack]));
   };
 
+  // Снимаю обработчик на окончание трека при смене трека,
+  // чтобы не копились и не вызывали ошибки
   useEffect(() => {
-    if (audioAPI && !isLoop) {
-      audioAPI.addEventListener('ended', () => {
-        onNextClick();
-      });
-      return () =>
-        audioAPI.removeEventListener('ended', () => {
-          onNextClick();
-        });
+    if (audioAPI) {
+      audioAPI.removeEventListener('ended', onNextClick);
     }
-  }, [audioAPI?.ended]);
+  }, [currentTrack, isLoop === true]);
+
+  // Вешаю обработчик на окончание трека для включения следующего
+  useEffect(() => {
+    if (audioAPI && isLoop !== true) {
+      audioAPI.addEventListener('ended', onNextClick);
+      return () => audioAPI.removeEventListener('ended', onNextClick);
+    }
+  }, [audioAPI?.ended, isLoop, currentTrack]);
 
   return (
     <S.PlayerControls>
