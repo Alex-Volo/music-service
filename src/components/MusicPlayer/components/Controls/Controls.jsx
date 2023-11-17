@@ -19,7 +19,7 @@ export const Controls = ({ audioAPI }) => {
       audioAPI.loop = isLoop;
       isPaused ? audioAPI?.pause() : audioAPI?.play();
     }
-  }, [audioAPI?.paused, isLoop, currentTrack]);
+  }, [isPaused, isLoop, currentTrack]);
 
   const playOrPause = () => {
     isPaused ? audioAPI?.play() : audioAPI?.pause();
@@ -42,25 +42,30 @@ export const Controls = ({ audioAPI }) => {
 
   const onNextClick = () => {
     let nextIndex = (currentTrackIndex + 1) % currentTrackList.length;
-// Если шаффл истина то нахожу индекс трека в массиве с перемешанным порядком
-// и там уже иду по порядку до тех пор, пока порядковый номер не достигает последнего
-// элемента массива, а затем начинает сначала.
-    if (isShuffle){
+    // Если шаффл истина то нахожу индекс трека в массиве с перемешанным порядком
+    // и там уже иду по порядку до тех пор, пока порядковый номер не достигает последнего
+    // элемента массива, а затем начинает сначала.
+    if (isShuffle) {
       const currentShuffleIndex = shuffledOrder.indexOf(currentTrackIndex);
-      nextIndex = shuffledOrder[(currentShuffleIndex + 1) % currentTrackList.length];
+      nextIndex =
+        shuffledOrder[(currentShuffleIndex + 1) % currentTrackList.length];
     }
 
     dispatch(setCurrentTrack(currentTrackList[nextIndex]));
   };
 
   const onPreviousClick = () => {
-    let previousIndex = (currentTrackList.length + currentTrackIndex - 1) %
-    currentTrackList.length;
+    let previousIndex =
+      (currentTrackList.length + currentTrackIndex - 1) %
+      currentTrackList.length;
 
-    if (isShuffle){
+    if (isShuffle) {
       const currentShuffleIndex = shuffledOrder.indexOf(currentTrackIndex);
-      previousIndex = shuffledOrder[(currentTrackList.length + currentShuffleIndex - 1) %
-    currentTrackList.length];
+      previousIndex =
+        shuffledOrder[
+          (currentTrackList.length + currentShuffleIndex - 1) %
+            currentTrackList.length
+        ];
     }
 
     dispatch(setCurrentTrack(currentTrackList[previousIndex]));
