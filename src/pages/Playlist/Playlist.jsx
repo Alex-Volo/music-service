@@ -4,9 +4,10 @@ import { useParams } from 'react-router-dom';
 import { NotFound } from 'pages';
 import { fetchTracks } from 'services/API';
 import { useDispatch } from 'react-redux';
-import { setTracks } from 'store/tracksSlice';
+import { setShuffledOrder, setTracks } from 'store/tracksSlice';
 import { setIsLoading } from 'store/UISlice';
 import { useEffect, useState } from 'react';
+import { getShuffledIndices } from 'helpers/helpers';
 
 export const Playlist = () => {
   const params = useParams();
@@ -32,6 +33,8 @@ export const Playlist = () => {
       .then((data) => {
         const tracksList = data.items;
         dispatch(setTracks(tracksList));
+        const shuffledIndices = getShuffledIndices(data.items);
+        dispatch(setShuffledOrder(shuffledIndices));
         dispatch(setIsLoading(false));
       })
       .catch((error) => {

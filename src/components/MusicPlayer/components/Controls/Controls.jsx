@@ -13,8 +13,6 @@ export const Controls = ({ audioAPI }) => {
   const currentTrack = useSelector((store) => store.tracks.currentTrack);
   const shuffledOrder = useSelector((store) => store.tracks.shuffledOrder);
 
-  console.log(shuffledOrder, 'шаффлед ордер')
-
   useEffect(() => {
     if (audioAPI) {
       audioAPI.autoplay = true;
@@ -44,8 +42,12 @@ export const Controls = ({ audioAPI }) => {
 
   const onNextClick = () => {
     let nextIndex = (currentTrackIndex + 1) % currentTrackList.length;
+// Если шаффл истина то нахожу индекс трека в массиве с перемешанным порядком
+// и там уже иду по порядку до тех пор, пока порядковый номер не достигает последнего
+// элемента массива, а затем начинает сначала.
     if (isShuffle){
-      nextIndex = shuffledOrder[nextIndex];
+      const currentShuffleIndex = shuffledOrder.indexOf(currentTrackIndex);
+      nextIndex = shuffledOrder[(currentShuffleIndex + 1) % currentTrackList.length];
     }
 
     dispatch(setCurrentTrack(currentTrackList[nextIndex]));
@@ -54,8 +56,11 @@ export const Controls = ({ audioAPI }) => {
   const onPreviousClick = () => {
     let previousIndex = (currentTrackList.length + currentTrackIndex - 1) %
     currentTrackList.length;
+
     if (isShuffle){
-      previousIndex = shuffledOrder[previousIndex];
+      const currentShuffleIndex = shuffledOrder.indexOf(currentTrackIndex);
+      previousIndex = shuffledOrder[(currentTrackList.length + currentShuffleIndex - 1) %
+    currentTrackList.length];
     }
 
     dispatch(setCurrentTrack(currentTrackList[previousIndex]));
