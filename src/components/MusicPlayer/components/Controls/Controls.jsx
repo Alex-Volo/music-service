@@ -13,6 +13,8 @@ export const Controls = ({ audioAPI }) => {
   const currentTrack = useSelector((store) => store.tracks.currentTrack);
   const shuffledOrder = useSelector((store) => store.tracks.shuffledOrder);
 
+  console.log(shuffledOrder, 'шаффлед ордер')
+
   useEffect(() => {
     if (audioAPI) {
       audioAPI.autoplay = true;
@@ -41,17 +43,22 @@ export const Controls = ({ audioAPI }) => {
   );
 
   const onNextClick = () => {
-    const nextTrack = (currentTrackIndex + 1) % currentTrackList.length;
-    if (isShuffle)
-      dispatch(setCurrentTrack(currentTrackList[shuffledOrder[nextTrack]]));
-    else dispatch(setCurrentTrack(currentTrackList[nextTrack]));
+    let nextIndex = (currentTrackIndex + 1) % currentTrackList.length;
+    if (isShuffle){
+      nextIndex = shuffledOrder[nextIndex];
+    }
+
+    dispatch(setCurrentTrack(currentTrackList[nextIndex]));
   };
 
   const onPreviousClick = () => {
-    const previousTrack =
-      (currentTrackList.length + currentTrackIndex - 1) %
-      currentTrackList.length;
-    dispatch(setCurrentTrack(currentTrackList[previousTrack]));
+    let previousIndex = (currentTrackList.length + currentTrackIndex - 1) %
+    currentTrackList.length;
+    if (isShuffle){
+      previousIndex = shuffledOrder[previousIndex];
+    }
+
+    dispatch(setCurrentTrack(currentTrackList[previousIndex]));
   };
 
   // Снимаю обработчик на окончание трека при смене трека,
