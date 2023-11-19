@@ -28,7 +28,7 @@ export const Volume = ({ audioAPI }) => {
         </S.iconSvg>
       </S.iconWrapper>
       <div>
-        <input
+        <S.input
           onInput={(e) => handlerOnChangeVolume(e)}
           type="range"
           id="volume"
