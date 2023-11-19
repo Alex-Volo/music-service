@@ -5,7 +5,7 @@ import { NotFound } from 'pages';
 import { fetchTracks } from 'services/API';
 import { useDispatch } from 'react-redux';
 import { setShuffledOrder, setTracks } from 'store/tracksSlice';
-import { setIsLoading } from 'store/UISlice';
+import { setIsLoading } from 'store/tracksSlice';
 import { useEffect, useState } from 'react';
 import { getShuffledIndices } from 'helpers/helpers';
 
@@ -46,7 +46,7 @@ export const Playlist = () => {
   return (
     <S.Main>
       <S.Heading>{playlistTitles[playlistNumber - 1]}</S.Heading>
-      
+
       {errorMessage ? (
         <Error value={errorMessage} />
       ) : (

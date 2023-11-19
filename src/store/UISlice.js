@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isPlayerVisible: false,
-  isLoading: false,
   token: '',
 };
 
@@ -18,12 +17,8 @@ export const UISlice = createSlice({
     setToken: (state, action) => {
       state.token = action.payload;
     },
-
-    setIsLoading: (state, action) => {
-      state.isLoading = action.payload;
-    },
   },
 });
 
-export const { setPlayerVisible, setToken, setIsLoading } = UISlice.actions;
+export const { setPlayerVisible, setToken } = UISlice.actions;
 export default UISlice.reducer;

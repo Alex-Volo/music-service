@@ -2,14 +2,13 @@ import * as S from './styles';
 import { SearchFilter, TracksList, Error } from 'components';
 import { useEffect, useState } from 'react';
 import { setShuffledOrder, setTracks } from 'store/tracksSlice';
-import { setIsLoading } from 'store/UISlice';
+import { setIsLoading } from 'store/tracksSlice';
 import { fetchTracks } from 'services/API';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getShuffledIndices } from 'helpers/helpers';
 
 export const AllTracs = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector((state) => state.UI.isLoading);
   const [errorMessage, setErrorMessage] = useState(null);
 
   // Загружаю все треки
@@ -37,7 +36,7 @@ export const AllTracs = () => {
       ) : (
         <>
           <SearchFilter />
-          <TracksList playlist="list" isLoading={isLoading} />
+          <TracksList playlist="list" />
         </>
       )}
     </S.Main>
