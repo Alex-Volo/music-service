@@ -12,21 +12,21 @@ export const AllTracs = () => {
   const [errorMessage, setErrorMessage] = useState(null);
 
   // Загружаю все треки
-  // useEffect(() => {
-  //   dispatch(setIsLoading(true));
+  useEffect(() => {
+    dispatch(setIsLoading(true));
 
-  //   fetchTracks('all')
-  //     .then((data) => {
-  //       dispatch(setTracks(data));
-  //       const shuffledIndices = getShuffledIndices(data);
-  //       dispatch(setShuffledOrder(shuffledIndices));
-  //       dispatch(setIsLoading(false));
-  //     })
-  //     .catch((error) => {
-  //       console.warn(error.message);
-  //       setErrorMessage(error.message);
-  //     });
-  // }, []);
+    fetchTracks('all')
+      .then((data) => {
+        dispatch(setTracks(data));
+        const shuffledIndices = getShuffledIndices(data);
+        dispatch(setShuffledOrder(shuffledIndices));
+        dispatch(setIsLoading(false));
+      })
+      .catch((error) => {
+        console.warn(error.message);
+        setErrorMessage(error.message);
+      });
+  }, []);
 
   return (
     <S.Main>
