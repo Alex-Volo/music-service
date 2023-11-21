@@ -22,8 +22,7 @@ export const Controls = ({ audioAPI }) => {
   }, [isPaused, isLoop, currentTrack]);
 
   const playOrPause = () => {
-    isPaused ? audioAPI?.play() : audioAPI?.pause();
-    dispatch(setIsPaused(audioAPI.paused));
+    dispatch(setIsPaused(!audioAPI.paused));
   };
 
   const onLoopClick = () => {
