@@ -6,13 +6,14 @@ export const musicServiceAPI = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://skypro-music-api.skyeng.tech/',
   }),
+  tagTypes: ['Tracks'],
   endpoints: (builder) => ({
     getTracks: builder.query({
-      query: (playlist) => {
+      query: (playlist = 'all') => {
         if (!isNaN(Number(playlist))) return `catalog/selection/${playlist}`;
         else return 'catalog/track/all/';
       },
-      // providesTags:
+      providesTags: ['Tracks'],
     }),
   }),
 });
