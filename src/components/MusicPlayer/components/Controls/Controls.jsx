@@ -1,25 +1,17 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { setIsPaused, toggleLoop } from 'store/playerSlice';
+import { setIsPaused } from 'store/playerSlice';
+import { setCurrentTrack } from 'store/tracksSlice';
 
 export const Controls = ({ audioAPI }) => {
   const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
   const dispatch = useDispatch();
   const isPaused = useSelector((state) => state.player.isPaused);
-  const isLoop = useSelector((state) => state.player.isLoop);
-
-  // \music-service\src\components\MusicPlayer\components\Controls\Controls.jsx
-  // В общем спорное и очень непонятное для меня самого решение.
-  // Строка 28 позволяет при нажатии на трек запускать и останавливать воспроизведение
-  // В компоненте - \src\components\TracksList\components\Track\Track.jsx
-  // можно посмотреть обработчик handlerTrackClick, который диспатчит в стор
-  // Если вытащить из useEffect строку 28, то При первом нажатии на трек
-  // возникает ошибка: The element has no supported sources.
-  // после перезагрузки страницы. Оператор опциональной последовательности
-  // оставил намеренно, чтоб удобней было проверять.
-  // Не понимаю почему оно работает
-  // А еще хотелось бы понять, как сделать правильно
+  const [isLoop, setIsLoop] = useState(false);
+  const [isShuffle, setIsShuffle] = useState(false);
+  const currentTrack = useSelector((store) => store.tracks.currentTrack);
+  const shuffledOrder = useSelector((store) => store.tracks.shuffledOrder);
 
   useEffect(() => {
     if (audioAPI) {
@@ -27,7 +19,7 @@ export const Controls = ({ audioAPI }) => {
       audioAPI.loop = isLoop;
       isPaused ? audioAPI?.pause() : audioAPI?.play();
     }
-  });
+  }, [isPaused, isLoop, currentTrack]);
 
   const playOrPause = () => {
     isPaused ? audioAPI?.play() : audioAPI?.pause();
@@ -35,12 +27,69 @@ export const Controls = ({ audioAPI }) => {
   };
 
   const onLoopClick = () => {
-    dispatch(toggleLoop());
+    setIsLoop(!isLoop);
   };
+
+  const onShuffleClick = () => {
+    setIsShuffle(!isShuffle);
+  };
+
+  // Определяю текущий список треков, текущий трек и индекс текущего трека
+  const currentTrackList = useSelector((store) => store.tracks.list);
+  const currentTrackIndex = currentTrackList.findIndex(
+    ({ id }) => currentTrack.id === id
+  );
+
+  const onNextClick = () => {
+    let nextIndex = (currentTrackIndex + 1) % currentTrackList.length;
+    // Если шаффл истина то нахожу индекс трека в массиве с перемешанным порядком
+    // и там уже иду по порядку до тех пор, пока порядковый номер не достигает последнего
+    // элемента массива, а затем начинает сначала.
+    if (isShuffle) {
+      const currentShuffleIndex = shuffledOrder.indexOf(currentTrackIndex);
+      nextIndex =
+        shuffledOrder[(currentShuffleIndex + 1) % currentTrackList.length];
+    }
+
+    dispatch(setCurrentTrack(currentTrackList[nextIndex]));
+  };
+
+  const onPreviousClick = () => {
+    let previousIndex =
+      (currentTrackList.length + currentTrackIndex - 1) %
+      currentTrackList.length;
+
+    if (isShuffle) {
+      const currentShuffleIndex = shuffledOrder.indexOf(currentTrackIndex);
+      previousIndex =
+        shuffledOrder[
+          (currentTrackList.length + currentShuffleIndex - 1) %
+            currentTrackList.length
+        ];
+    }
+
+    dispatch(setCurrentTrack(currentTrackList[previousIndex]));
+  };
+
+  // Снимаю обработчик на окончание трека при смене трека,
+  // чтобы не копились и не вызывали ошибки
+  useEffect(() => {
+    if (audioAPI) {
+      audioAPI.removeEventListener('ended', onNextClick);
+    }
+  }, [currentTrack, isLoop === true]);
+
+  // Вешаю обработчик на окончание трека для включения следующего
+  useEffect(() => {
+    if (audioAPI && isLoop !== true) {
+      audioAPI.addEventListener('ended', onNextClick);
+      return () => audioAPI.removeEventListener('ended', onNextClick);
+    }
+  }, [audioAPI?.ended, isLoop, currentTrack]);
 
   return (
     <S.PlayerControls>
-      <S.Previos>
+      <S.Previos onClick={onPreviousClick}>
         <S.PreviosSvg alt="prev">
           <use xlinkHref={`${sprite}#icon-prev`}></use>
         </S.PreviosSvg>
@@ -56,7 +105,7 @@ export const Controls = ({ audioAPI }) => {
         </S.PlaySvg>
       </S.Play>
 
-      <S.Next>
+      <S.Next onClick={onNextClick}>
         <S.NextSvg alt="next">
           <use xlinkHref={`${sprite}#icon-next`}></use>
         </S.NextSvg>
@@ -68,7 +117,7 @@ export const Controls = ({ audioAPI }) => {
         </S.RepeatSvg>
       </S.Repeat>
 
-      <S.Shuffle>
+      <S.Shuffle $isActive={isShuffle} onClick={onShuffleClick}>
         <S.ShuffleSvg alt="shuffle">
           <use xlinkHref={`${sprite}#icon-shuffle`}></use>
         </S.ShuffleSvg>

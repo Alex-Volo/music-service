@@ -1,4 +1,25 @@
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import axios from 'axios';
+
+export const musicServiceAPI = createApi({
+  reducerPath: 'musicServiceAPI',
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://skypro-music-api.skyeng.tech/',
+  }),
+  tagTypes: ['Tracks'],
+  endpoints: (builder) => ({
+    getTracks: builder.query({
+      query: (playlist = 'all') => {
+        if (!isNaN(Number(playlist))) return `catalog/selection/${playlist}`;
+        else return 'catalog/track/all/';
+      },
+      providesTags: ['Tracks'],
+    }),
+  }),
+});
+
+export const { useGetTracksQuery } = musicServiceAPI;
+
 const baseURL = 'https://skypro-music-api.skyeng.tech/';
 const subURLs = {
   all: 'catalog/track/all/',

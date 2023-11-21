@@ -18,6 +18,8 @@ const initialState = (() => {
   }
   return {
     list: fakeList,
+    isLoading: false,
+    shuffledOrder: [3, 2, 1, 0],
     favorites: fakeList,
     playlist1: fakeList,
     playlist2: fakeList,
@@ -28,28 +30,26 @@ const initialState = (() => {
 
 export const tracksSlice = createSlice({
   name: 'tracks',
-  initialState: initialState,
+  initialState,
   reducers: {
+    setIsLoading: (state, action) => {
+      state.isLoading = action.payload;
+    },
+
     setTracks: (state, action) => {
       state.list = action.payload;
     },
+
     setCurrentTrack: (state, action) => {
       state.currentTrack = action.payload;
     },
-    setPlaylist: {
-      reducer: (state, action) => {
-        state[`playlist${action.payload.id}`] = action.payload.tracksList;
-      },
-      prepare: ({ id, tracksList }) => {
-        return { payload: { id, tracksList } };
-      },
+
+    setShuffledOrder: (state, action) => {
+      state.shuffledOrder = action.payload;
     },
   },
 });
-export const {
-  setTracks,
-  setCurrentTrack,
-  setPlaylist,
-} = tracksSlice.actions;
+export const { setIsLoading, setTracks, setCurrentTrack, setShuffledOrder } =
+  tracksSlice.actions;
 
 export default tracksSlice.reducer;

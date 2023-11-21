@@ -1,5 +1,6 @@
 export { GlobalStyle } from './GlobalStyle'
 export { AdviseBox } from './AdviseBox/AdviseBox';
+export { Error } from './Error/Error';
 // Head
 export { UserInfo } from './UserInfo/UserInfo';
 export { Search } from './Search/Search';

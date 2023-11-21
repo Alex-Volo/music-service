@@ -1,16 +1,19 @@
 import * as S from './styles';
-import { TracksList } from 'components';
+import { Error, TracksList } from 'components';
 import { useParams } from 'react-router-dom';
 import { NotFound } from 'pages';
-import { fetchTracks } from 'services/fetchAPI';
+import { fetchTracks } from 'services/API';
 import { useDispatch } from 'react-redux';
-import { setPlaylist } from 'store/tracksSlice';
-import { setIsLoading } from 'store/UISlice';
-import { useEffect } from 'react';
+import { setShuffledOrder, setTracks } from 'store/tracksSlice';
+import { setIsLoading } from 'store/tracksSlice';
+import { useEffect, useState } from 'react';
+import { getShuffledIndices } from 'helpers/helpers';
 
 export const Playlist = () => {
   const params = useParams();
   const dispatch = useDispatch();
+  const [errorMessage, setErrorMessage] = useState(null);
+
   const playlistNumber = Number(params.id);
   const playlistTitles = [
     'Плейлист дня',
@@ -28,25 +31,29 @@ export const Playlist = () => {
 
     fetchTracks(playlistNumber)
       .then((data) => {
-        const id = playlistNumber;
         const tracksList = data.items;
-
-        dispatch(setPlaylist({ id, tracksList }));
+        dispatch(setTracks(tracksList));
+        const shuffledIndices = getShuffledIndices(data.items);
+        dispatch(setShuffledOrder(shuffledIndices));
         dispatch(setIsLoading(false));
       })
       .catch((error) => {
-        const id = playlistNumber;
         const errorMessage = error.message;
-        dispatch(setPlaylist({ id, tracksList: errorMessage }));
+        setErrorMessage(errorMessage);
       });
   }, [playlistNumber]);
-
-  const playlistString = `playlist${playlistNumber}`;
 
   return (
     <S.Main>
       <S.Heading>{playlistTitles[playlistNumber - 1]}</S.Heading>
-      <TracksList playlist={playlistString} />
+
+      {errorMessage ? (
+        <Error value={errorMessage} />
+      ) : (
+        <>
+          <TracksList />
+        </>
+      )}
     </S.Main>
   );
 };

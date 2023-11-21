@@ -4,7 +4,7 @@ import { EntryInput, Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { regNewUser } from 'services/fetchAPI';
+import { regNewUser } from 'services/API';
 
 export const SignUp = () => {
   const navigate = useNavigate();

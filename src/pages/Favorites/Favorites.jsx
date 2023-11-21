@@ -2,7 +2,7 @@ import * as S from './styles';
 import { SearchFilter, TracksList } from 'components';
 import { useEffect, useState } from 'react';
 import { setTracks } from 'store/tracksSlice';
-import { fetchAllTracks } from 'services/fetchAPI';
+import { fetchAllTracks } from 'services/API';
 import { useDispatch } from 'react-redux';
 
 export const Favorites = ({ heading = 'Треки', playlist }) => {

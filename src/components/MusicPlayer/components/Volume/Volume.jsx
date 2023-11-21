@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from './styles';
 
 export const Volume = ({ audioAPI }) => {
   const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
 
   const [volumeValue, setVolumeValue] = useState('0.2');
+  const [isMuted, setIsMuted] = useState(false);
+
+  useEffect(() => {
+    if (audioAPI) audioAPI.muted = isMuted;
+  }, [isMuted]);
+
   const handlerOnChangeVolume = (e) => {
     setVolumeValue(e.target.value);
   };
@@ -12,13 +18,17 @@ export const Volume = ({ audioAPI }) => {
   if (audioAPI) audioAPI.volume = parseFloat(volumeValue);
   return (
     <S.volumeBlock>
-      <div>
+      <S.iconWrapper onClick={() => setIsMuted(!isMuted)}>
         <S.iconSvg>
-          <use xlinkHref={`${sprite}#icon-volume`}></use>
+          {isMuted ? (
+            <use xlinkHref={`${sprite}#icon-volume-off`}></use>
+          ) : (
+            <use xlinkHref={`${sprite}#icon-volume`}></use>
+          )}
         </S.iconSvg>
-      </div>
+      </S.iconWrapper>
       <div>
-        <input
+        <S.input
           onInput={(e) => handlerOnChangeVolume(e)}
           type="range"
           id="volume"
