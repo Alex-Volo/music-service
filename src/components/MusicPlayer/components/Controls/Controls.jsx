@@ -17,7 +17,7 @@ export const Controls = ({ audioAPI }) => {
     if (audioAPI) {
       audioAPI.autoplay = true;
       audioAPI.loop = isLoop;
-      isPaused ? audioAPI?.pause() : audioAPI?.play();
+      isPaused ? audioAPI.pause() : audioAPI.play();
     }
   }, [isPaused, isLoop, currentTrack]);
 

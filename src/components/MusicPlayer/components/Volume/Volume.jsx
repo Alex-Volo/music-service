@@ -4,7 +4,7 @@ import * as S from './styles';
 export const Volume = ({ audioAPI }) => {
   const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
 
-  const [volumeValue, setVolumeValue] = useState('0.2');
+  const [volumeValue, setVolumeValue] = useState('0.1');
   const [isMuted, setIsMuted] = useState(false);
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export const Volume = ({ audioAPI }) => {
       </S.iconWrapper>
       <div>
         <S.input
-          onInput={(e) => handlerOnChangeVolume(e)}
+          onInput={handlerOnChangeVolume}
           type="range"
           id="volume"
           min="0"
