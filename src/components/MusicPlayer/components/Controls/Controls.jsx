@@ -12,6 +12,7 @@ export const Controls = ({ audioAPI }) => {
   const [isShuffle, setIsShuffle] = useState(false);
   const currentTrack = useSelector((store) => store.tracks.currentTrack);
   const shuffledOrder = useSelector((store) => store.tracks.shuffledOrder);
+  console.log('shuffled order: ', shuffledOrder);
 
   useEffect(() => {
     if (audioAPI) {

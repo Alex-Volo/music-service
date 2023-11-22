@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import axios from 'axios';
+import { getShuffledIndices } from 'helpers/helpers';
+import { setIsLoading, setShuffledOrder, setTracks } from 'store/tracksSlice';
 
 export const musicServiceAPI = createApi({
   reducerPath: 'musicServiceAPI',
@@ -12,6 +14,7 @@ export const musicServiceAPI = createApi({
     getTracks: builder.query({
       queryFn: async (playlist = 'all', { dispatch }) => {
         try {
+          dispatch(setIsLoading(true));
           let addURL = '';
           // Если полученный аргумент можно привести к числу
           if (!isNaN(Number(playlist)))
@@ -21,8 +24,11 @@ export const musicServiceAPI = createApi({
             'https://skypro-music-api.skyeng.tech/' + addURL
           );
           console.log(response, 'ответ от запроса');
-
-          return response.data;
+          dispatch(setTracks(response.data));
+          const shuffledIndices = getShuffledIndices(response.data);
+          dispatch(setShuffledOrder(shuffledIndices));
+          dispatch(setIsLoading(false));
+          return response;
         } catch (e) {
           console.warn(e.message);
           return e;

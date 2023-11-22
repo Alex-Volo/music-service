@@ -15,4 +15,3 @@ export const store = configureStore({
     getDefaultMiddleware().concat(musicServiceAPI.middleware),
 });
 
-setupListeners(store.dispatch);
