@@ -3,15 +3,30 @@ import axios from 'axios';
 
 export const musicServiceAPI = createApi({
   reducerPath: 'musicServiceAPI',
+
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://skypro-music-api.skyeng.tech/',
   }),
   tagTypes: ['Tracks'],
   endpoints: (builder) => ({
     getTracks: builder.query({
-      query: (playlist = 'all') => {
-        if (!isNaN(Number(playlist))) return `catalog/selection/${playlist}`;
-        else return 'catalog/track/all/';
+      queryFn: async (playlist = 'all', { dispatch }) => {
+        try {
+          let addURL = '';
+          // Если полученный аргумент можно привести к числу
+          if (!isNaN(Number(playlist)))
+            addURL = `catalog/selection/${playlist}`;
+          else addURL = subURLs[playlist];
+          const response = await axios.get(
+            'https://skypro-music-api.skyeng.tech/' + addURL
+          );
+          console.log(response, 'ответ от запроса');
+
+          return response.data;
+        } catch (e) {
+          console.warn(e.message);
+          return e;
+        }
       },
       providesTags: ['Tracks'],
     }),

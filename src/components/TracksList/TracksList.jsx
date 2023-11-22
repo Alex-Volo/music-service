@@ -5,8 +5,8 @@ import { useGetTracksQuery } from 'services/API';
 
 export const TracksList = () => {
   // Пока не придумал, как правильно совместить RTK-Query с моей логикой
-  // const {data = [], isLoading, isFetching, isError, error} = useGetTracksQuery();
-  // console.log(data, 'это данные');
+  const {data = [],  isError, error} = useGetTracksQuery();
+  console.log(data, 'это данные');
   // console.log(isLoading, 'Загружается ли');
   // console.log(isFetching, 'Фетчится ли');
   // const tracks = data;
