@@ -26,22 +26,22 @@ export const Playlist = () => {
   }
 
   // Загружаю плейлист по динамической ссылке и диспатчу в store
-  useEffect(() => {
-    dispatch(setIsLoading(true));
+  // useEffect(() => {
+  //   dispatch(setIsLoading(true));
 
-    fetchTracks(playlistNumber)
-      .then((data) => {
-        const tracksList = data.items;
-        dispatch(setTracks(tracksList));
-        const shuffledIndices = getShuffledIndices(data.items);
-        dispatch(setShuffledOrder(shuffledIndices));
-        dispatch(setIsLoading(false));
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        setErrorMessage(errorMessage);
-      });
-  }, [playlistNumber]);
+  //   fetchTracks(playlistNumber)
+  //     .then((data) => {
+  //       const tracksList = data.items;
+  //       dispatch(setTracks(tracksList));
+  //       const shuffledIndices = getShuffledIndices(data.items);
+  //       dispatch(setShuffledOrder(shuffledIndices));
+  //       dispatch(setIsLoading(false));
+  //     })
+  //     .catch((error) => {
+  //       const errorMessage = error.message;
+  //       setErrorMessage(errorMessage);
+  //     });
+  // }, [playlistNumber]);
 
   return (
     <S.Main>
@@ -51,7 +51,7 @@ export const Playlist = () => {
         <Error value={errorMessage} />
       ) : (
         <>
-          <TracksList />
+          <TracksList playlist={playlistNumber} />
         </>
       )}
     </S.Main>

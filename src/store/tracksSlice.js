@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getShuffledIndices } from 'helpers/helpers';
+import { musicServiceAPI } from 'services/API';
 
 const initialState = (() => {
   const fakeList = [];
@@ -13,7 +15,7 @@ const initialState = (() => {
       album: 'Chase',
       logo: null,
       track_file:
-        'https://painassasin.online/media/music_files/Alexander_Nakarada_-_Chase.mp3',
+        'https://skypro-music-api.skyeng.tech/media/music_files/Alexander_Nakarada_-_Chase.mp3',
     });
   }
   return {
@@ -47,6 +49,19 @@ export const tracksSlice = createSlice({
     setShuffledOrder: (state, action) => {
       state.shuffledOrder = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      musicServiceAPI.endpoints.getTracks.matchFulfilled,
+      (state, { payload }) => {
+        let tracks = payload;
+        // Если пришел не массив, то вытаскиваем массив
+        if (!Array.isArray(payload)) tracks = payload.items
+        state.list = tracks;
+        const shuffledIndices = getShuffledIndices(tracks);
+        state.shuffledOrder = shuffledIndices;
+      }
+    );
   },
 });
 export const { setIsLoading, setTracks, setCurrentTrack, setShuffledOrder } =
