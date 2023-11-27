@@ -8,14 +8,6 @@ import { setCurrentTrack } from 'store/tracksSlice';
 import { Skeletons } from './Skeletons';
 
 export const Track = ({ isLoading, track }) => {
-  if (isLoading) {
-    return (
-      <S.Track>
-        <Skeletons />
-      </S.Track>
-    );
-  }
-
   const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
   const dispatch = useDispatch();
   const currentTrack = useSelector((state) => state.tracks.currentTrack);
@@ -29,6 +21,14 @@ export const Track = ({ isLoading, track }) => {
     dispatch(isAnimated ? setIsPaused(!isPaused) : setIsPaused(false));
   };
 
+  if (isLoading) {
+    return (
+      <S.Track>
+        <Skeletons />
+      </S.Track>
+    );
+  }
+  
   return (
     <S.Track $isAnimated={isAnimated} onClick={() => handlerTrackClick(track)}>
       <S.TrackLogo $isAnimated={isAnimated}>

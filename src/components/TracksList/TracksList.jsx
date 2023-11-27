@@ -26,7 +26,7 @@ export const TracksList = ({ playlist }) => {
   const trackElements = tracks.map((track) => (
     <Track
       key={track.id}
-      isLoading={isLoading ?? true}
+      isLoading={isLoading}
       track={track}
     />
   ));
