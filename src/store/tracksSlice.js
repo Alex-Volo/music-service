@@ -47,22 +47,21 @@ export const tracksSlice = createSlice({
     },
 
     setShuffledOrder: (state, action) => {
-      state.shuffledOrder = action.payload;
+      const shuffledIndices = getShuffledIndices(action.payload);
+      state.shuffledOrder = shuffledIndices;
     },
   },
-  extraReducers: (builder) => {
-    builder.addMatcher(
-      musicServiceAPI.endpoints.getTracks.matchFulfilled,
-      (state, { payload }) => {
-        let tracks = payload;
-        // Если пришел не массив, то вытаскиваем массив
-        if (!Array.isArray(payload)) tracks = payload.items
-        state.list = tracks;
-        const shuffledIndices = getShuffledIndices(tracks);
-        state.shuffledOrder = shuffledIndices;
-      }
-    );
-  },
+  // extraReducers: (builder) => {
+  //   builder.addMatcher(
+  //     musicServiceAPI.endpoints.getTracks.matchFulfilled || musicServiceAPI.endpoints.getTracks.matchFulfilled,
+  //     (state, { payload }) => {
+  //       let tracks = payload;
+  //       state.list = tracks;
+  //       const shuffledIndices = getShuffledIndices(tracks);
+  //       state.shuffledOrder = shuffledIndices;
+  //     }
+  //   );
+  // },
 });
 export const { setIsLoading, setTracks, setCurrentTrack, setShuffledOrder } =
   tracksSlice.actions;

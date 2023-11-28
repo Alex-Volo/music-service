@@ -1,5 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import axios from 'axios';
+import { setShuffledOrder } from 'store/tracksSlice';
+
 
 export const musicServiceAPI = createApi({
   reducerPath: 'musicServiceAPI',
@@ -16,6 +18,12 @@ export const musicServiceAPI = createApi({
         if (!isNaN(Number(playlist))) addURL = `catalog/selection/${playlist}`;
         else addURL = 'catalog/track/all/';
         return addURL;
+      },
+      transformResponse: (data) => {
+        let tracks = data;
+        if (!Array.isArray(data)) tracks = data.items;
+        return tracks;
+        
       },
       providesTags: ['Tracks'],
     }),
