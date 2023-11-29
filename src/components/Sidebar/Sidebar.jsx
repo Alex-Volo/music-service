@@ -7,7 +7,7 @@ export const Sidebar = () => {
   const playlist01ImgURL = '/assets/img/playlist01.png';
   const playlist02ImgURL = '/assets/img/playlist02.png';
   const playlist03ImgURL = '/assets/img/playlist03.png';
-  const isLoading = useSelector((state) => state.UI.isLoading);
+  const isLoading = useSelector((state) => state.tracks.isLoading);
 
   if (isLoading) {
     return (

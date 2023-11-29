@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setPlayerVisible } from 'store/UISlice';
 import { setIsPaused } from 'store/playerSlice';
 import { setCurrentTrack } from 'store/tracksSlice';
-
 import { Skeletons } from './Skeletons';
 
 export const Track = ({ isLoading, track }) => {
@@ -28,7 +27,7 @@ export const Track = ({ isLoading, track }) => {
       </S.Track>
     );
   }
-  
+
   return (
     <S.Track $isAnimated={isAnimated} onClick={() => handlerTrackClick(track)}>
       <S.TrackLogo $isAnimated={isAnimated}>

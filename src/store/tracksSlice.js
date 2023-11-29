@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getShuffledIndices } from 'helpers/helpers';
-import { musicServiceAPI } from 'services/API';
 
 const initialState = (() => {
   const fakeList = [];
@@ -22,10 +21,6 @@ const initialState = (() => {
     list: fakeList,
     isLoading: false,
     shuffledOrder: [3, 2, 1, 0],
-    favorites: fakeList,
-    playlist1: fakeList,
-    playlist2: fakeList,
-    playlist3: fakeList,
     currentTrack: { name: '', author: '', track_file: '' },
   };
 })();
@@ -51,17 +46,6 @@ export const tracksSlice = createSlice({
       state.shuffledOrder = shuffledIndices;
     },
   },
-  // extraReducers: (builder) => {
-  //   builder.addMatcher(
-  //     musicServiceAPI.endpoints.getTracks.matchFulfilled || musicServiceAPI.endpoints.getTracks.matchFulfilled,
-  //     (state, { payload }) => {
-  //       let tracks = payload;
-  //       state.list = tracks;
-  //       const shuffledIndices = getShuffledIndices(tracks);
-  //       state.shuffledOrder = shuffledIndices;
-  //     }
-  //   );
-  // },
 });
 export const { setIsLoading, setTracks, setCurrentTrack, setShuffledOrder } =
   tracksSlice.actions;
