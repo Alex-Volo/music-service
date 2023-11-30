@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import axios from 'axios';
 
-
 export const musicServiceAPI = createApi({
   reducerPath: 'musicServiceAPI',
 
@@ -18,7 +17,7 @@ export const musicServiceAPI = createApi({
         else addURL = 'catalog/track/all/';
         return addURL;
       },
-      
+
       transformResponse: (data) => {
         let tracks = data;
         if (!Array.isArray(data)) tracks = data.items;
@@ -60,7 +59,7 @@ export const regNewUser = (email, pass, userName) => {
     .then((response) => response.data);
 };
 
-export const fetchLogin = (email, pass) => {
+export const queryLogin = (email, pass) => {
   return axios
     .post(baseURL + 'user/login/', {
       email: email,

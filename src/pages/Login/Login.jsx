@@ -4,7 +4,7 @@ import { EntryInput, Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { fetchLogin } from 'services/API';
+import { queryLogin } from 'services/API';
 import { useUser } from 'hooks';
 
 export const Login = () => {
@@ -26,7 +26,7 @@ export const Login = () => {
       return;
     }
 
-    fetchLogin(loginValue, password)
+    queryLogin(loginValue, password)
       .then((response) => {
         localStorage.setItem('user', JSON.stringify(response));
         login();
