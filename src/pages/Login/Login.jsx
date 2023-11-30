@@ -28,8 +28,7 @@ export const Login = () => {
 
     queryLogin(loginValue, password)
       .then((response) => {
-        localStorage.setItem('user', JSON.stringify(response));
-        login();
+        login(response);
         navigate('/', { replace: true });
       })
       .catch((error) => {

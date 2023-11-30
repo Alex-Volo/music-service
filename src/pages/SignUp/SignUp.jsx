@@ -4,22 +4,20 @@ import { EntryInput, Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { regNewUser } from 'services/API';
+import { regNewUser, queryLogin } from 'services/API';
+import { useUser } from 'hooks';
 
 export const SignUp = () => {
+  const { login } = useUser();
   const navigate = useNavigate();
   const logoBlackImgURL = '/assets/img/logo_black.svg';
 
   const [error, setError] = useState(null);
-  const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordAgain, setPasswordAgain] = useState('');
   const [email, setEmail] = useState('');
 
   const handleRegister = async () => {
-    if (!login) {
-      setError('Введите логин');
-      return;
-    }
     if (!password) {
       setError('Введите пароль');
       return;
@@ -28,9 +26,15 @@ export const SignUp = () => {
       setError('Введите Email');
       return;
     }
+    if (password !== passwordAgain) {
+      setError('Пароли не совпадают');
+      return;
+    }
 
-    regNewUser(email, password, login)
-      .then(() => navigate('/login'))
+    regNewUser(email, password)
+      .then(() => queryLogin(email, password))
+      .then((response) => login(response))
+      .then(() => navigate('/'))
       .catch((error) => {
         console.warn(error);
         if (error.response) {
@@ -47,7 +51,7 @@ export const SignUp = () => {
   // Сбрасываем ошибку если пользователь меняет данные на форме
   useEffect(() => {
     setError(null);
-  }, [login, password, email]);
+  }, [password, passwordAgain, email]);
 
   return (
     <S.Form>
@@ -70,11 +74,11 @@ export const SignUp = () => {
         <li>
           <EntryInput
             type="text"
-            name="login"
-            placeholder="Логин"
-            value={login}
+            name="email"
+            placeholder="E-mail"
+            value={email}
             onChange={(event) => {
-              setLogin(event.target.value);
+              setEmail(event.target.value);
             }}
           />
         </li>
@@ -93,12 +97,12 @@ export const SignUp = () => {
 
         <li>
           <EntryInput
-            type="text"
-            name="email"
-            placeholder="E-mail"
-            value={email}
+            type="password"
+            name="passwordAgain"
+            placeholder="Пароль ещё раз"
+            value={passwordAgain}
             onChange={(event) => {
-              setEmail(event.target.value);
+              setPasswordAgain(event.target.value);
             }}
           />
         </li>
