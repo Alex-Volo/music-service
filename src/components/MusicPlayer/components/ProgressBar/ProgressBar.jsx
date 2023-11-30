@@ -8,16 +8,14 @@ export const ProgressBar = ({ audioAPI }) => {
   // Чтобы не отображалось NaN до загрузки трэка
   if (audioAPI) duration = audioAPI.duration || 0;
 
+  const timeUpdate = () => setCurrentTime(audioAPI.currentTime);
+
   useEffect(() => {
     if (audioAPI) {
-      audioAPI.addEventListener('timeupdate', () => {
-        setCurrentTime(audioAPI.currentTime);
-      });
+      audioAPI.addEventListener('timeupdate', timeUpdate);
       // willUnmount и при существующем audioAPI иначе возникает ошибка при перезагрузке страницы
       return () => {
-        audioAPI.removeEventListener('timeupdate', () => {
-          setCurrentTime(audioAPI.currentTime);
-        });
+        audioAPI.removeEventListener('timeupdate', timeUpdate);
       };
     }
   });
@@ -32,6 +30,7 @@ export const ProgressBar = ({ audioAPI }) => {
         step={0.01}
         onChange={(e) => (audioAPI.currentTime = e.target.value)}
       />
+
       <S.Duration>
         {formatTime(Math.floor(currentTime))}/{formatTime(Math.floor(duration))}
       </S.Duration>

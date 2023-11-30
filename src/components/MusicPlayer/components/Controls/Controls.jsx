@@ -17,13 +17,12 @@ export const Controls = ({ audioAPI }) => {
     if (audioAPI) {
       audioAPI.autoplay = true;
       audioAPI.loop = isLoop;
-      isPaused ? audioAPI?.pause() : audioAPI?.play();
+      isPaused ? audioAPI.pause() : audioAPI.play();
     }
   }, [isPaused, isLoop, currentTrack]);
 
   const playOrPause = () => {
-    isPaused ? audioAPI?.play() : audioAPI?.pause();
-    dispatch(setIsPaused(audioAPI.paused));
+    if (audioAPI.readyState === 4) dispatch(setIsPaused(!audioAPI.paused));
   };
 
   const onLoopClick = () => {
@@ -50,8 +49,8 @@ export const Controls = ({ audioAPI }) => {
       nextIndex =
         shuffledOrder[(currentShuffleIndex + 1) % currentTrackList.length];
     }
-
-    dispatch(setCurrentTrack(currentTrackList[nextIndex]));
+    if (audioAPI.readyState === 4)
+      dispatch(setCurrentTrack(currentTrackList[nextIndex]));
   };
 
   const onPreviousClick = () => {
@@ -68,7 +67,8 @@ export const Controls = ({ audioAPI }) => {
         ];
     }
 
-    dispatch(setCurrentTrack(currentTrackList[previousIndex]));
+    if (audioAPI.readyState === 4)
+      dispatch(setCurrentTrack(currentTrackList[previousIndex]));
   };
 
   // Снимаю обработчик на окончание трека при смене трека,

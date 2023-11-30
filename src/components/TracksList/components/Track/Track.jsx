@@ -4,18 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setPlayerVisible } from 'store/UISlice';
 import { setIsPaused } from 'store/playerSlice';
 import { setCurrentTrack } from 'store/tracksSlice';
-
 import { Skeletons } from './Skeletons';
 
 export const Track = ({ isLoading, track }) => {
-  if (isLoading) {
-    return (
-      <S.Track>
-        <Skeletons />
-      </S.Track>
-    );
-  }
-
   const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
   const dispatch = useDispatch();
   const currentTrack = useSelector((state) => state.tracks.currentTrack);
@@ -28,6 +19,14 @@ export const Track = ({ isLoading, track }) => {
     dispatch(setPlayerVisible());
     dispatch(isAnimated ? setIsPaused(!isPaused) : setIsPaused(false));
   };
+
+  if (isLoading) {
+    return (
+      <S.Track>
+        <Skeletons />
+      </S.Track>
+    );
+  }
 
   return (
     <S.Track $isAnimated={isAnimated} onClick={() => handlerTrackClick(track)}>

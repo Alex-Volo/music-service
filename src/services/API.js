@@ -1,8 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import axios from 'axios';
 
+
 export const musicServiceAPI = createApi({
   reducerPath: 'musicServiceAPI',
+
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://skypro-music-api.skyeng.tech/',
   }),
@@ -10,8 +12,17 @@ export const musicServiceAPI = createApi({
   endpoints: (builder) => ({
     getTracks: builder.query({
       query: (playlist = 'all') => {
-        if (!isNaN(Number(playlist))) return `catalog/selection/${playlist}`;
-        else return 'catalog/track/all/';
+        let addURL = '';
+        // Если полученный аргумент можно привести к числу
+        if (!isNaN(Number(playlist))) addURL = `catalog/selection/${playlist}`;
+        else addURL = 'catalog/track/all/';
+        return addURL;
+      },
+      
+      transformResponse: (data) => {
+        let tracks = data;
+        if (!Array.isArray(data)) tracks = data.items;
+        return tracks;
       },
       providesTags: ['Tracks'],
     }),

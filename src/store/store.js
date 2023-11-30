@@ -11,5 +11,7 @@ export const store = configureStore({
     UI: UIReducer,
     player: playerReducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(musicServiceAPI.middleware)
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(musicServiceAPI.middleware),
 });
+

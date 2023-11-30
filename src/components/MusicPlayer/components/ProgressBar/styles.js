@@ -10,6 +10,7 @@ export const ProgressBar = styled.input`
   box-sizing: border-box;
   width: 100%;
   height: var(--progress-height);
+  appearance: none;
   -webkit-appearance: none;
   cursor: pointer;
   background: transparent;
