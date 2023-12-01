@@ -47,8 +47,7 @@ export const regNewUser = (email, pass) => {
         'content-type': 'application/json',
       },
     })
-    .then((response) => response.data)
-    .catch((error) => error);
+    .then((response) => response.data);
 };
 
 export const queryLogin = (email, pass) => {
@@ -61,6 +60,5 @@ export const queryLogin = (email, pass) => {
         'content-type': 'application/json',
       },
     })
-    .then((response) => response.data)
-    .catch((error) => error);
+    .then((response) => response.data);
 };
