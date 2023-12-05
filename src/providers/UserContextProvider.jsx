@@ -5,6 +5,7 @@ export const UserContext = createContext({
   currentUser: getUserFromLS(),
   setCurrentUser: () => {},
   logout: () => {},
+  login: () => {},
 });
 
 export const UserContextProvider = ({ children }) => {
@@ -15,8 +16,9 @@ export const UserContextProvider = ({ children }) => {
     setCurrentUser(null);
   };
 
-  const login = () => {
-    setCurrentUser(getUserFromLS());
+  const login = (user) => {
+    localStorage.setItem('user', JSON.stringify(user));
+    setCurrentUser(user);
   }
 
   const value = { currentUser, login, logout };

@@ -1,12 +1,17 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import axios from 'axios';
 
+const baseUrl = 'https://skypro-music-api.skyeng.tech/';
+const subURLs = {
+  all: 'catalog/track/all/',
+  allPlaylists: 'catalog/selection/',
+};
 
 export const musicServiceAPI = createApi({
   reducerPath: 'musicServiceAPI',
 
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://skypro-music-api.skyeng.tech/',
+    baseUrl,
   }),
   tagTypes: ['Tracks'],
   endpoints: (builder) => ({
@@ -18,7 +23,7 @@ export const musicServiceAPI = createApi({
         else addURL = 'catalog/track/all/';
         return addURL;
       },
-      
+
       transformResponse: (data) => {
         let tracks = data;
         if (!Array.isArray(data)) tracks = data.items;
@@ -31,27 +36,12 @@ export const musicServiceAPI = createApi({
 
 export const { useGetTracksQuery } = musicServiceAPI;
 
-const baseURL = 'https://skypro-music-api.skyeng.tech/';
-const subURLs = {
-  all: 'catalog/track/all/',
-  allPlaylists: 'catalog/selection/',
-};
-
-export const fetchTracks = (playlist) => {
-  let addURL = '';
-  // Если полученный аргумент можно привести к числу
-  if (!isNaN(Number(playlist))) addURL = `catalog/selection/${playlist}`;
-  else addURL = subURLs[playlist];
-
-  return axios.get(baseURL + addURL).then((response) => response.data);
-};
-
-export const regNewUser = (email, pass, userName) => {
+export const regNewUser = (email, pass) => {
   return axios
-    .post(baseURL + 'user/signup/', {
+    .post(baseUrl + 'user/signup/', {
       email: email,
       password: pass,
-      username: userName,
+      username: email,
 
       headers: {
         'content-type': 'application/json',
@@ -60,9 +50,9 @@ export const regNewUser = (email, pass, userName) => {
     .then((response) => response.data);
 };
 
-export const fetchLogin = (email, pass) => {
+export const queryLogin = (email, pass) => {
   return axios
-    .post(baseURL + 'user/login/', {
+    .post(baseUrl + 'user/login/', {
       email: email,
       password: pass,
 
