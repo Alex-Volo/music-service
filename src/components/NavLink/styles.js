@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-export const NavLink = styled.div`
+export const NavLink = styled.li`
   padding: 5px 0;
   margin-bottom: 16px;
   color: #fff;

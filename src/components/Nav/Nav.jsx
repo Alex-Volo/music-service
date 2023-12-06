@@ -8,6 +8,7 @@ export const Nav = () => {
   const logoImgURL = '/assets/img/logo.png';
 
   const [isVisible, setIsVisible] = useState(false);
+  const [theme, setTheme] = useState('black');
 
   const toggleBurger = () => setIsVisible(!isVisible);
 
@@ -28,6 +29,15 @@ export const Nav = () => {
             <NavLink linkName={'Главное'} link="/" />
             <NavLink linkName={'Мой плейлист'} link="/favorites" />
             <NavLink linkName={'Выйти'} link="/login" needsLogout={true} />
+            <li>
+              <svg>
+                {theme === 'black' ? (
+                  <use xlinkHref={`${sprite}#icon-black-theme`} />
+                ) : (
+                  <use xlinkHref={`${sprite}#icon-white-theme`} />
+                )}
+              </svg>
+            </li>
           </S.NavList>
         </S.NavListContainer>
       </S.MainNav>
