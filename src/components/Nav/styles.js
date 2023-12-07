@@ -6,7 +6,7 @@ export const NavContainer = styled.div`
   width: 100%;
   padding: 36px 14%;
   box-sizing: border-box;
-  background-color: ${({ $isVisible }) => $isVisible && '#1C1C1C'};
+  background-color: ${({ $isVisible }) => $isVisible && 'var(--nav-bg-color)'};
   transition: background-color 1s;
 `;
 
@@ -21,6 +21,7 @@ export const BurgerSvg = styled.svg`
   width: 20px;
   height: 20px;
   cursor: pointer;
+  stroke: var(--text-color);
 `;
 
 export const NavListContainer = styled.div`

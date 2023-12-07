@@ -7,6 +7,21 @@ export const GlobalStyle = createGlobalStyle`
     font-display: swap;
     src: url('${process.env.PUBLIC_URL}/assets/fonts/StratosSkyeng.woff2') format('woff2'), url('${process.env.PUBLIC_URL}/assets/fonts/StratosSkyeng.woff') format('woff');
   }
+
+  :root {
+    ${({$theme})=> ($theme === 'black' ? `
+    --bg-color: #181818;
+    --text-color: #fff;
+    --gray-color: #4E4E4E;
+    --nav-bg-color: #1C1C1C;
+    ` : `
+    --bg-color: #fff;
+    --text-color: #000;
+    --gray-color: #B1B1B1;
+    --nav-bg-color: #F6F5F3;
+    `)}
+    
+  }
   
   body {
     margin: 0;
