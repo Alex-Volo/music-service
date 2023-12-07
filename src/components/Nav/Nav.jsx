@@ -2,13 +2,14 @@ import * as S from './styles';
 import { NavLink } from 'components';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTheme } from 'hooks/useTheme';
 
 export const Nav = () => {
   const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
   const logoImgURL = '/assets/img/logo.png';
 
   const [isVisible, setIsVisible] = useState(false);
-  const [theme, setTheme] = useState('black');
+  const {theme, switchTheme} = useTheme();
 
   const toggleBurger = () => setIsVisible(!isVisible);
 
@@ -30,7 +31,7 @@ export const Nav = () => {
             <NavLink linkName={'Мой плейлист'} link="/favorites" />
             <NavLink linkName={'Выйти'} link="/login" needsLogout={true} />
             <li>
-              <svg>
+              <svg onClick={switchTheme}>
                 {theme === 'black' ? (
                   <use xlinkHref={`${sprite}#icon-black-theme`} />
                 ) : (
