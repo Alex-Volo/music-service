@@ -5,21 +5,32 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Stratos';
     font-weight: normal;
     font-display: swap;
-    src: url('${process.env.PUBLIC_URL}/assets/fonts/StratosSkyeng.woff2') format('woff2'), url('${process.env.PUBLIC_URL}/assets/fonts/StratosSkyeng.woff') format('woff');
+    src: url(${process.env.PUBLIC_URL}/assets/fonts/StratosSkyeng.woff2) format('woff2'), url(${process.env.PUBLIC_URL}/assets/fonts/StratosSkyeng.woff) format('woff');
   }
 
   :root {
-    ${({$theme})=> ($theme === 'black' ? `
+    ${({ $theme }) =>
+      $theme === 'black'
+        ? `
     --bg-color: #181818;
     --text-color: #fff;
     --gray-color: #4E4E4E;
-    --nav-bg-color: #1C1C1C;
-    ` : `
-    --bg-color: #fff;
+    --nav-bg-color: #242424;
+    --player-bg: #000000d7;
+    --active-color: #d9d9d9;
+    --hover-color: #999999;
+    --inactive-color: #696969;
+    `
+        : `
+    --bg-color: #f2f1f7;
     --text-color: #000;
-    --gray-color: #B1B1B1;
-    --nav-bg-color: #F6F5F3;
-    `)}
+    --gray-color: #3e4597;
+    --nav-bg-color: #c2c9ef;
+    --player-bg: #f2f1f7d7;
+    --active-color: #696969;
+    --hover-color: #494949;
+    --inactive-color: #b9b9b9;
+    `}
     
   }
   

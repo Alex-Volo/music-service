@@ -4,8 +4,9 @@ export const ListHead  = styled.div`
   max-width: 100%;
   display: grid;
   grid-template-columns: calc((100% - 110px) * 0.4 + 50px) calc((100% - 110px) * 0.3) calc((100% - 110px) * 0.3) 20px 40px;
-  color: #4e4e4e;
+  color: var(--gray-color);
   font-size: 14px;
+  font-weight: 700;
   line-height: 24px;
   letter-spacing: 2px;
   padding-right: 8px;
@@ -14,7 +15,7 @@ export const ListHead  = styled.div`
 export const WatchSvg  = styled.svg`
   height: 12px;
   width: 12px;
-  stroke: #696969;
+  stroke: var(--gray-color);
   fill: transparent;
 `;
 

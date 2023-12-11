@@ -20,9 +20,9 @@
     </symbol>
     <!-- NOTE -->
     <symbol id="icon-note"  viewBox="0 0 20 19"  xmlns="http://www.w3.org/2000/svg">        
-        <ellipse cx="4.5" cy="16" rx="3.5" ry="2" stroke="#4E4E4E"/>
-        <ellipse cx="15.5" cy="13" rx="3.5" ry="2" stroke="#4E4E4E"/>
-        <path d="M8 16V1.9697L19 1V13" stroke="#4E4E4E"/>
+        <ellipse cx="4.5" cy="16" rx="3.5" ry="2" />
+        <ellipse cx="15.5" cy="13" rx="3.5" ry="2" />
+        <path d="M8 16V1.9697L19 1V13" />
     </symbol>
     <!-- VOLUME -->
     <symbol id="icon-volume" fill="none" viewBox="0 0 14 18" xmlns="http://www.w3.org/2000/svg">
@@ -47,8 +47,8 @@
     </symbol>
     <!-- PREVIOUS -->
     <symbol id="icon-prev" viewBox="0 0 16 14"  xmlns="http://www.w3.org/2000/svg">
-        <path d="M1 2V12.5" stroke="white"/>
-        <path d="M3 7L12.75 0.937823L12.75 13.0622L3 7Z" fill="#D9D9D9"/>
+        <path d="M1 2V12.5" />
+        <path d="M3 7L12.75 0.937823L12.75 13.0622L3 7Z" />
     </symbol>
     <!-- PLAY -->
     <symbol id="icon-play" viewBox="0 0 15 20"  xmlns="http://www.w3.org/2000/svg">
@@ -56,8 +56,8 @@
     </symbol>
     <!-- NEXT -->
     <symbol id="icon-next" viewBox="0 0 16 14"  xmlns="http://www.w3.org/2000/svg">
-        <path d="M15 2V12.5" stroke="white"/>
-        <path d="M13 7L3.25 0.937823L3.25 13.0622L13 7Z" fill="#D9D9D9"/>
+        <path d="M15 2V12.5" />
+        <path d="M13 7L3.25 0.937823L3.25 13.0622L13 7Z" />
     </symbol>
     <!-- REPEAT -->
     <symbol id="icon-repeat" viewBox="0 0 20 18"  xmlns="http://www.w3.org/2000/svg">

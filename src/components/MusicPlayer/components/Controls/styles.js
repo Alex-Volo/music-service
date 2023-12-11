@@ -11,11 +11,17 @@ export const Previos = styled.div`
   cursor: pointer;
   height: 100%;
   align-items: center;
+  &:hover svg {
+    fill: var(--hover-color);
+    stroke: var(--hover-color);
+  }
 `;
 
 export const PreviosSvg = styled.svg`
   width: 15px;
   height: 14px;
+  fill: var(--active-color);
+  stroke: var(--active-color);
 `;
 
 export const Play = styled.div`
@@ -25,31 +31,36 @@ export const Play = styled.div`
   cursor: pointer;
 
   & svg {
-    fill: #d9d9d9;
+    fill: var(--active-color);
   }
   &:hover svg {
-    fill: #696969;
-    stroke: #696969;
+    fill: var(--hover-color);
+    stroke: var(--hover-color);
   }
   &:active svg {
-    fill: #d9d9d9;
-    stroke: #d9d9d9;
+    fill: var(--hover-color);
+    stroke: var(--hover-color);
   }
 `;
 
 export const PlaySvg = styled.svg`
   width: 22px;
   height: 20px;
-  fill: #d9d9d9;
 `;
 export const Next = styled.div`
   display: flex;
   cursor: pointer;
   height: 100%;
   align-items: center;
+  &:hover svg {
+    fill: var(--hover-color);
+    stroke: var(--hover-color);
+  }
 `;
 
 export const NextSvg = styled.svg`
+  fill: var(--active-color);
+  stroke: var(--active-color);
   width: 15px;
   height: 14px;
 `;
@@ -59,7 +70,8 @@ export const Repeat = styled.div`
   align-items: center;
   height: 100%;
   & svg {
-    fill: ${({ $isActive }) => ($isActive ? 'white' : 'gray')};
+    fill: ${({ $isActive }) =>
+      $isActive ? 'var(--active-color)' : 'var(--inactive-color)'};
   }
 `;
 export const RepeatSvg = styled.svg`
@@ -72,7 +84,8 @@ export const Shuffle = styled.div`
   align-items: center;
   height: 100%;
   & svg {
-    fill: ${({ $isActive }) => ($isActive ? 'white' : 'gray')};
+    fill: ${({ $isActive }) =>
+      $isActive ? 'var(--active-color)' : 'var(--inactive-color)'};
   }
 `;
 export const ShuffleSvg = styled.svg`
