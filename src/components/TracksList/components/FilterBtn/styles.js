@@ -5,7 +5,7 @@ export const FilterBtn = styled.div`
   font-size: 16px;
   line-height: 18px;
   padding: 6px 20px;
-  border: 1px solid #fff;
+  border: 1px solid var(--text-color);
   border-radius: 60px;
   white-space: nowrap;
   cursor: pointer;

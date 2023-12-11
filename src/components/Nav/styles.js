@@ -7,7 +7,7 @@ export const NavContainer = styled.div`
   padding: 36px 14%;
   box-sizing: border-box;
   background-color: ${({ $isVisible }) => $isVisible && 'var(--nav-bg-color)'};
-  transition: background-color 1s;
+  transition: background-color .4s;
 `;
 
 export const MainNav = styled.nav`

@@ -13,4 +13,5 @@ export const wrapper = styled.div`
   background-color: var(--bg-color);
   color: var(--text-color);
   padding: 0;
+  transition: all 0.4s;
 `;

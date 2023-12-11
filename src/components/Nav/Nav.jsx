@@ -6,10 +6,12 @@ import { useTheme } from 'hooks/useTheme';
 
 export const Nav = () => {
   const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
-  const logoImgURL = '/assets/img/logo.png';
 
   const [isVisible, setIsVisible] = useState(false);
-  const {theme, switchTheme} = useTheme();
+  const { theme, switchTheme } = useTheme();
+
+  const logoImgURL =
+    theme === 'black' ? '/assets/img/logo.png' : '/assets/img/logo_black.svg';
 
   const toggleBurger = () => setIsVisible(!isVisible);
 
@@ -31,7 +33,7 @@ export const Nav = () => {
             <NavLink linkName={'Мой плейлист'} link="/favorites" />
             <NavLink linkName={'Выйти'} link="/login" needsLogout={true} />
             <li>
-              <svg onClick={switchTheme}>
+              <svg style={{ cursor: 'pointer' }} onClick={switchTheme}>
                 {theme === 'black' ? (
                   <use xlinkHref={`${sprite}#icon-black-theme`} />
                 ) : (
