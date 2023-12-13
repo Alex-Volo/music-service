@@ -20,6 +20,8 @@ const initialState = (() => {
   return {
     list: fakeList,
     isLoading: false,
+    isSearching: false,
+    listOfFound: [],
     shuffledOrder: [3, 2, 1, 0],
     currentTrack: { name: '', author: '', track_file: '' },
   };
@@ -31,6 +33,14 @@ export const tracksSlice = createSlice({
   reducers: {
     setIsLoading: (state, action) => {
       state.isLoading = action.payload;
+    },
+
+    setIsSearching: (state, action) => {
+      state.isSearching = action.payload;
+    },
+
+    setListOfFound: (state, action) => {
+      state.listOfFound = action.payload;
     },
 
     setTracks: (state, action) => {
@@ -47,7 +57,7 @@ export const tracksSlice = createSlice({
     },
   },
 });
-export const { setIsLoading, setTracks, setCurrentTrack, setShuffledOrder } =
+export const { setIsLoading, setIsSearching, setListOfFound, setTracks, setCurrentTrack, setShuffledOrder } =
   tracksSlice.actions;
 
 export default tracksSlice.reducer;
