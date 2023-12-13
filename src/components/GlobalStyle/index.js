@@ -23,7 +23,7 @@ export const GlobalStyle = createGlobalStyle`
     `
         : `
     --bg-color: #f2f1f7;
-    --text-color: #000;
+    --text-color: #303030;
     --gray-color: #3e4597;
     --nav-bg-color: #c2c9ef;
     --player-bg: #f2f1f7d7;

@@ -4,6 +4,7 @@ export const Heading = styled.h1`
   box-sizing: border-box;
   font-size: 60px;
   line-height: 64px;
+  color: var(--text-color);
 `;
 
 export const Main = styled.main`

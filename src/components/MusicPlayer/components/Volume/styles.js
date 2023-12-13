@@ -18,7 +18,7 @@ export const iconWrapper = styled.div`
 export const iconSvg = styled.svg`
   width: 13px;
   height: 18px;
-  
+  fill: var(--active-color);
 `;
 
 export const input = styled.input`
