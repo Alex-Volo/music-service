@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { NotFound } from 'pages';
 import { fetchTracks } from 'services/API';
 import { useDispatch } from 'react-redux';
-import { setShuffledOrder, setTracks } from 'store/tracksSlice';
+import { setShuffledOrder, setVisibleList } from 'store/tracksSlice';
 import { setIsLoading } from 'store/tracksSlice';
 import { useEffect, useState } from 'react';
 import { getShuffledIndices } from 'helpers/helpers';

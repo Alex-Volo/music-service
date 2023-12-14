@@ -3,18 +3,25 @@ import { formatTime } from 'helpers/helpers';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPlayerVisible } from 'store/UISlice';
 import { setIsPaused } from 'store/playerSlice';
-import { setCurrentTrack } from 'store/tracksSlice';
+import {
+  setActiveList,
+  setCurrentTrack,
+  setShuffledOrder,
+} from 'store/tracksSlice';
 import { Skeletons } from './Skeletons';
 
 export const Track = ({ isLoading, track }) => {
   const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
   const dispatch = useDispatch();
   const currentTrack = useSelector((state) => state.tracks.currentTrack);
+  const visibleList = useSelector((state) => state.tracks.visibleList);
 
   const isAnimated = currentTrack.id === track.id ? true : false;
   const isPaused = useSelector((state) => state.player.isPaused) && isAnimated;
 
   const handlerTrackClick = (track) => {
+    dispatch(setActiveList(visibleList));
+    dispatch(setShuffledOrder(visibleList));
     dispatch(setCurrentTrack(track));
     dispatch(setPlayerVisible());
     dispatch(isAnimated ? setIsPaused(!isPaused) : setIsPaused(false));

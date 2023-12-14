@@ -34,41 +34,41 @@ export const Controls = ({ audioAPI }) => {
   };
 
   // Определяю текущий список треков, текущий трек и индекс текущего трека
-  const currentTrackList = useSelector((store) => store.tracks.list);
-  const currentTrackIndex = currentTrackList.findIndex(
+  const activeTraksList = useSelector((store) => store.tracks.activeList);
+  const currentTrackIndex = activeTraksList.findIndex(
     ({ id }) => currentTrack.id === id
   );
 
   const onNextClick = () => {
-    let nextIndex = (currentTrackIndex + 1) % currentTrackList.length;
+    let nextIndex = (currentTrackIndex + 1) % activeTraksList.length;
     // Если шаффл истина то нахожу индекс трека в массиве с перемешанным порядком
     // и там уже иду по порядку до тех пор, пока порядковый номер не достигает последнего
     // элемента массива, а затем начинает сначала.
     if (isShuffle) {
       const currentShuffleIndex = shuffledOrder.indexOf(currentTrackIndex);
       nextIndex =
-        shuffledOrder[(currentShuffleIndex + 1) % currentTrackList.length];
+        shuffledOrder[(currentShuffleIndex + 1) % activeTraksList.length];
     }
     if (audioAPI.readyState === 4)
-      dispatch(setCurrentTrack(currentTrackList[nextIndex]));
+      dispatch(setCurrentTrack(activeTraksList[nextIndex]));
   };
 
   const onPreviousClick = () => {
     let previousIndex =
-      (currentTrackList.length + currentTrackIndex - 1) %
-      currentTrackList.length;
+      (activeTraksList.length + currentTrackIndex - 1) %
+      activeTraksList.length;
 
     if (isShuffle) {
       const currentShuffleIndex = shuffledOrder.indexOf(currentTrackIndex);
       previousIndex =
         shuffledOrder[
-          (currentTrackList.length + currentShuffleIndex - 1) %
-            currentTrackList.length
+          (activeTraksList.length + currentShuffleIndex - 1) %
+            activeTraksList.length
         ];
     }
 
     if (audioAPI.readyState === 4)
-      dispatch(setCurrentTrack(currentTrackList[previousIndex]));
+      dispatch(setCurrentTrack(activeTraksList[previousIndex]));
   };
 
   // Снимаю обработчик на окончание трека при смене трека,
