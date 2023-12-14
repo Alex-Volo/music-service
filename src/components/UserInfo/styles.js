@@ -5,7 +5,6 @@ export const Container = styled.div`
   grid-column: 3 / -1;
   padding-right: 8%;
   min-width: 100%;
-  color: #fff;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -16,10 +15,10 @@ export const Logout = styled.svg`
   width: 43px;
   height: 43px;
   cursor: pointer;
-  transition: .3s;
-  stroke: white;
+  transition: 0.3s;
+  stroke: var(--text-color);
   fill: transparent;
-  
+
   &:hover {
     stroke: #696969;
   }

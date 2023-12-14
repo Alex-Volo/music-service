@@ -20,7 +20,7 @@ export const ProgressBar = styled.input`
   &::-webkit-slider-runnable-track {
     position: relative;
     height: var(--progress-height);
-    background: var(--progress-bg-color);
+    background: var(--nav-bg-color);
   }
   &::-webkit-slider-thumb {
     --thumb-height: 1px;
@@ -32,15 +32,11 @@ export const ProgressBar = styled.input`
       100vmax var(--progress-color);
   }
 
-  &::-webkit-slider-runnable-track {
-    background: var(--progress-bg-color);
-  }
-
   /* FF */
   &::-moz-range-track {
     width: 100%;
     height: var(--progress-height);
-    background: var(--progress-bg-color);
+    background: var(--nav-bg-color);
     border: none;
     border-radius: 0px;
   }

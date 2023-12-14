@@ -64,3 +64,8 @@ export const getShuffledIndices = (arr) => {
   const indicesArr = Array.from({ length: arr.length }, (_, i) => i);
   return shuffle(indicesArr);
 };
+
+export const isIncludes = (str, value) => {
+  const normValue = value.toLowerCase();
+  return str.toLowerCase().includes(normValue);
+};

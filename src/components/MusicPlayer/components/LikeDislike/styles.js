@@ -9,11 +9,13 @@ export const PlayerLikeDislikeGroup = styled.div`
 export const LikeSvg = styled.svg`
   width: 15px;
   height: 15px;
-  stroke: #696969;
+  stroke: var(--active-color);
+  fill: transparent;
 `;
 
 export const DislikeSvg = styled.svg`
   width: 15px;
   height: 15px;
-  stroke: #696969;
+  stroke: var(--active-color);
+  fill: transparent;
 `;

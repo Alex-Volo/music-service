@@ -7,7 +7,7 @@ export const ModalWrapper = styled.div`
   width: 248px;
   height: 305px;
   padding: 20px 32px;
-  background-color: #313131;
+  background-color: var(--nav-bg-color);
   overflow: hidden;
   border-radius: 12px;
 `;
@@ -27,7 +27,7 @@ export const ModalList  = styled.ul`
 
   & a {
     text-decoration: none;
-    color: #fff;
+    color: var(--text-color);
     font-size: 20px;
     line-height: 24px;
   }
@@ -52,7 +52,7 @@ export const ModalList  = styled.ul`
     box-shadow: inset 0 0 6px rgba(0, 0, 0, 0export const 2);
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0export const 2);
     border-radius: 10px;
-    background-color: #4b4949;
+    background-color: var(--inactive-color);
   }
 `;
 

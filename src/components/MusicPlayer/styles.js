@@ -1,7 +1,6 @@
 import { styled } from 'styled-components';
 
 export const MusicPlayer = styled.div`
-
   ${(props) => (props.$isPlayerVisible ? 'display: flex;' : 'display: none;')}
   width: inherit;
   z-index: 1;
@@ -11,6 +10,6 @@ export const MusicPlayer = styled.div`
   bottom: 0;
   left: 0;
 
-  background-color: rgba(0, 0, 0, 0.844);
+  background-color: var(--player-bg);
   user-select: none;
 `;

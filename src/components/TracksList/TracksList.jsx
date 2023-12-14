@@ -9,7 +9,7 @@ export const TracksList = ({ playlist }) => {
   const dispatch = useDispatch();
   const tracksList = useSelector((state) => state.tracks.list);
 
-  const {
+  let {
     data: tracks = tracksList,
     isLoading: isTracksLoading,
     isFetching,
@@ -22,8 +22,13 @@ export const TracksList = ({ playlist }) => {
     dispatch(setShuffledOrder(tracks));
     dispatch(setIsLoading(isTracksLoading || isFetching));
   }, [tracks]);
-  const isLoading = isTracksLoading || isFetching;
 
+  const isLoading = isTracksLoading || isFetching;
+  const isSearching = useSelector(state => state.tracks.isSearching);
+  const listOfFound = useSelector(store => store.tracks.listOfFound);
+  // let currentTracks = null;
+
+  if (isSearching) tracks = listOfFound;
   const trackElements = tracks.map((track) => (
     <Track key={track.id} isLoading={isLoading} track={track} />
   ));
