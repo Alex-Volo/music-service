@@ -4,11 +4,14 @@ import { EntryInput, Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { queryLogin } from 'services/API';
+import { getTokens, queryLogin } from 'services/API';
 import { useUser } from 'hooks';
+import { useDispatch } from 'react-redux';
+import { setAccessToken, setRefreshToken } from 'store/UserSlice';
 
 export const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const logoBlackImgURL = '/assets/img/logo_black.svg';
 
   const [error, setError] = useState(null);
@@ -28,6 +31,13 @@ export const Login = () => {
 
     queryLogin(loginValue, password)
       .then((response) => {
+        getTokens(loginValue, password)
+          .then((response) => {
+            dispatch(setAccessToken(response.access));
+            dispatch(setRefreshToken(response.refresh));
+          })
+          .catch((e) => console.warn(e));
+
         login(response);
         navigate('/', { replace: true });
       })

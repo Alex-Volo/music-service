@@ -1,7 +1,7 @@
 import * as S from './styles';
 import { formatTime } from 'helpers/helpers';
 import { useDispatch, useSelector } from 'react-redux';
-import { setPlayerVisible } from 'store/UISlice';
+import { setPlayerVisible } from 'store/playerSlice';
 import { setIsPaused } from 'store/playerSlice';
 import {
   setActiveList,

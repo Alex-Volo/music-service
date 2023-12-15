@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import tracksReducer from './tracksSlice';
-import UIReducer from './UISlice';
+import userReducer from './UserSlice';
 import playerReducer from './playerSlice';
 import { musicServiceAPI } from 'services/API';
 
@@ -8,7 +8,7 @@ export const store = configureStore({
   reducer: {
     [musicServiceAPI.reducerPath]: musicServiceAPI.reducer,
     tracks: tracksReducer,
-    UI: UIReducer,
+    user: userReducer,
     player: playerReducer,
   },
   middleware: (getDefaultMiddleware) =>

@@ -5,6 +5,7 @@ const baseUrl = 'https://skypro-music-api.skyeng.tech/';
 const subURLs = {
   all: 'catalog/track/all/',
   allPlaylists: 'catalog/selection/',
+  favorites: 'catalog/track/favorite/all/',
 };
 
 export const musicServiceAPI = createApi({
@@ -12,6 +13,13 @@ export const musicServiceAPI = createApi({
 
   baseQuery: fetchBaseQuery({
     baseUrl,
+    prepareHeaders: (headers, { getState }) => {
+      const accessToken = getState().user.accessToken;
+      console.log(accessToken)
+      if (accessToken) headers.set('authorization', `Bearer ${accessToken}`);
+
+      return headers
+    },
   }),
   tagTypes: ['Tracks'],
   endpoints: (builder) => ({
@@ -20,7 +28,7 @@ export const musicServiceAPI = createApi({
         let addURL = '';
         // Если полученный аргумент можно привести к числу
         if (!isNaN(Number(playlist))) addURL = `catalog/selection/${playlist}`;
-        else addURL = 'catalog/track/all/';
+        else addURL = subURLs[playlist];
         return addURL;
       },
 
@@ -48,6 +56,23 @@ export const regNewUser = (email, pass) => {
       },
     })
     .then((response) => response.data);
+};
+
+export const getTokens = (email, pass) => {
+  return axios
+    .post(baseUrl + 'user/token/', {
+      email: email,
+      password: pass,
+
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
+    .then(({data}) => {
+      localStorage.setItem('refreshToken', data.refresh);
+      localStorage.setItem('accessToken', data.access);
+      return data;
+    });
 };
 
 export const queryLogin = (email, pass) => {
