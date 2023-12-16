@@ -9,4 +9,4 @@ plan: 2 hours fact: 1 hour, but evrything was done earlier - in previous homewor
 Redux
 plan: 0 fact: 0, evrything was done earlier
 Redux async (RTKQ)
-plan: 6 hours fact: 4:45 hours
+plan: 6 hours fact: 5:30 

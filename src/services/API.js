@@ -38,15 +38,15 @@ export const musicServiceAPI = createApi({
         return tracks;
       },
       providesTags: (result) =>
-      // is result available?
-      result
-        ? // successful query
-          [
-            ...result.map(({ id }) => ({ type: 'Tracks', id })),
-            { type: 'Tracks', id: 'LIST' },
-          ]
-        : // an error occurred, but we still want to refetch this query when `{ type: 'Posts', id: 'LIST' }` is invalidated
-          [{ type: 'Tracks', id: 'LIST' }],
+        // is result available?
+        result
+          ? // successful query
+            [
+              ...result.map(({ id }) => ({ type: 'Tracks', id })),
+              { type: 'Tracks', id: 'LIST' },
+            ]
+          : // an error occurred, but we still want to refetch this query when `{ type: 'Posts', id: 'LIST' }` is invalidated
+            [{ type: 'Tracks', id: 'LIST' }],
     }),
 
     likeTrack: builder.mutation({
@@ -70,7 +70,11 @@ export const musicServiceAPI = createApi({
   }),
 });
 
-export const { useGetTracksQuery, useLikeTrackMutation, useDislikeTrackMutation } = musicServiceAPI;
+export const {
+  useGetTracksQuery,
+  useLikeTrackMutation,
+  useDislikeTrackMutation,
+} = musicServiceAPI;
 
 export const regNewUser = (email, pass) => {
   return axios
@@ -86,32 +90,34 @@ export const regNewUser = (email, pass) => {
     .then((response) => response.data);
 };
 
-export const getTokens = (email, pass) => {
-  return axios
-    .post(baseUrl + 'user/token/', {
-      email: email,
-      password: pass,
+// Логин и получение токенов одновременно, здесь же кладу refresh and
+// access Tokens в localStorage
+export const queryLogin = (email, password) => {
+  return Promise.all([
+    axios
+      .post(baseUrl + 'user/login/', {
+        email,
+        password,
 
-      headers: {
-        'content-type': 'application/json',
-      },
-    })
-    .then(({ data }) => {
-      localStorage.setItem('refreshToken', data.refresh);
-      localStorage.setItem('accessToken', data.access);
-      return data;
-    });
-};
+        headers: {
+          'content-type': 'application/json',
+        },
+      })
+      .then((response) => response.data),
 
-export const queryLogin = (email, pass) => {
-  return axios
-    .post(baseUrl + 'user/login/', {
-      email: email,
-      password: pass,
+    axios
+      .post(baseUrl + 'user/token/', {
+        email: email,
+        password: password,
 
-      headers: {
-        'content-type': 'application/json',
-      },
-    })
-    .then((response) => response.data);
+        headers: {
+          'content-type': 'application/json',
+        },
+      })
+      .then(({ data }) => {
+        localStorage.setItem('refreshToken', data.refresh);
+        localStorage.setItem('accessToken', data.access);
+        return data;
+      }),
+  ]);
 };

@@ -31,14 +31,11 @@ export const Login = () => {
 
     queryLogin(loginValue, password)
       .then((response) => {
-        getTokens(loginValue, password)
-          .then((response) => {
-            dispatch(setAccessToken(response.access));
-            dispatch(setRefreshToken(response.refresh));
-          })
-          .catch((e) => console.warn(e));
+        console.log(response);
+        dispatch(setAccessToken(response[1].access));
+        dispatch(setRefreshToken(response[1].refresh));
 
-        login(response);
+        login(response[0]);
         navigate('/', { replace: true });
       })
       .catch((error) => {
