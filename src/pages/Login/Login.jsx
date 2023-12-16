@@ -4,7 +4,7 @@ import { EntryInput, Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { getTokens, queryLogin } from 'services/API';
+import { queryLogin } from 'services/API';
 import { useUser } from 'hooks';
 import { useDispatch } from 'react-redux';
 import { setAccessToken, setRefreshToken } from 'store/UserSlice';

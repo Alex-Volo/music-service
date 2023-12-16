@@ -21,8 +21,11 @@ export const musicServiceAPI = createApi({
       return headers;
     },
   }),
+
   tagTypes: ['Tracks'],
+
   endpoints: (builder) => ({
+    // endpoint
     getTracks: builder.query({
       query: (playlist = 'all') => {
         let addURL = '';
@@ -37,6 +40,7 @@ export const musicServiceAPI = createApi({
         if (!Array.isArray(data)) tracks = data.items;
         return tracks;
       },
+
       providesTags: (result) =>
         // is result available?
         result
@@ -49,6 +53,7 @@ export const musicServiceAPI = createApi({
             [{ type: 'Tracks', id: 'LIST' }],
     }),
 
+    // endpoint
     likeTrack: builder.mutation({
       query: (id) => ({
         url: `catalog/track/${id}/favorite/`,
@@ -58,6 +63,7 @@ export const musicServiceAPI = createApi({
       invalidatesTags: (result, error, { id }) => [{ type: 'Tracks', id }],
     }),
 
+    // endpoint
     dislikeTrack: builder.mutation({
       query: (id) => ({
         url: `catalog/track/${id}/favorite/`,
@@ -120,4 +126,21 @@ export const queryLogin = (email, password) => {
         return data;
       }),
   ]);
+};
+
+export const refreshToken = (
+  refresh = localStorage.getItem('refreshToken')
+) => {
+  return axios
+    .post(baseUrl + 'user/token/refresh/', {
+      refresh,
+
+      headers: {
+        'content-type': 'application/json',
+      },
+    })
+    .then((response) => {
+      localStorage.setItem('accessToken', response.data.access)
+     return response.data.access
+    });
 };

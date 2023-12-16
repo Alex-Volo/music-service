@@ -1,16 +1,16 @@
 import * as S from './styles';
 import { Track, ListHead, Error } from 'components';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetTracksQuery } from 'services/API';
-import {
-  setIsLoading,
-  setVisibleList,
-} from 'store/tracksSlice';
-import { useEffect } from 'react';
+import { refreshToken, useGetTracksQuery } from 'services/API';
+import { setIsLoading, setVisibleList } from 'store/tracksSlice';
+import { useEffect, useState } from 'react';
+import { setAccessToken } from 'store/UserSlice';
 
 export const TracksList = ({ playlist }) => {
+  const [refreshPage, setRefreshPage] = useState(null);
   const dispatch = useDispatch();
   const visibleList = useSelector((state) => state.tracks.visibleList);
+  const refresh = useSelector((state) => state.user.refreshToken);
 
   const {
     data: tracks = visibleList,
@@ -30,7 +30,6 @@ export const TracksList = ({ playlist }) => {
   const isLoading = isTracksLoading;
   const isSearching = useSelector((state) => state.tracks.isSearching);
   const listOfFound = useSelector((store) => store.tracks.listOfFound);
-  // let currentTracks = null;
 
   if (isSearching) visibleList = listOfFound;
 
@@ -38,7 +37,19 @@ export const TracksList = ({ playlist }) => {
     <Track key={track.id} isLoading={isLoading} track={track} />
   ));
 
-  if (isError) return <Error value={error.error} />;
+  if (isError) {
+    // Если у ошибки 401-й код обновляем accesToken
+    if (error.status === 401) {
+      (async () => {
+        const access = await refreshToken(refresh);
+        console.log('обновился доступ', access);
+
+        dispatch(setAccessToken(access));
+        window.location.reload();
+      })();
+    }
+    return <Error value={error.error} />;
+  }
 
   return (
     <S.TracksList>

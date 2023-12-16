@@ -71,7 +71,6 @@ export const Track = ({ isLoading, track }) => {
           onClick={(e) => {
             e.stopPropagation();
             handlerLikeClick(track.id);
-            console.log('Кликнуто сердечко');
           }}
         >
           <use xlinkHref={`${sprite}#icon-like`} />
