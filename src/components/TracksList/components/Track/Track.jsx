@@ -9,15 +9,28 @@ import {
   setShuffledOrder,
 } from 'store/tracksSlice';
 import { Skeletons } from './Skeletons';
+import { useUser } from 'hooks';
+import { useDislikeTrackMutation, useLikeTrackMutation } from 'services/API';
+import { useEffect } from 'react';
 
 export const Track = ({ isLoading, track }) => {
   const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
   const dispatch = useDispatch();
   const currentTrack = useSelector((state) => state.tracks.currentTrack);
   const visibleList = useSelector((state) => state.tracks.visibleList);
+  const { currentUser } = useUser();
+  const [like, { isSuccess: isLikeSuccess }] = useLikeTrackMutation();
+  const [dislike, { isSuccess: isDislikeSuccess }] = useDislikeTrackMutation();
 
   const isAnimated = currentTrack.id === track.id ? true : false;
   const isPaused = useSelector((state) => state.player.isPaused) && isAnimated;
+
+  let isLiked = track?.stared_user?.some(({ id }) => id === currentUser.id);
+  // useEffect(() => {
+    // if (isLikeSuccess || isDislikeSuccess) {
+    //   isLiked = isLikeSuccess ?? isDislikeSuccess;
+    // }
+  // }, [isLikeSuccess, isDislikeSuccess]);
 
   const handlerTrackClick = (track) => {
     dispatch(setActiveList(visibleList));
@@ -26,6 +39,8 @@ export const Track = ({ isLoading, track }) => {
     dispatch(setPlayerVisible());
     dispatch(isAnimated ? setIsPaused(!isPaused) : setIsPaused(false));
   };
+
+  const handlerLikeClick = (id) => (isLiked ? dislike(id) : like(id));
 
   if (isLoading) {
     return (
@@ -51,7 +66,14 @@ export const Track = ({ isLoading, track }) => {
       <S.TrackAuthor>{track.author}</S.TrackAuthor>
       <S.TrackAlbum>{track.album}</S.TrackAlbum>
       <S.LikeWrapper>
-        <S.TrackLikeSvg>
+        <S.TrackLikeSvg
+          $isLiked={isLiked}
+          onClick={(e) => {
+            e.stopPropagation();
+            handlerLikeClick(track.id);
+            console.log('Кликнуто сердечко');
+          }}
+        >
           <use xlinkHref={`${sprite}#icon-like`} />
         </S.TrackLikeSvg>
       </S.LikeWrapper>

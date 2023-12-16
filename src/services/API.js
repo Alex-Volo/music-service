@@ -15,10 +15,10 @@ export const musicServiceAPI = createApi({
     baseUrl,
     prepareHeaders: (headers, { getState }) => {
       const accessToken = getState().user.accessToken;
-      console.log(accessToken)
+
       if (accessToken) headers.set('authorization', `Bearer ${accessToken}`);
 
-      return headers
+      return headers;
     },
   }),
   tagTypes: ['Tracks'],
@@ -37,12 +37,40 @@ export const musicServiceAPI = createApi({
         if (!Array.isArray(data)) tracks = data.items;
         return tracks;
       },
-      providesTags: ['Tracks'],
+      providesTags: (result) =>
+      // is result available?
+      result
+        ? // successful query
+          [
+            ...result.map(({ id }) => ({ type: 'Tracks', id })),
+            { type: 'Tracks', id: 'LIST' },
+          ]
+        : // an error occurred, but we still want to refetch this query when `{ type: 'Posts', id: 'LIST' }` is invalidated
+          [{ type: 'Tracks', id: 'LIST' }],
+    }),
+
+    likeTrack: builder.mutation({
+      query: (id) => ({
+        url: `catalog/track/${id}/favorite/`,
+        method: 'POST',
+      }),
+
+      invalidatesTags: (result, error, { id }) => [{ type: 'Tracks', id }],
+    }),
+
+    dislikeTrack: builder.mutation({
+      query: (id) => ({
+        url: `catalog/track/${id}/favorite/`,
+        method: 'DELETE',
+      }),
+      extraOptions: {},
+
+      invalidatesTags: (result, error, { id }) => [{ type: 'Tracks', id }],
     }),
   }),
 });
 
-export const { useGetTracksQuery } = musicServiceAPI;
+export const { useGetTracksQuery, useLikeTrackMutation, useDislikeTrackMutation } = musicServiceAPI;
 
 export const regNewUser = (email, pass) => {
   return axios
@@ -68,7 +96,7 @@ export const getTokens = (email, pass) => {
         'content-type': 'application/json',
       },
     })
-    .then(({data}) => {
+    .then(({ data }) => {
       localStorage.setItem('refreshToken', data.refresh);
       localStorage.setItem('accessToken', data.access);
       return data;

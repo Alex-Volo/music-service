@@ -22,10 +22,12 @@ export const TracksList = ({ playlist }) => {
 
   useEffect(() => {
     dispatch(setVisibleList(tracks));
-    dispatch(setIsLoading(isTracksLoading || isFetching));
+    // dispatch(setIsLoading(isTracksLoading || isFetching));
   }, [tracks]);
 
-  const isLoading = isTracksLoading || isFetching;
+  // const isLoading = isTracksLoading || isFetching;
+
+  const isLoading = isTracksLoading;
   const isSearching = useSelector((state) => state.tracks.isSearching);
   const listOfFound = useSelector((store) => store.tracks.listOfFound);
   // let currentTracks = null;
