@@ -13,7 +13,7 @@ import { useUser } from 'hooks';
 import { useDislikeTrackMutation, useLikeTrackMutation } from 'services/API';
 import { useEffect } from 'react';
 
-export const Track = ({ isLoading, track }) => {
+export const Track = ({ isLoading, track, playlist }) => {
   const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
   const dispatch = useDispatch();
   const currentTrack = useSelector((state) => state.tracks.currentTrack);
@@ -26,6 +26,7 @@ export const Track = ({ isLoading, track }) => {
   const isPaused = useSelector((state) => state.player.isPaused) && isAnimated;
 
   let isLiked = track?.stared_user?.some(({ id }) => id === currentUser.id);
+  if (playlist === 'favorites') isLiked = true;
   // useEffect(() => {
     // if (isLikeSuccess || isDislikeSuccess) {
     //   isLiked = isLikeSuccess ?? isDislikeSuccess;

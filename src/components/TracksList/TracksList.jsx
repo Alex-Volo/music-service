@@ -34,7 +34,7 @@ export const TracksList = ({ playlist }) => {
   if (isSearching) visibleList = listOfFound;
 
   const trackElements = visibleList.map((track) => (
-    <Track key={track.id} isLoading={isLoading} track={track} />
+    <Track key={track.id} isLoading={isLoading} track={track} playlist={playlist} />
   ));
 
   if (isError) {
