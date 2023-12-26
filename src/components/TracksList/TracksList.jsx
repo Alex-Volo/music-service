@@ -37,19 +37,19 @@ export const TracksList = ({ playlist }) => {
     <Track key={track.id} isLoading={isLoading} track={track} playlist={playlist} />
   ));
 
-  if (isError) {
-    // Если у ошибки 401-й код обновляем accesToken
-    if (error.status === 401) {
-      (async () => {
-        const access = await refreshToken(refresh);
-        console.log('обновился доступ', access);
+  // if (isError) {
+  //   // Если у ошибки 401-й код обновляем accesToken
+  //   if (error.status === 401) {
+  //     (async () => {
+  //       const access = await refreshToken(refresh);
+  //       console.log('обновился доступ', access);
 
-        dispatch(setAccessToken(access));
-        window.location.reload();
-      })();
-    }
-    return <Error value={error.error} />;
-  }
+  //       dispatch(setAccessToken(access));
+  //       window.location.reload();
+  //     })();
+  //   }
+  //   return <Error value={error.error} />;
+  // }
 
   return (
     <S.TracksList>

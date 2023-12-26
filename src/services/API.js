@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import axios from 'axios';
+import { setAccessToken } from 'store/UserSlice';
 
 const baseUrl = 'https://skypro-music-api.skyeng.tech/';
 const subURLs = {
@@ -8,23 +9,68 @@ const subURLs = {
   favorites: 'catalog/track/favorite/all/',
 };
 
+const baseQuery = fetchBaseQuery({
+  baseUrl,
+  prepareHeaders: (headers, { getState }) => {
+    const accessToken = getState().user.accessToken;
+    console.log('Старый токен', accessToken)
+
+    if (accessToken) {
+      headers.set('authorization', `Bearer ${accessToken}`);
+      headers.set('content-type', 'application/json');
+    }
+
+    return headers;
+  },
+});
+
+const baseQueryWithRefresh = async (args, api, extraOptions) => {
+  console.log('Запустился baseQueryWthRefrsh')
+  let result = await baseQuery(args, api, extraOptions);
+  console.log(result);
+  if (result?.error?.status === 401) {
+    console.log('Отправляю refreshToken, обновляю accessToken');
+
+    if (!api.getState().user?.refreshToken) console.log('Нет рефреш токена, нужен логаут');
+
+    const responseFromRefresh = await baseQuery({
+      url: 'user/token/refresh/',
+      method: 'POST',
+      body: { refresh: localStorage.getItem('refreshToken') },
+    }, api, extraOptions);
+    console.log('Ответ на refresh: ', responseFromRefresh);
+
+    if (responseFromRefresh?.data) {
+      api.dispatch(setAccessToken(responseFromRefresh.data.access));
+      console.log(api.getState().user.accessToken)
+      localStorage.setItem('accessToken', responseFromRefresh.data.access);
+
+      result = await baseQuery(args, api, extraOptions);
+    } else {
+      console.log('Рефреш не произошел, необходимо перезагрузить страницу');
+    }
+  }
+
+  return result;
+};
+
 export const musicServiceAPI = createApi({
   reducerPath: 'musicServiceAPI',
 
-  baseQuery: fetchBaseQuery({
-    baseUrl,
-    prepareHeaders: (headers, { getState }) => {
-      const accessToken = getState().user.accessToken;
-
-      if (accessToken) headers.set('authorization', `Bearer ${accessToken}`);
-
-      return headers;
-    },
-  }),
+  baseQuery: baseQueryWithRefresh,
 
   tagTypes: ['Tracks'],
 
   endpoints: (builder) => ({
+    // endpoint
+    refresh: builder.mutation({
+      query: () => ({
+        url: 'user/token/refresh/',
+        method: 'POST',
+        body: { refresh: localStorage.getItem('refreshToken') },
+      }),
+    }),
+
     // endpoint
     getTracks: builder.query({
       query: (playlist = 'all') => {
@@ -140,7 +186,7 @@ export const refreshToken = (
       },
     })
     .then((response) => {
-      localStorage.setItem('accessToken', response.data.access)
-     return response.data.access
+      localStorage.setItem('accessToken', response.data.access);
+      return response.data.access;
     });
 };
