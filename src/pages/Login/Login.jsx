@@ -4,7 +4,7 @@ import { EntryInput, Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { queryLogin } from 'services/API';
+import { musicServiceAPI, queryLogin, useLoginMutation } from 'services/API';
 import { useUser } from 'hooks';
 import { useDispatch } from 'react-redux';
 import { setAccessToken, setRefreshToken } from 'store/UserSlice';
@@ -18,6 +18,7 @@ export const Login = () => {
   const [loginValue, setLoginValue] = useState('test@test.test');
   const [password, setPassword] = useState('test@test.test');
   const { login } = useUser();
+  const [loginHandler, {isError, isLoading}] = useLoginMutation();
 
   const handleLogin = async () => {
     if (!loginValue) {
@@ -28,27 +29,28 @@ export const Login = () => {
       setError('Введите пароль');
       return;
     }
+    loginHandler({email: loginValue, password}, musicServiceAPI, {doNotSendToken: true});
+    debugger
+    // queryLogin(loginValue, password)
+    //   .then((response) => {
+    //     console.log(response);
+    //     dispatch(setAccessToken(response[1].access));
+    //     dispatch(setRefreshToken(response[1].refresh));
 
-    queryLogin(loginValue, password)
-      .then((response) => {
-        console.log(response);
-        dispatch(setAccessToken(response[1].access));
-        dispatch(setRefreshToken(response[1].refresh));
-
-        login(response[0]);
-        navigate('/', { replace: true });
-      })
-      .catch((error) => {
-        console.warn(error);
-        if (error.response) {
-          console.warn(error.response.data);
-          const text = Object.values(error.response.data).join(' ');
-          setError(text);
-        } else {
-          console.log(error.request);
-          setError('Проблемы с сетью, проверьте подключение к сети интернет');
-        }
-      });
+    //     login(response[0]);
+    //     navigate('/', { replace: true });
+    //   })
+    //   .catch((error) => {
+    //     console.warn(error);
+    //     if (error.response) {
+    //       console.warn(error.response.data);
+    //       const text = Object.values(error.response.data).join(' ');
+    //       setError(text);
+    //     } else {
+    //       console.log(error.request);
+    //       setError('Проблемы с сетью, проверьте подключение к сети интернет');
+    //     }
+    //   });
   };
 
   // Сбрасываем ошибку если пользователь меняет данные на форме
