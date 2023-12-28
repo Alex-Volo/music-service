@@ -11,27 +11,24 @@ const subURLs = {
 
 const baseQuery = fetchBaseQuery({
   baseUrl,
-  prepareHeaders: (headers, { getState }, extraOptions) => {
-    console.log('это экстра опции', extraOptions);
-    if (extraOptions?.doNotSendToken) {
-      headers.set('content-type', 'application/json');
-      return headers;
-    }
+  prepareHeaders: (headers, { getState, endpoint }) => {
+    headers.set('content-type', 'application/json');
+
+    // Если происходит логин или регистрация нового пользователя
+    // accessToken не отправляется в заголовках
+    if (endpoint === 'login') return headers;
 
     const accessToken = getState().user.accessToken;
-
-    if (accessToken) {
-      headers.set('authorization', `Bearer ${accessToken}`);
-      headers.set('content-type', 'application/json');
-    }
+    if (accessToken) headers.set('authorization', `Bearer ${accessToken}`);
 
     return headers;
   },
 });
 
 const baseQueryWithRefresh = async (args, api, extraOptions) => {
-  console.log('это в реаус', extraOptions);
   let result = await baseQuery(args, api, extraOptions);
+
+  if (extraOptions.withoutRefresh) return result;
 
   if (result?.error?.status !== 401) return result;
 
@@ -126,45 +123,51 @@ export const musicServiceAPI = createApi({
       invalidatesTags: (result, error, { id }) => [{ type: 'Tracks', id }],
     }),
 
-    // LOGIN
+    // endpoint LOGIN
     login: builder.mutation({
       async queryFn(
         { email, password },
-        queryApi,
-        extraOptions = { doNotSendToken: true },
+        _queryApi,
+        _extraOptions,
         fetchWithBQ
       ) {
-        console.log(extraOptions, 'Этов queryFn');
         const response = await Promise.all([
-          fetchWithBQ(
-            {
-              url: 'user/login/',
-              method: 'POST',
-              body: { email, password },
-            },
-            queryApi,
-            extraOptions
-          ),
+          fetchWithBQ({
+            url: 'user/login/',
+            method: 'POST',
+            body: { email, password },
+          }),
 
-          fetchWithBQ(
-            {
-              url: 'user/token/',
-              method: 'POST',
-              body: { email, password },
-            },
-            queryApi,
-            extraOptions
-          ),
+          fetchWithBQ({
+            url: 'user/token/',
+            method: 'POST',
+            body: { email, password },
+          }),
         ]);
+        // if (!response.data) throw new Error('Ошибка при логине');
+        console.log(response, 'произошла');
+        if (response[0].error) return { error: response[0].error };
+        if (response[1].error) return { error: response[1].error };
+
+        if (response[0].error || response[1].error) {
+          console.log(response, 'произошла ошибка');
+          console.log(response[0]);
+          console.log({ error: response[0].error || response[1].error });
+          return response[0];
+        }
 
         console.log('Это результат promiseAll', response);
-        return response;
+        const userAndTokens = await [response[0].data, response[1].data];
+        console.log(userAndTokens, 'это в queryFn');
+
+        return { data: userAndTokens };
         // const randomResult = await fetchWithBQ('users/random')
         // if (randomResult.error) return { error: randomResult.error }
         // const user = randomResult.data
         // const result = await fetchWithBQ(`user/${user.id}/posts`)
         // return result.data ? { data: result.data } : { error: result.error }
       },
+      extraOptions: { withoutRefresh: true },
     }),
   }),
 });

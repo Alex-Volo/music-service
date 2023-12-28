@@ -18,7 +18,7 @@ export const Login = () => {
   const [loginValue, setLoginValue] = useState('test@test.test');
   const [password, setPassword] = useState('test@test.test');
   const { login } = useUser();
-  const [loginHandler, {isError, isLoading}] = useLoginMutation();
+  const [loginQuery, { isError, error: loginError }] = useLoginMutation();
 
   const handleLogin = async () => {
     if (!loginValue) {
@@ -29,8 +29,24 @@ export const Login = () => {
       setError('Введите пароль');
       return;
     }
-    loginHandler({email: loginValue, password}, musicServiceAPI, {doNotSendToken: true});
-    debugger
+
+    const { data: userAndTokens } = await loginQuery({
+      email: loginValue,
+      password,
+    });
+    console.log('isERRoR: ', isError)
+    console.log('ошибка в компоненте', error)
+    if (isError) {
+      console.log('Ошибка логина КОМПОНЕНТ', loginError);
+      return
+    }
+    console.log('Это в компоненте пришли юзер и токены', userAndTokens);
+    login(userAndTokens[0]);
+    dispatch(setAccessToken(userAndTokens[1].access));
+    dispatch(setRefreshToken(userAndTokens[1].refresh));
+
+    // navigate('/', { replace: true });
+
     // queryLogin(loginValue, password)
     //   .then((response) => {
     //     console.log(response);
