@@ -1,16 +1,13 @@
 import * as S from './styles';
 import { Track, ListHead, Error } from 'components';
 import { useDispatch, useSelector } from 'react-redux';
-import { refreshToken, useGetTracksQuery } from 'services/API';
+import { useGetTracksQuery } from 'services/API';
 import { setIsLoading, setVisibleList } from 'store/tracksSlice';
-import { useEffect, useState } from 'react';
-import { setAccessToken } from 'store/UserSlice';
+import { useEffect } from 'react';
 
 export const TracksList = ({ playlist }) => {
-  const [refreshPage, setRefreshPage] = useState(null);
   const dispatch = useDispatch();
   const visibleList = useSelector((state) => state.tracks.visibleList);
-  const refresh = useSelector((state) => state.user.refreshToken);
 
   const {
     data: tracks = visibleList,

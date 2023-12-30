@@ -16,7 +16,7 @@ const baseQuery = fetchBaseQuery({
 
     // Если происходит логин или регистрация нового пользователя
     // accessToken не отправляется в заголовках
-    if (endpoint === 'login') return headers;
+    if (endpoint === 'login' || endpoint === 'signup') return headers;
 
     const accessToken = getState().user.accessToken;
     if (accessToken) headers.set('authorization', `Bearer ${accessToken}`);
@@ -118,19 +118,13 @@ export const musicServiceAPI = createApi({
         url: `catalog/track/${id}/favorite/`,
         method: 'DELETE',
       }),
-      extraOptions: {},
 
       invalidatesTags: (result, error, { id }) => [{ type: 'Tracks', id }],
     }),
 
     // endpoint LOGIN
     login: builder.mutation({
-      async queryFn(
-        { email, password },
-        queryApi,
-        _extraOptions,
-        fetchWithBQ
-      ) {
+      async queryFn({ email, password }, queryApi, _extraOptions, fetchWithBQ) {
         const response = await Promise.all([
           fetchWithBQ({
             url: 'user/login/',
@@ -149,8 +143,6 @@ export const musicServiceAPI = createApi({
 
         if (response[1].error) return response[1];
 
-        console.log(response, 'Это ответ от promise.all')
-
         const userAndTokens = [response[0].data, response[1].data];
         // Убираю токены в LS а также диспачу в store
         localStorage.setItem('refreshToken', userAndTokens[1].refresh);
@@ -160,7 +152,15 @@ export const musicServiceAPI = createApi({
 
         return { data: userAndTokens };
       },
-
+      extraOptions: { withoutRefresh: true },
+    }),
+    // endpoint Signup
+    signup: builder.mutation({
+      query: ({ email, password }) => ({
+        url: 'user/signup/',
+        method: 'POST',
+        body: { email, password, username: email },
+      }),
       extraOptions: { withoutRefresh: true },
     }),
   }),
@@ -171,6 +171,7 @@ export const {
   useLikeTrackMutation,
   useDislikeTrackMutation,
   useLoginMutation,
+  useSignupMutation,
 } = musicServiceAPI;
 
 export const regNewUser = (email, pass) => {
@@ -217,21 +218,4 @@ export const queryLogin = (email, password) => {
         return data;
       }),
   ]);
-};
-
-export const refreshToken = (
-  refresh = localStorage.getItem('refreshToken')
-) => {
-  return axios
-    .post(baseUrl + 'user/token/refresh/', {
-      refresh,
-
-      headers: {
-        'content-type': 'application/json',
-      },
-    })
-    .then((response) => {
-      localStorage.setItem('accessToken', response.data.access);
-      return response.data.access;
-    });
 };

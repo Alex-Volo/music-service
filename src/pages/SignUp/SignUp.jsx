@@ -4,7 +4,7 @@ import { EntryInput, Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { regNewUser, queryLogin } from 'services/API';
+import { regNewUser, queryLogin, useSignupMutation, useLoginMutation } from 'services/API';
 import { useUser } from 'hooks';
 
 export const SignUp = () => {
@@ -16,14 +16,16 @@ export const SignUp = () => {
   const [password, setPassword] = useState('');
   const [passwordAgain, setPasswordAgain] = useState('');
   const [email, setEmail] = useState('');
+  const [signup] = useSignupMutation();
+  const [loginQuery] = useLoginMutation();
 
   const handleRegister = async () => {
-    if (!password) {
-      setError('Введите пароль');
-      return;
-    }
     if (!email) {
       setError('Введите Email');
+      return;
+    }
+    if (!password) {
+      setError('Введите пароль');
       return;
     }
     if (password !== passwordAgain) {
@@ -31,21 +33,61 @@ export const SignUp = () => {
       return;
     }
 
-    regNewUser(email, password)
-      .then(() => queryLogin(email, password))
-      .then((response) => login(response))
-      .then(() => navigate('/'))
-      .catch((error) => {
-        console.warn(error);
-        if (error.response) {
-          console.warn(error.response.data);
-          const text = Object.values(error.response.data).join(' ');
-          setError(text);
-        } else {
-          console.log(error.request);
-          setError('Проблемы с сетью, проверьте подключение к сети интернет');
-        }
-      });
+    const { data: response, error: signupError } = await signup({ email, password });
+    console.log(response, 'Это ответ сервера на регистрацию');
+
+    // Далее кривая обработка ошибок, ибо не умею
+    if (signupError?.data) {
+      console.warn('Ошибка регистрации КОМПОНЕНТ', signupError);
+      const text = Object.values(signupError.data).join('\n');
+      setError(text);
+      return;
+    }
+
+    if (signupError) {
+      console.warn('Ошибка регистрации КОМПОНЕНТ', signupError);
+
+      setError('Пробелмы с сетью');
+      return;
+    }
+
+    const { data: userAndTokens, error: loginError } = await loginQuery({
+      email,
+      password,
+    });
+    // Далее кривая обработка ошибок, ибо не умею
+    if (loginError?.data) {
+      console.warn('Ошибка логина КОМПОНЕНТ', loginError);
+
+      setError(loginError.data.detail);
+      return;
+    }
+
+    if (loginError) {
+      console.warn('Ошибка логина КОМПОНЕНТ', loginError);
+
+      setError('Пробелмы с сетью');
+      return;
+    }
+    // Здесь убираю юзера в контекст
+    login(userAndTokens[0]);
+    navigate('/', { replace: true });
+
+    // regNewUser(email, password)
+    //   .then(() => queryLogin(email, password))
+    //   .then((response) => login(response))
+    //   .then(() => navigate('/'))
+    //   .catch((error) => {
+    //     console.warn(error);
+    //     if (error.response) {
+    //       console.warn(error.response.data);
+    //       const text = Object.values(error.response.data).join(' ');
+    //       setError(text);
+    //     } else {
+    //       console.log(error.request);
+    //       setError('Проблемы с сетью, проверьте подключение к сети интернет');
+    //     }
+    //   });
   };
 
   // Сбрасываем ошибку если пользователь меняет данные на форме
