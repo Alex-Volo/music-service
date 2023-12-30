@@ -4,21 +4,19 @@ import { EntryInput, Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { musicServiceAPI, queryLogin, useLoginMutation } from 'services/API';
+import { useLoginMutation } from 'services/API';
 import { useUser } from 'hooks';
-import { useDispatch } from 'react-redux';
-import { setAccessToken, setRefreshToken } from 'store/UserSlice';
 
 export const Login = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const logoBlackImgURL = '/assets/img/logo_black.svg';
 
   const [error, setError] = useState(null);
   const [loginValue, setLoginValue] = useState('test@test.test');
   const [password, setPassword] = useState('test@test.test');
   const { login } = useUser();
-  const [loginQuery, { isError, error: loginError }] = useLoginMutation();
+  // Здесь почему-то не приходят ошибки и не меняется флаг isError
+  const [loginQuery /* { isError, error: loginError } */] = useLoginMutation();
 
   const handleLogin = async () => {
     if (!loginValue) {
@@ -29,44 +27,29 @@ export const Login = () => {
       setError('Введите пароль');
       return;
     }
-
-    const { data: userAndTokens } = await loginQuery({
+    // Здесь происходит запрос, тут же получаю ошибки
+    const { data: userAndTokens, error } = await loginQuery({
       email: loginValue,
       password,
     });
-    console.log('isERRoR: ', isError)
-    console.log('ошибка в компоненте', error)
-    if (isError) {
-      console.log('Ошибка логина КОМПОНЕНТ', loginError);
-      return
+    // Далее кривая обработка ошибок, ибо не умею
+    if (error?.data) {
+      console.warn('Ошибка логина КОМПОНЕНТ', error);
+
+      setError(error.data.detail);
+      return;
     }
-    console.log('Это в компоненте пришли юзер и токены', userAndTokens);
+
+    if (error) {
+      console.warn('Ошибка логина КОМПОНЕНТ', error);
+
+      setError('Пробелмы с сетью');
+      return;
+    }
+
+    // Здесь убираю юзера в контекст
     login(userAndTokens[0]);
-    dispatch(setAccessToken(userAndTokens[1].access));
-    dispatch(setRefreshToken(userAndTokens[1].refresh));
-
-    // navigate('/', { replace: true });
-
-    // queryLogin(loginValue, password)
-    //   .then((response) => {
-    //     console.log(response);
-    //     dispatch(setAccessToken(response[1].access));
-    //     dispatch(setRefreshToken(response[1].refresh));
-
-    //     login(response[0]);
-    //     navigate('/', { replace: true });
-    //   })
-    //   .catch((error) => {
-    //     console.warn(error);
-    //     if (error.response) {
-    //       console.warn(error.response.data);
-    //       const text = Object.values(error.response.data).join(' ');
-    //       setError(text);
-    //     } else {
-    //       console.log(error.request);
-    //       setError('Проблемы с сетью, проверьте подключение к сети интернет');
-    //     }
-    //   });
+    navigate('/', { replace: true });
   };
 
   // Сбрасываем ошибку если пользователь меняет данные на форме

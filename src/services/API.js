@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import axios from 'axios';
-import { setAccessToken } from 'store/UserSlice';
+import { setAccessToken, setRefreshToken } from 'store/UserSlice';
 
 const baseUrl = 'https://skypro-music-api.skyeng.tech/';
 const subURLs = {
@@ -28,7 +28,7 @@ const baseQuery = fetchBaseQuery({
 const baseQueryWithRefresh = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
 
-  if (extraOptions.withoutRefresh) return result;
+  if (extraOptions?.withoutRefresh) return result;
 
   if (result?.error?.status !== 401) return result;
 
@@ -127,7 +127,7 @@ export const musicServiceAPI = createApi({
     login: builder.mutation({
       async queryFn(
         { email, password },
-        _queryApi,
+        queryApi,
         _extraOptions,
         fetchWithBQ
       ) {
@@ -144,29 +144,23 @@ export const musicServiceAPI = createApi({
             body: { email, password },
           }),
         ]);
-        // if (!response.data) throw new Error('Ошибка при логине');
-        console.log(response, 'произошла');
-        if (response[0].error) return { error: response[0].error };
-        if (response[1].error) return { error: response[1].error };
 
-        if (response[0].error || response[1].error) {
-          console.log(response, 'произошла ошибка');
-          console.log(response[0]);
-          console.log({ error: response[0].error || response[1].error });
-          return response[0];
-        }
+        if (response[0].error) return response[0];
 
-        console.log('Это результат promiseAll', response);
-        const userAndTokens = await [response[0].data, response[1].data];
-        console.log(userAndTokens, 'это в queryFn');
+        if (response[1].error) return response[1];
+
+        console.log(response, 'Это ответ от promise.all')
+
+        const userAndTokens = [response[0].data, response[1].data];
+        // Убираю токены в LS а также диспачу в store
+        localStorage.setItem('refreshToken', userAndTokens[1].refresh);
+        localStorage.setItem('accessToken', userAndTokens[1].access);
+        queryApi.dispatch(setRefreshToken(userAndTokens[1].refresh));
+        queryApi.dispatch(setAccessToken(userAndTokens[1].access));
 
         return { data: userAndTokens };
-        // const randomResult = await fetchWithBQ('users/random')
-        // if (randomResult.error) return { error: randomResult.error }
-        // const user = randomResult.data
-        // const result = await fetchWithBQ(`user/${user.id}/posts`)
-        // return result.data ? { data: result.data } : { error: result.error }
       },
+
       extraOptions: { withoutRefresh: true },
     }),
   }),
