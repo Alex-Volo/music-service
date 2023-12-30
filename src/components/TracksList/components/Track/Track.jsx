@@ -10,8 +10,10 @@ import {
 } from 'store/tracksSlice';
 import { Skeletons } from './Skeletons';
 import { useUser } from 'hooks';
-import { useDislikeTrackMutation, useLikeTrackMutation } from 'services/API';
-import { useEffect } from 'react';
+import {
+  useDislikeTrackMutation,
+  useLikeTrackMutation,
+} from 'services/tracksAPISlice';
 
 export const Track = ({ isLoading, track, playlist }) => {
   const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
@@ -27,11 +29,6 @@ export const Track = ({ isLoading, track, playlist }) => {
 
   let isLiked = track?.stared_user?.some(({ id }) => id === currentUser.id);
   if (playlist === 'favorites') isLiked = true;
-  // useEffect(() => {
-    // if (isLikeSuccess || isDislikeSuccess) {
-    //   isLiked = isLikeSuccess ?? isDislikeSuccess;
-    // }
-  // }, [isLikeSuccess, isDislikeSuccess]);
 
   const handlerTrackClick = (track) => {
     dispatch(setActiveList(visibleList));

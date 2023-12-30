@@ -1,7 +1,7 @@
 import * as S from './styles';
 import { Track, ListHead, Error } from 'components';
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetTracksQuery } from 'services/API';
+import { useGetTracksQuery } from 'services/tracksAPISlice';
 import { setIsLoading, setVisibleList } from 'store/tracksSlice';
 import { useEffect } from 'react';
 

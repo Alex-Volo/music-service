@@ -4,7 +4,7 @@ import { EntryInput, Btn } from 'components';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useLoginMutation } from 'services/API';
+import { useLoginMutation } from 'services/authAPISlice';
 import { useUser } from 'hooks';
 
 export const Login = () => {
