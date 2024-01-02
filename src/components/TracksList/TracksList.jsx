@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 
 export const TracksList = ({ playlist }) => {
   const dispatch = useDispatch();
-  const visibleList = useSelector((state) => state.tracks.visibleList);
+  let visibleList = useSelector((state) => state.tracks.visibleList);
 
   const {
     data: tracks = visibleList,

@@ -9,7 +9,7 @@ export const Search = () => {
   const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
   const [searchValue, setSearchValue] = useState('');
   const dispatch = useDispatch();
-  const tracksList = useSelector((state) => state.tracks.list);
+  const tracksList = useSelector((state) => state.tracks.visibleList);
 
   useEffect(() => {
     if (searchValue) {
