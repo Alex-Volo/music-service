@@ -1,9 +1,10 @@
 import { AppRoutes } from 'routes';
 import { GlobalStyle } from 'components';
 import { useUser, useTheme } from 'hooks';
+import { useSelector } from 'react-redux';
 
 function App() {
-  const { currentUser } = useUser();
+  const currentUser = useSelector(state => state.user.user);
   const {theme} = useTheme();
 
   const isAllowed = Boolean(currentUser);

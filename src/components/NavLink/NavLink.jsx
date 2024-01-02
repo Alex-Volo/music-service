@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import * as S from './styles';
-import { useUser } from 'hooks';
+import { useDispatch } from 'react-redux';
 
 export const NavLink = ({ linkName, link, needsLogout }) => {
-  const { logout } = useUser();
+  const dispatch = useDispatch();
+  const logout = () => dispatch({ type: 'RESET' });
 
   return (
     <S.NavLink onClick={needsLogout && logout}>

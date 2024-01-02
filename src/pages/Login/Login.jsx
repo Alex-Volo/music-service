@@ -5,16 +5,17 @@ import { EntryInput, Btn } from 'components';
 import { Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { useLoginMutation } from 'services/authAPISlice';
-import { useUser } from 'hooks';
+import { setUser } from 'store/UserSlice';
+import { useDispatch } from 'react-redux';
 
 export const Login = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const logoBlackImgURL = '/assets/img/logo_black.svg';
 
   const [error, setError] = useState(null);
   const [loginValue, setLoginValue] = useState('test@test.test');
   const [password, setPassword] = useState('test@test.test');
-  const { login } = useUser();
   // Здесь почему-то не приходят ошибки и не меняется флаг isError
   const [loginQuery /* { isError, error: loginError } */] = useLoginMutation();
 
@@ -47,8 +48,10 @@ export const Login = () => {
       return;
     }
 
-    // Здесь убираю юзера в контекст
-    login(userAndTokens[0]);
+    // Здесь убираю юзера в LS и store
+    dispatch(setUser(userAndTokens[0]));
+    localStorage.setItem('user', JSON.stringify(userAndTokens[0]));
+
     navigate('/', { replace: true });
   };
 

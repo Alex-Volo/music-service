@@ -20,7 +20,7 @@ export const Track = ({ isLoading, track, playlist }) => {
   const dispatch = useDispatch();
   const currentTrack = useSelector((state) => state.tracks.currentTrack);
   const visibleList = useSelector((state) => state.tracks.visibleList);
-  const { currentUser } = useUser();
+  const currentUser = useSelector(state => state.user.user)
   const [like, { isSuccess: isLikeSuccess }] = useLikeTrackMutation();
   const [dislike, { isSuccess: isDislikeSuccess }] = useDislikeTrackMutation();
 
