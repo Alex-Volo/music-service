@@ -8,3 +8,5 @@ Authorization
 plan: 2 hours fact: 1 hour, but evrything was done earlier - in previous homeworks
 Redux
 plan: 0 fact: 0, evrything was done earlier
+Redux async (RTKQ)
+plan: 6 hours fact: 6 

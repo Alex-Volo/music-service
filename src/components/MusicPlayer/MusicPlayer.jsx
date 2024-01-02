@@ -7,7 +7,7 @@ export const MusicPlayer = () => {
   const currentTrack = useSelector((state) => state.tracks.currentTrack);
   const audioAPIRef = useRef(null);
   const audioAPI = audioAPIRef.current;
-  const isPlayerVisible = useSelector((state) => state.UI.isPlayerVisible);
+  const isPlayerVisible = useSelector((state) => state.player.isPlayerVisible);
 
   return (
     <S.MusicPlayer $isPlayerVisible={isPlayerVisible}>

@@ -6,7 +6,7 @@ export const AllTracs = () => {
     <S.Main>
       <S.Heading>Треки</S.Heading>
       <SearchFilter />
-      <TracksList playlist="list" />
+      <TracksList playlist="all" />
     </S.Main>
   );
 };

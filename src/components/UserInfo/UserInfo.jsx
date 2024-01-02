@@ -1,11 +1,13 @@
+import { useDispatch, useSelector } from 'react-redux';
 import * as S from './styles';
-import { useUser } from 'hooks';
 
 export const UserInfo = () => {
   const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
+  const dispatch = useDispatch();
 
-  const { currentUser, logout } = useUser();
-  const userName = currentUser.username;
+  const currentUser = useSelector((state) => state.user.user);
+  const logout = () => dispatch({ type: 'RESET' });
+  const userName = currentUser?.username || '';
 
   return (
     <S.Container>

@@ -2,9 +2,9 @@ import { styled } from 'styled-components';
 
 export const Track = styled.div`
   display: grid;
-  grid-template-columns: 50px calc((100% - 110px) * 0.4) calc(
-      (100% - 110px) * 0.3
-    ) calc((100% - 110px) * 0.3) 20px 40px;
+  grid-template-columns:
+    50px calc((100% - 110px) * 0.4) calc((100% - 110px) * 0.3)
+    calc((100% - 110px) * 0.3) 20px 40px;
   grid-template-rows: 50px;
   align-items: center;
   margin-top: 12px;
@@ -101,7 +101,7 @@ export const TrackLikeSvg = styled.svg`
   cursor: pointer;
 
   stroke: #696969;
-  fill: transparent;
+  fill: ${({ $isLiked }) => ($isLiked ? '#8b6bf0' : 'transparent')};
   &:hover {
     stroke: #acacac;
   }

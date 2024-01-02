@@ -1,64 +1,63 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import axios from 'axios';
+import { setAccessToken } from 'store/UserSlice';
 
 const baseUrl = 'https://skypro-music-api.skyeng.tech/';
-const subURLs = {
-  all: 'catalog/track/all/',
-  allPlaylists: 'catalog/selection/',
-};
 
-export const musicServiceAPI = createApi({
-  reducerPath: 'musicServiceAPI',
+// Базовый запрос, готовлю заголовки
+const baseQuery = fetchBaseQuery({
+  baseUrl,
+  prepareHeaders: (headers, { getState, endpoint }) => {
+    headers.set('content-type', 'application/json');
 
-  baseQuery: fetchBaseQuery({
-    baseUrl,
-  }),
-  tagTypes: ['Tracks'],
-  endpoints: (builder) => ({
-    getTracks: builder.query({
-      query: (playlist = 'all') => {
-        let addURL = '';
-        // Если полученный аргумент можно привести к числу
-        if (!isNaN(Number(playlist))) addURL = `catalog/selection/${playlist}`;
-        else addURL = 'catalog/track/all/';
-        return addURL;
-      },
+    // Если происходит логин или регистрация нового пользователя
+    // accessToken не отправляется в заголовках
+    if (endpoint === 'login' || endpoint === 'signup') return headers;
 
-      transformResponse: (data) => {
-        let tracks = data;
-        if (!Array.isArray(data)) tracks = data.items;
-        return tracks;
-      },
-      providesTags: ['Tracks'],
-    }),
-  }),
+    const accessToken = getState().user.accessToken;
+    if (accessToken) headers.set('authorization', `Bearer ${accessToken}`);
+
+    return headers;
+  },
 });
 
-export const { useGetTracksQuery } = musicServiceAPI;
+// Обертка базового запроса: делает повторную авторизацию by JWT
+const baseQueryWithRefresh = async (args, api, extraOptions) => {
+  let result = await baseQuery(args, api, extraOptions);
 
-export const regNewUser = (email, pass) => {
-  return axios
-    .post(baseUrl + 'user/signup/', {
-      email: email,
-      password: pass,
-      username: email,
+  if (extraOptions?.withoutRefresh) return result;
 
-      headers: {
-        'content-type': 'application/json',
-      },
-    })
-    .then((response) => response.data);
+  if (result?.error?.status !== 401) return result;
+
+  console.log('Отправляю refreshToken, обновляю accessToken');
+
+  if (!api.getState().user?.refreshToken)
+    console.log('Нет рефреш токена, нужен логаут');
+
+  const responseFromRefresh = await baseQuery(
+    {
+      url: 'user/token/refresh/',
+      method: 'POST',
+      body: { refresh: localStorage.getItem('refreshToken') },
+    },
+    api,
+    extraOptions
+  );
+
+  if (responseFromRefresh?.data) {
+    api.dispatch(setAccessToken(responseFromRefresh.data.access));
+    localStorage.setItem('accessToken', responseFromRefresh.data.access);
+
+    result = await baseQuery(args, api, extraOptions);
+    return result;
+  }
+
+  console.log('Рефреш не произошел, необходимо перезагрузить страницу');
 };
 
-export const queryLogin = (email, pass) => {
-  return axios
-    .post(baseUrl + 'user/login/', {
-      email: email,
-      password: pass,
-
-      headers: {
-        'content-type': 'application/json',
-      },
-    })
-    .then((response) => response.data);
-};
+// Все эндпоинты лежат в своих слайсах
+export const musicServiceAPI = createApi({
+  reducerPath: 'musicServiceAPI',
+  baseQuery: baseQueryWithRefresh,
+  tagTypes: ['Tracks'],
+  endpoints: (builder) => ({}),
+});
