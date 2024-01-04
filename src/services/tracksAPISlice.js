@@ -10,7 +10,7 @@ const tracksAPISlice = musicServiceAPI.injectEndpoints({
   endpoints: (builder) => ({
     // endpoint В зависимости от переданного плейлиста загружает:
     // все треки, конкретный плейлист или избранное
-    // знаю, что универсальные функции зло, но в данном случае 
+    // знаю, что универсальные функции зло, но в данном случае
     // получаем одну и ту же сущность от сервера, потому так
     getTracks: builder.query({
       query: (playlist = 'all') => {
@@ -21,9 +21,10 @@ const tracksAPISlice = musicServiceAPI.injectEndpoints({
         return addURL;
       },
 
-      transformResponse: (data) => {
+      transformResponse: (data, meta) => {
         let tracks = data;
         if (!Array.isArray(data)) tracks = data.items;
+
         return tracks;
       },
 

@@ -9,26 +9,31 @@ import {
   setShuffledOrder,
 } from 'store/tracksSlice';
 import { Skeletons } from './Skeletons';
-import { useUser } from 'hooks';
 import {
   useDislikeTrackMutation,
   useLikeTrackMutation,
 } from 'services/tracksAPISlice';
+import { Error } from 'components';
+import { useEffect } from 'react';
 
 export const Track = ({ isLoading, track, playlist }) => {
   const sprite = process.env.PUBLIC_URL + '/assets/img/sprite.svg';
   const dispatch = useDispatch();
   const currentTrack = useSelector((state) => state.tracks.currentTrack);
   const visibleList = useSelector((state) => state.tracks.visibleList);
-  const currentUser = useSelector(state => state.user.user)
-  const [like, { isSuccess: isLikeSuccess }] = useLikeTrackMutation();
-  const [dislike, { isSuccess: isDislikeSuccess }] = useDislikeTrackMutation();
+  const currentUser = useSelector((state) => state.user.user);
+
+  const [like, { isError: isLikeError, error: likeError }] =
+    useLikeTrackMutation();
+  const [dislike, { isError: isDislikeError, error: dislikeError }] =
+    useDislikeTrackMutation();
+  const isError = isLikeError ?? isDislikeError;
+  const error = likeError ?? dislikeError;
 
   const isAnimated = currentTrack.id === track.id ? true : false;
   const isPaused = useSelector((state) => state.player.isPaused) && isAnimated;
 
   let isLiked = track?.stared_user?.some(({ id }) => id === currentUser.id);
-  if (playlist === 'favorites') isLiked = true;
 
   const handlerTrackClick = (track) => {
     dispatch(setActiveList(visibleList));
@@ -38,6 +43,9 @@ export const Track = ({ isLoading, track, playlist }) => {
     dispatch(isAnimated ? setIsPaused(!isPaused) : setIsPaused(false));
   };
 
+  useEffect(() => {
+    if (isAnimated) dispatch(setCurrentTrack(track));
+  }, [isLiked]);
   const handlerLikeClick = (id) => (isLiked ? dislike(id) : like(id));
 
   if (isLoading) {
@@ -47,6 +55,8 @@ export const Track = ({ isLoading, track, playlist }) => {
       </S.Track>
     );
   }
+
+  if (isError) return <Error value={error.error} />;
 
   return (
     <S.Track $isAnimated={isAnimated} onClick={() => handlerTrackClick(track)}>

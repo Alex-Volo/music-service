@@ -8,6 +8,8 @@ import { useEffect } from 'react';
 export const TracksList = ({ playlist }) => {
   const dispatch = useDispatch();
   let visibleList = useSelector((state) => state.tracks.visibleList);
+  const {id} = useSelector((state) => state.user.user);
+  
 
   const {
     data: tracks = visibleList,
@@ -18,7 +20,14 @@ export const TracksList = ({ playlist }) => {
   } = useGetTracksQuery(playlist);
 
   useEffect(() => {
-    dispatch(setVisibleList(tracks));
+    let modifyedTracks = tracks;
+    if (!modifyedTracks[0].stared_user) {
+      modifyedTracks = [...modifyedTracks].map((track) => ({
+        ...track,
+        stared_user: [{ id: id }],
+      }));
+    }
+    dispatch(setVisibleList(modifyedTracks));
     // dispatch(setIsLoading(isTracksLoading || isFetching));
   }, [tracks]);
 
@@ -62,6 +71,8 @@ export const TracksList = ({ playlist }) => {
       playlist={playlist}
     />
   ));
+
+  if (isError) return <Error value={error.error} />;
 
   return (
     <S.TracksList>
