@@ -21,7 +21,7 @@ export const ModalList  = styled.ul`
   overflow-y: auto;
   scrollbar-color: white, gray;
 
-  & li {
+  /* & li {
     padding: 12px 0;
   }
 
@@ -35,7 +35,7 @@ export const ModalList  = styled.ul`
   & a:hover {
     text-decoration: underline;
     color: #626bb2;
-  }
+  } */
 
   &::-webkit-scrollbar {
     background-color: #313131;

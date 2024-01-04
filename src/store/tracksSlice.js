@@ -25,6 +25,9 @@ const initialState = (() => {
     listOfFound: [],
     shuffledOrder: [3, 2, 1, 0],
     currentTrack: { name: '', author: '', track_file: '' },
+    filterAuthors: [],
+    filterGenres: [],
+    dateSortType: null,
   };
 })();
 
@@ -60,6 +63,28 @@ export const tracksSlice = createSlice({
       const shuffledIndices = getShuffledIndices(action.payload);
       state.shuffledOrder = shuffledIndices;
     },
+
+    addOrRemoveAuthor: (state, { payload }) => {
+      if (state.filterAuthors.includes(payload))
+        state.filterAuthors = state.filterAuthors.filter(
+          (el) => el !== payload
+        );
+      else state.filterAuthors.push(payload);
+    },
+
+    addOrRemoveGenre: (state, { payload }) => {
+      if (state.filterGenres.includes(payload))
+        state.filterGenres = state.filterGenres.filter((el) => el !== payload);
+      else state.filterGenres.push(payload);
+    },
+
+    setDateSortType: (state, { payload }) => {
+      state.dateSortType = payload;
+    },
+
+    removeFilter: (state, { payload }) => {
+      state[payload[0]] = payload[1];
+    },
   },
 });
 export const {
@@ -70,6 +95,10 @@ export const {
   setActiveList,
   setCurrentTrack,
   setShuffledOrder,
+  addOrRemoveAuthor,
+  addOrRemoveGenre,
+  setDateSortType,
+  removeFilter,
 } = tracksSlice.actions;
 
 export default tracksSlice.reducer;

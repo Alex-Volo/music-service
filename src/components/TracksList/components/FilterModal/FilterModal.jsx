@@ -1,14 +1,13 @@
 import * as S from './styles';
+import { ModalItem } from '../ModalItem/ModalItem';
 
-export const FilterModal = ({ sortList }) => {
-  const sortListElements = sortList.map((e) => (
-    <li key={e}>
-      <a href="#">{e}</a>
-    </li>
+export const FilterModal = ({ sortList, id }) => {
+  const sortListItems = sortList.map((el) => (
+    <ModalItem id={id} key={el} value={el}/>
   ));
   return (
     <S.ModalWrapper>
-      <S.ModalList> {sortListElements} </S.ModalList>
+      <S.ModalList> {sortListItems} </S.ModalList>
     </S.ModalWrapper>
   );
 };

@@ -20,13 +20,7 @@ export const getSortList = (title, state) => {
   let sortList = [];
 
   if (typeOfSort === 'release_date') {
-    sortList = Array.from(
-      new Set(
-        state.map((track) =>
-          track[typeOfSort] ? track[typeOfSort].slice(0, 4) : 'Неизвестно'
-        )
-      )
-    ).sort();
+    sortList = ['<по умолчанию>', 'Сначала старые', 'Сначала новые'];
   } else {
     sortList = Array.from(
       new Set(state.map((track) => track[typeOfSort]))

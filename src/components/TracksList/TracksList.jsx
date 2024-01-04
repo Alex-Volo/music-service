@@ -25,28 +25,43 @@ export const TracksList = ({ playlist }) => {
   // const isLoading = isTracksLoading || isFetching;
 
   const isLoading = isTracksLoading;
+
   const isSearching = useSelector((state) => state.tracks.isSearching);
   const listOfFound = useSelector((store) => store.tracks.listOfFound);
+  const filterAuthors = useSelector((store) => store.tracks.filterAuthors);
+  const filterGenres = useSelector((store) => store.tracks.filterGenres);
+  const dateSortType = useSelector((store) => store.tracks.dateSortType);
 
   if (isSearching) visibleList = listOfFound;
+  if (filterAuthors.length > 0) {
+    visibleList = visibleList.filter((track) =>
+      filterAuthors.includes(track.author)
+    );
+  }
+  if (filterGenres.length > 0) {
+    visibleList = visibleList.filter((track) =>
+      filterGenres.includes(track.genre)
+    );
+  }
+  if (dateSortType) {
+    visibleList =
+      dateSortType === 1
+        ? [...visibleList].sort(
+            (a, b) => new Date(a.release_date) - new Date(b.release_date)
+          )
+        : [...visibleList].sort(
+            (a, b) => new Date(b.release_date) - new Date(a.release_date)
+          );
+  }
 
   const trackElements = visibleList.map((track) => (
-    <Track key={track.id} isLoading={isLoading} track={track} playlist={playlist} />
+    <Track
+      key={track.id}
+      isLoading={isLoading}
+      track={track}
+      playlist={playlist}
+    />
   ));
-
-  // if (isError) {
-  //   // Если у ошибки 401-й код обновляем accesToken
-  //   if (error.status === 401) {
-  //     (async () => {
-  //       const access = await refreshToken(refresh);
-  //       console.log('обновился доступ', access);
-
-  //       dispatch(setAccessToken(access));
-  //       window.location.reload();
-  //     })();
-  //   }
-  //   return <Error value={error.error} />;
-  // }
 
   return (
     <S.TracksList>
