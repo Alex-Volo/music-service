@@ -28,4 +28,4 @@ plan: 6 hours fact: 16
 - Auto refresh access token.
 - UX
 
-Plan: 4 hours (cause most of features were realised earlyer) Fact: 6
+Plan: 4 hours (cause most of features were realised earlyer) Fact: 8
