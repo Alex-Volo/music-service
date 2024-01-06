@@ -13,7 +13,7 @@ export const Interface = ({ currentTrack, audioAPI }) => {
         audioAPI={audioAPI} 
         currentTrack={currentTrack}
         />
-        <LikeDislike />
+        <LikeDislike currentTrack={currentTrack} />
       </S.LeftBlock>
       <Volume audioAPI={audioAPI} />
     </S.PlayerInterface>

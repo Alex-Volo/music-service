@@ -30,4 +30,14 @@ export const Shortcut = styled.div`
   font-size: 13px;
   background-color: #626bb2;
   color: #fff;
+
+  &:hover::before {
+    content: '×';
+    position: absolute;
+    font-size: 36px;
+    display: block;
+    color: var(--text-color);
+    font-size: 25px;
+    background-color: #626bb2;
+  }
 `;

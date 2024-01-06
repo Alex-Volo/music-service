@@ -15,11 +15,10 @@ const rootReducer = (state, action) => {
     localStorage.clear();
     state = undefined;
   }
-  return combinedReducer(state, action)
-}
+  return combinedReducer(state, action);
+};
 export const store = configureStore({
   reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(musicServiceAPI.middleware),
 });
-
