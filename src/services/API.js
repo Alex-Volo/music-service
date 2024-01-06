@@ -51,6 +51,8 @@ const baseQueryWithRefresh = async (args, api, extraOptions) => {
     return result;
   }
 
+  localStorage.clear();
+  api.dispatch({ type: 'RESET' });
   console.log('Рефреш не произошел, необходимо перезагрузить страницу');
 };
 

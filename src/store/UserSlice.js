@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getUserFromLS } from 'helpers/helpers';
 
 const initialState = {
-  accessToken: localStorage.getItem('accessToken'),
-  refreshToken: localStorage.getItem('refreshToken'),
-  user: getUserFromLS(),
+  accessToken: localStorage.getItem('accessToken') || null,
+  refreshToken: localStorage.getItem('refreshToken') || null,
+  user: getUserFromLS() || null,
 };
 
 export const UserSlice = createSlice({
