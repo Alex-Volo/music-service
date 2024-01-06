@@ -4,7 +4,7 @@ import { getUserFromLS } from 'helpers/helpers';
 const initialState = {
   accessToken: localStorage.getItem('accessToken') || null,
   refreshToken: localStorage.getItem('refreshToken') || null,
-  user: getUserFromLS() || null,
+  user: null,
 };
 
 export const UserSlice = createSlice({
